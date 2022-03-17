@@ -144,12 +144,15 @@ Current - 最新版
 
 > 版本检测 node -v
 
+### 创建vue项目
 
 > 全局安装 vue-cli
 `$ npm install -g vue-cli`
 
 > 创建项目
 `$ vue init <template-name> <project-name>`
+`$ vue init webpack mkw-vue-qnew-develop`
+
 
 > 项目初始化
 `$ vue init webpack my-project`
@@ -172,6 +175,7 @@ Current - 最新版
 
 
 
+![安装](https://upfile.wangyongjie.cn/preview/20220316232411T031kDaxX.png)
 
 
 
