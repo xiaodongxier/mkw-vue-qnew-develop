@@ -179,8 +179,40 @@ Current - 最新版
 
 
 
+## 6.3 项目代码结构
 
-
+* README - 项目的说明文件
+* package - 第三方模块依赖包
+* package-lock - package的一个锁文件，确定安装第三方包的版本，保证团队编程的统一
+* LICENSE - 开源协议声明
+* index.html - 默认的项目首页模版文件
+* .postcssrc.js - post css配置项
+* .gitignore - git提交过滤，不想提交到仓库的文件可以进行配置
+* .eslintrc - 代码规范检测
+* .eslintignore - 文件不想被 eslintrc 进行检测可以配置到里面，写的不标准也不会进行提示
+* .editorconfig - 关于编辑器的一些配置，方便统一编程
+* .babelrc -  语法转换，转换成浏览器可以正常解析的代码
+* static - 静态资源
+  * .gitkeep - 
+* src - 整个项目的源代码
+  * assets - 
+  * components - 
+  * router - 
+  * App.vue - 最原始的跟组建
+  * main.js - 整个项目的入口文件
+* node_modules - 依赖的第三方包
+* config - 
+  * dev.env.js - 
+  * index.js.js - 
+  * prod.env.js - 
+* build - 
+* build.js - 
+* check-versions.js - 
+* utils.js - 
+* vue-loader.conf.js - 
+* webpack.base.conf.js - 
+* webpack.dev.conf.js - 
+* webpack.prod.conf.js - 
 
 
 
