@@ -191,37 +191,68 @@ Current - 最新版
 * .eslintrc - 代码规范检测
 * .eslintignore - 文件不想被 eslintrc 进行检测可以配置到里面，写的不标准也不会进行提示
 * .editorconfig - 关于编辑器的一些配置，方便统一编程
-* .babelrc -  语法转换，转换成浏览器可以正常解析的代码
+* .babelrc -  语法转换，转换成浏览器可以正常编译执行的代码
 * static - 静态资源
   * .gitkeep - 
 * src - 整个项目的源代码
-  * assets - 
-  * components - 
-  * router - 
+  * assets - 静态资源
+  * components - 组件
+  * router/index.js - 路由
   * App.vue - 最原始的跟组建
   * main.js - 整个项目的入口文件
-* node_modules - 依赖的第三方包
-* config - 
-  * dev.env.js - 
-  * index.js.js - 
-  * prod.env.js - 
-* build - 
-* build.js - 
-* check-versions.js - 
-* utils.js - 
-* vue-loader.conf.js - 
-* webpack.base.conf.js - 
-* webpack.dev.conf.js - 
-* webpack.prod.conf.js - 
+* node_modules - 项目依赖的第三方包
+* config - 项目的配置文件
+  * dev.env.js - 开发环境配置
+  * index.js.js - 基础的配置信息
+  * prod.env.js - 线上环境配置
+* build - webpack配置项/vue-cli自动构建的/无需修改
+  * build.js - 
+  * check-versions.js - 
+  * utils.js - 
+  * vue-loader.conf.js - 
+  * webpack.base.conf.js - 基础的webpack配置项
+  * webpack.dev.conf.js - 开发环境的webpack配置项
+  * webpack.prod.conf.js - 线上环境的webpack配置项
+
+## 6.4 单文件组件与Vue中的路由
+
+
+> components: { App } 
+
+es6的写法，同下面写法
+
+```
+components: { 
+  App : App
+} 
+```
+
+
+
+> import App from './App'
+
+默认去找App.js/App.json/App.vue等文件
 
 
 
 
+> 以.vue结尾的文件称之为单文件组件
+
+单文件组件
 
 
+### 路由
+
+> 路由：根据网址的不同，返回不同的内容给用户
 
 
+> `<router-view/>`当前路由地址所对应的内容 
+    
 
+### 注意
+
+1. `style` 后面要回车一行
+2. `export default`中`name`的值要是单引号
 
 
 
