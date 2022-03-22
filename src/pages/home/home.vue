@@ -1,5 +1,8 @@
 <template>
-  <div>Home</div>
+  <div>
+    <div class="home">Home</div>
+    <router-link to="/list" class="home">列表页</router-link>
+  </div>
 </template>
 
 <script>
@@ -9,5 +12,7 @@ export default {
 </script>
 
 <style lang="">
-
+  .home {
+    font-size: 50px;
+  }
 </style>

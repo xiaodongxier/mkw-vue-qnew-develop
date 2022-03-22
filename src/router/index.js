@@ -1,3 +1,4 @@
+// 路由文件 - wangyongjie.cn
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/pages/home/home'
