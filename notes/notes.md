@@ -574,29 +574,60 @@ npm i stylus-loader --save
 > 让webpack理解stylus
 
 
+### header 位置开发
 
 
+> scoped css样式只对当前组建生效
+
+> 1rem = html font-size = 50px  
+> 86/100 = .86rem
+
+### `lang="stylus"`报错
+
+> 报错截图
+
+![报错](https://upfile.wangyongjie.cn/preview/20220323173330Tg9PvfOGb.png)
+
+> 报错版本
+
+![报错版本](https://upfile.wangyongjie.cn/preview/20220323173826TBysA0dn2.png)
+
+> 解决方法：https://segmentfault.com/q/1010000025218065 ，下面的评论
+
+> stylus-loader 版本太高 把版本降到3.0.2就解决了最后贴一个GitHub issues的地址[https://github.com/vuejs/vue-cli/issues/5947](https://github.com/vuejs/vue-cli/issues/5947)
+
+![解决办法](https://upfile.wangyongjie.cn/preview/20220323174025TBfaTVWgD.png)
+
+卸载命令 `npm uninstall stylus-loader`
+
+安装3.0.2 版本
+
+安装指定版本命令 `npm i stylus-loader@3.0.2 --save`
 
 
+#### 其他解决方法
+
+> 方法1
+
+1. 不卸载之前的高版本
+2. 运行命令 `npm i stylus-loader@3.0.2 --save`
+
+> 方法2
+
+1. 先在package.json里修改好指定版本号，然后输入
+2. 运行命令 `npm update stylus-loader@3.0.2`
 
 
+#### 知识点
 
+```
+--save和--save-dev区别
+一句话:--save-dev是你开发时依赖的东西，--save是发布后还依赖的东西.
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#### 注释事项
+1. 代码缩减问题
+2. 代码一行结束后面不能跟空格
 
 
 
