@@ -539,7 +539,14 @@ a {color: #25a4bb;text-decoration: none;}
 
 ### 无用代码删除
 
+### 代码提交线上
 
+
+```bash
+git add .     //本地修改提交到git缓存区
+git commit -m "注释"      //本地缓冲区提交的本地仓库
+git push      //本地代码提交到线上
+```
 
 
 
