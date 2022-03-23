@@ -541,12 +541,40 @@ a {color: #25a4bb;text-decoration: none;}
 
 ### 代码提交线上
 
-
 ```bash
 git add .     //本地修改提交到git缓存区
 git commit -m "注释"      //本地缓冲区提交的本地仓库
 git push      //本地代码提交到线上
 ```
+
+
+
+
+## 7-1 Vue项目首页 - header区域开发
+
+
+宽带750px
+按照iPhone6的2倍图
+
+### stylus 安装
+
+```
+npm i stylus --save
+```
+
+> https://www.stylus-lang.cn
+> CSS的预处理框架，即将stylus转换为css使用, 可以使用变量
+
+### stylus-loader 安装
+
+```
+npm i stylus-loader --save
+```
+
+> 让webpack理解stylus
+
+
+
 
 
 
