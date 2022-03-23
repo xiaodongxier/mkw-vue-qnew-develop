@@ -18,6 +18,7 @@ export default {
 .header
   display: flex
   height: .86rem
+  line-height: .86rem
   background: pink
   .header-left
     width: .64rem;
