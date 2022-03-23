@@ -577,6 +577,30 @@ npm i stylus-loader --save
 
 ### header 位置开发
 
+### 局部组建使用
+
+组建下面声明局部组建
+
+```js
+export default {
+  name: 'Home',
+  components: {
+    HomeHeader: HomeHeader
+  }
+}
+```
+
+与下面相同
+
+```js
+export default {
+  name: 'Home',
+  components: {
+    HomeHeader
+  }
+}
+```
+
 
 > scoped css样式只对当前组建生效
 
