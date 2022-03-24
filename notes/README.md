@@ -601,6 +601,7 @@ export default {
 }
 ```
 
+`home-header` == `HomeHeader`
 
 > scoped css样式只对当前组建生效
 
@@ -662,7 +663,13 @@ export default {
 
 ### header 位置开发
 
+> `lang="stylus"` css使用stylus语法
 
+> scoped css样式只对当前组建生效
+
+
+
+### iconfont的使用和代码优化
 
 
 
