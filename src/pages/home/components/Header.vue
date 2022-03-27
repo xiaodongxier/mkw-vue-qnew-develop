@@ -2,7 +2,7 @@
   <div class="header">
     <!-- 60*86 -->
     <div class="header-left">
-      <span class="iconfont back-icon">&#xe624;</span>
+      <div class="iconfont back-icon">&#xe624;</div>
     </div>
     <div class="header-input">
       <span class="iconfont">&#xe632;</span>
@@ -11,7 +11,7 @@
     <!-- 128*86 -->
     <div class="header-right">
       三亚
-      <span class="iconfont">&#xe6aa;</span>
+      <span class="iconfont arrow-icon">&#xe6aa;</span>
       </div>
   </div>
 </template>
@@ -23,6 +23,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '../../../assets/styles/varibles.styl';
 .header
   display: flex
   height: .86rem
@@ -34,7 +35,7 @@ export default {
     float: left;
     display block
     .back-icon
-      font-size .3rem
+      font-size .4rem
       text-align: center
   .header-input
     flex: 1;
@@ -42,6 +43,7 @@ export default {
     line-height .62rem
     margin-top: .12rem
     margin-left: .2rem
+    padding-left: .2rem
     background: #fff
     border-radius: .1rem
     color #ccc
@@ -49,4 +51,7 @@ export default {
     width: 1.24rem;
     float: right;
     text-align: center
+    .arrow-icon
+      margin-left: -.07rem
+      font-size .3rem
 </style>

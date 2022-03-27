@@ -671,11 +671,21 @@ export default {
 
 ### iconfont的使用和代码优化
 
+> iconfont引入
+
+```js
+import './assets/styles/iconfont.css'
+```
 
 
+> css值放到一个变量里面
 
 
+> 样式里面引入样式 
 
+```css
+@import '../../../assets/styles/varibles.styl';
+```
 
 
 
