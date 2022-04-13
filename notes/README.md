@@ -678,34 +678,70 @@ import './assets/styles/iconfont.css'
 ```
 
 
-> css值放到一个变量里面
+> css值放到一个变量里面 - 方便后期视觉主题维护 -提高可维护性
 
 
-> 样式里面引入样式 
+> 样式里面引入样式 ，css引用需要使用 @import
+
+
+![styl引用](https://upfile.wangyongjie.cn/preview/20220413170924TTM1E2Z1O.png)
+
+
 
 ```css
 @import '../../../assets/styles/varibles.styl';
 ```
 
+`@` 代表 `src` 这个目录，但是在`css`引用其他的`css`使用的时候需要前面加`~`
+
+
+```css
+@import '~@/assets/styles/varibles.styl';
+```
 
 
 
+> styles 文件夹路径使用比较高，起一个别名代替，类似上面的 @
 
 
+找到`build/webpack.base.conf.js`这个文件(34行)
 
 
+```js
+resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+    }
+},
+```
+
+根据上面的写法可以为`styles`路径新增一个别名
 
 
+```js
+resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+      'styles': resolve('src/assets/styles'),
+    }
+  },
+```
 
 
+![Header.vue 中 ~styles使用](https://upfile.wangyongjie.cn/preview/20220413173351T6zYm8aGd.png)
 
 
+![main.js中 styles使用](https://upfile.wangyongjie.cn/preview/20220413173627TsPLS18W5.png)
 
 
+修改后会有报错提示
 
 
+![修改配置项报错](https://upfile.wangyongjie.cn/preview/20220413173730TFsA95QZm.png)
 
-
-
-
+这是因为项目修改配置项，需要重启下服务器
 
