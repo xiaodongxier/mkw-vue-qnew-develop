@@ -1,3 +1,5 @@
+> *断断续续学了好长好长时间了，这次又开始了，坚持学完😅*
+
 > 官网文档：https://cn.vuejs.org/index.html
 
 > Vue2.5-2.6-3.0开发去哪儿网App 零基础入门到实战项: https://coding.imooc.com/class/203.html
@@ -701,7 +703,7 @@ import './assets/styles/iconfont.css'
 
 
 
-> styles 文件夹路径使用比较高，起一个别名代替，类似上面的 @
+> styles 文件夹路径使用比较高，起一个别名代替，类似上面的 @，使代码变得更加精简
 
 
 找到`build/webpack.base.conf.js`这个文件(34行)
@@ -745,3 +747,9 @@ resolve: {
 
 这是因为项目修改配置项，需要重启下服务器
 
+
+### 课程总结
+
+* 如何在head组建使用iconfont
+* 如果在styl定义变量并在css中使用变量
+* 如何通过webpack对代码进行简化
