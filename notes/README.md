@@ -1,3 +1,5 @@
+![](https://upfile.wangyongjie.cn/preview/20220422101707TtCjfta4R.jpg)
+
 > *断断续续学了好长好长时间了，这次又开始了，坚持学完😅*
 
 > 官网文档：https://cn.vuejs.org/index.html
