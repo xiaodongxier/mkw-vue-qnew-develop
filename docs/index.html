@@ -18,7 +18,7 @@
   <script src="https://unpkg.com/vue@next"></script>
   <style>
     /*  自定义修改 - 图片 */
-    .markdown-section {
+    .markdown-section img{
         border-radius: 10px;
         border: 2px solid #ffffff;
         box-shadow: 0 0 11px #7f7f7f;
@@ -69,7 +69,10 @@
           buttonText: '复制',
           errorText: '失败',
           successText: '复制成功'
-        }
+        },
+      plugins: [
+        EditOnGithubPlugin.create('https://github.com/xiaodongxier/mkw-vue-qnew-develop/tree/main/docs', docEditBase, title)
+      ]
     }
   </script>
   <!-- Docsify v4 -->
@@ -82,5 +85,7 @@
   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
   <!-- 搜索 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <!-- 在GitHub编辑 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script>
 </body>
 </html>
