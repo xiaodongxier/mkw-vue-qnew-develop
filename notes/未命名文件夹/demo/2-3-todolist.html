@@ -1,0 +1,46 @@
+<!--
+ * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-03-16 14:54:33
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hello world</title>
+  <script src="./static/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="inputVlaue">
+    <button v-on:click="handleBtnClick">提交</button>
+    <ul>
+      <li v-for="item in list">{{item}}</li>
+    </ul>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        list:[],
+        inputVlaue:""
+      },
+      methods: {
+        handleBtnClick: function(){
+          // var contentValue = this.inputVlaue;
+          this.list.push(this.inputVlaue)
+          this.inputVlaue = ""
+          // console.log(contentValue)
+          
+          // this.list.push(this.inputVlaue)
+          // this.inputVlaue = ""
+        }
+      }
+    })
+  </script>
+</body>
+</html>
