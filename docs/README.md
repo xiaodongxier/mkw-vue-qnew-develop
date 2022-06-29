@@ -6,6 +6,8 @@
 
 课程地址：[https://coding.imooc.com/class/203.html](https://coding.imooc.com/class/203.html)
 
+vue官网：[https://cn.vuejs.org](https://cn.vuejs.org)
+
 ## 课程学习步骤
 
 * 代码使用 `vscode` 存储在 GitHub 中 `[kw-vue-qnew-develop](https://github.com/xiaodongxier/mkw-vue-qnew-develop) 项目
