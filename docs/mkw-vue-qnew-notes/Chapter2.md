@@ -41,13 +41,66 @@ MVVM 不关心DOM，只关注数据，数据发生改变，DOM结构就发生改
 
 
 
-![MVVM设计模式](https://upfile.wangyongjie.cn/preview/20220316150127TJVs0DknT.png)
 
 
 
 
 
+### MVP设计模式
 
+![MVP设计模式](https://upfile.wangyongjie.cn/preview/20220316150127TJVs0DknT.png)
+
+面向DOM开发
+
+大多时间在操作DOM结构
+
+
+```html
+<div>
+  <input type="text" id="input">
+  <button id="btn">提交</button>
+  <ul id="list">
+
+  </ul>
+</div>
+<script>
+  // 构造函数
+  function Page() {}
+  $.extend(Page.prototype, {
+    init: function () {
+      this.bindEvents()
+    },
+    bindEvents: function () {
+      var btn = $("#btn");
+      btn.on("click", $.proxy(this.handleBtnClick, this))
+    },
+    handleBtnClick: function () {
+      var inputElem = $("#input");
+      var inputVal = inputElem.val();
+      var eulElem = $("#list");
+      if (inputVal == '') {
+        alert("不能为空")
+      } else {
+        eulElem.append('<li>' + inputVal + '</li>')
+        inputElem.val('')
+      }
+    }
+  })
+  var page = new Page();
+  page.init()
+</script>
+```
+
+
+### MVVM设计模式
+
+![MVVM设计模式](https://upfile.wangyongjie.cn/preview/20220810165624TcNUP4oWH.png)
+
+vue 就是 vm 层
+
+面向数据开发
+
+只需要修改M层数据，无需操作DOM
 <!-- 
 
 
@@ -91,3 +144,7 @@ MVVM 不关心DOM，只关注数据，数据发生改变，DOM结构就发生改
 
 
     
+## 个人总结
+
+1. 不支持ie8及以下版本，因为使用了 ECMAScript 5 特性，ie8及以下版本无法模拟这些特性
+2. 
