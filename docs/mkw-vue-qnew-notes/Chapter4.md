@@ -5,6 +5,60 @@
 ## 4-1 使用组件的细节点
 
 
+> table 层级结构不对
+
+```html
+<div id="app">
+  <table>
+    <tbody>
+      <row></row>
+      <row></row>
+      <row></row>
+    </tbody>
+  </table>
+</div>
+<script>
+  Vue.component('row',{
+    template: "<tr><td>this is row</td></tr>"
+  })
+  var app = new Vue({
+    el: "#app",
+  })
+</script>
+```
+
+![table层级结构不对](https://upfile.wangyongjie.cn/preview/20220928165647TWVuXb1Yi.png)
+
+
+> is 属性；https://v2.cn.vuejs.org/v2/api/#is
+> 适用于 table，ol，ul, section 等标签上，解决dom结构不符合语意化问题
+
+```html
+  <div id="app">
+    <table>
+      <tbody>
+        <tr is="row"></tr>
+        <tr is="row"></tr>
+        <tr is="row"></tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    Vue.component('row',{
+      template: "<tr><td>this is row</td></tr>"
+    })
+    var app = new Vue({
+      el: "#app",
+    })
+  </script>
+```
+
+![符合语意化](https://upfile.wangyongjie.cn/preview/20220929232540TpKyxdHKE.png)
+
+
+----------------------------------------------分割线----------------------------------------------
+
+
 
 
 ## 4-2 父子组件间的数据传递

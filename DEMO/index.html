@@ -1,0 +1,36 @@
+<!--
+ * @Date: 2022-09-26 16:56:59
+ * @LastEditTime: 2022-09-28 16:57:40
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue简单测试</title>
+  <script src="https://cdn.xiaodongxier.com/static/js/vue/2.5.2/vue.js"></script>  
+</head>
+<body>
+  <div id="app">
+    <table>
+      <tbody>
+        <tr is="row"></tr>
+        <tr is="row"></tr>
+        <tr is="row"></tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    Vue.component('row',{
+      template: "<tr><td>this is row</td></tr>"
+    })
+    var app = new Vue({
+      el: "#app",
+    })
+  </script>
+</body>
+</html>
