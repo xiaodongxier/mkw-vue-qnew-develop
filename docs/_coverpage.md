@@ -24,4 +24,4 @@
 
 
 
-![background](https://api.xiaodongxier.com/bing/)
+![background](https://api.wangyongjie.cn/bing)
