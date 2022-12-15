@@ -364,3 +364,8 @@ TodoItem == todo-item
 ## 个人总结
 
 1. 不支持ie8及以下版本，因为使用了 ECMAScript 5 特性，ie8及以下版本无法模拟这些特性
+
+2. vuejs介绍
+
+ <iframe src="//player.youku.com/embed/XMzMwMTYyODMyNA==?autoplay=true&client_id=37ae6144009e277d" frameborder="0" style="display:block; width: 100%;height:65vmin;"></iframe>
+
