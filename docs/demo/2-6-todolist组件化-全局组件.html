@@ -1,0 +1,52 @@
+<!--
+  * @Date: 2022-12-15 16:24:29
+ * @LastEditTime: 2022-12-15 16:47:37
+  * @Author: WangYongJie
+  * @Work-email: wangyongjie2@gome.com.cn
+  * @Private-email: admin@xiaodongxier.com
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>全局组件</title>
+   <script src="./static/vue.js"></script>
+ </head>
+ <body>
+   <div id="root">
+     <div>
+       <input type="text" v-model="todoVal">
+       <button @click="handleBtnClick">提交</button>
+     </div>
+     <ul>
+       <!-- <li v-for="item in list">
+         {{item}}
+       </li> -->
+       <todo-item v-bind:content="item" 
+                  v-for="item in list">
+       </todo-item>
+     </ul>
+   </div>
+   <script>
+    Vue.component("TodoItem",{
+      props: ['content'],
+      template: "<li>{{content}}</li>"
+    })
+     new Vue({
+       el:"#root",
+       data: {
+         todoVal:"",
+         list: []
+       },
+       methods: {
+         handleBtnClick: function(){
+           this.list.push(this.todoVal)
+           this.todoVal = ''
+         }
+       },
+     })
+   </script>
+ </body>
+ </html>

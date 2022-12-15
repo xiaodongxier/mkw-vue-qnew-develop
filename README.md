@@ -23,6 +23,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## Notes Setup
 
+> 参考 [docsify](https://docsify.js.org/#/zh-cn/) 
+> 全局安装 `npm i docsify-cli -g`
+
 ```bash
  docsify serve docs
 ```

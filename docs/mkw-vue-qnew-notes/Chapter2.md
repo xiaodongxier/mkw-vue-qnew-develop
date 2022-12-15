@@ -126,25 +126,241 @@ vue 就是 vm 层
 ## 2-6 前端组件化
 
 
+组件：页面的一个部分，由原来的一个整体，切成一个一个的部分，每个部分可以称为一个组件
+
+- 顶部轮播
+- 搜索框
+- 等等
+
+都可以称之为一个组件
+
+合理的拆分组件，可以把一个大型的项目像拼积木一样拼接起来
+
+一个项目业务逻辑可能会很复杂，拆分成组件以后，每一个组件就会变得很轻巧，后期维护起来也会更加容易
+
+每一个组件就是页面上的一个区域
 
 
 ## 2-7 使用组件改造TodoList
 
 
+- 创建全局组件
+
+```js
+Vue.component() 
+```
+
+```
+TodoItem == todo-item
+```
+
+```html
+<TodoItem></TodoItem>
+等于
+<todo-item></todo-item>
+```
+
+
+> 全局组件
+
+```html
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>全局组件</title>
+   <script src="./static/vue.js"></script>
+ </head>
+ <body>
+   <div id="root">
+     <div>
+       <input type="text" v-model="todoVal">
+       <button @click="handleBtnClick">提交</button>
+     </div>
+     <ul>
+       <!-- <li v-for="item in list">
+         {{item}}
+       </li> -->
+       <todo-item v-bind:content="item" 
+                  v-for="item in list">
+       </todo-item>
+     </ul>
+   </div>
+   <script>
+    Vue.component("TodoItem",{
+      props: ['content'],
+      template: "<li>{{content}}</li>"
+    })
+     new Vue({
+       el:"#root",
+       data: {
+         todoVal:"",
+         list: []
+       },
+       methods: {
+         handleBtnClick: function(){
+           this.list.push(this.todoVal)
+           this.todoVal = ''
+         }
+       },
+     })
+   </script>
+ </body>
+ </html>
+```
+
+> 局部组件
+
+```html
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>局部组件</title>
+   <script src="./static/vue.js"></script>
+ </head>
+ <body>
+   <div id="root">
+     <div>
+       <input type="text" v-model="todoVal">
+       <button @click="handleBtnClick">提交</button>
+     </div>
+     <ul>
+       <todo-item v-bind:content="item" 
+                  v-for="item in list">
+       </todo-item>
+     </ul>
+   </div>
+   <script>
+    var TodoItem = {
+      props: ['content'],
+      template: "<li>{{content}}</li>"
+    }
+     new Vue({
+       el:"#root",
+       data: {
+         todoVal:"",
+         list: []
+       },
+       methods: {
+         handleBtnClick: function(){
+           this.list.push(this.todoVal)
+           this.todoVal = ''
+         }
+       },
+       components: {
+        TodoItem:TodoItem
+       }
+     })
+   </script>
+ </body>
+ </html>
+```
+
+> 关于keys的问题暂时记录下，后期补充
+
+![控制台关于keys的提示问题](https://upfile.wangyongjie.cn/preview/20221215165049T3q0TW6ua.png)
 
 
 ## 2-8 简单的组件间传值
 
+### 父向子传值
+
+通过`v-bind`传值，通过`props`接收该值
+
+### 子向父传值
+
+> 添加todolist删除的功能
+
+> 通过`$emit()`向外触发事件，父组件监听事件，监听的时候获取子组件带回的内容，实现子组件向父组件传值
+
+>v-bind简写 ：
 
 
+```js
+<todo-item v-bind:content="item" 
+          v-bind:index="index"
+          v-for="(item,index) in list"  // item 数组的内容；index数组的下标
+          @delete="handelItemDelete"
+          >
+</todo-item>
+```
+
+
+```html
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>组件传值</title>
+   <script src="./static/vue.js"></script>
+ </head>
+ <body>
+   <div id="root">
+     <div>
+       <input type="text" v-model="todoVal">
+       <button @click="handleBtnClick">提交</button>
+     </div>
+     <ul>
+       <todo-item v-bind:content="item" 
+                  v-bind:index="index"
+                  v-for="(item,index) in list"
+                  @delete="handelItemDelete"
+                  >
+       </todo-item>
+     </ul>
+   </div>
+   <script>
+    var TodoItem = {
+      props: ['content','index'], //  父传子接收
+      template: '<li @click="handleItemClick">{{content}}</li>',
+      methods: {
+        handleItemClick: function(){
+          // 向外触发一个事件，通过v-on监听事件
+          this.$emit("delete",this.index)
+        }
+      }
+    }
+     new Vue({
+       el:"#root",
+       data: {
+         todoVal:"",
+         list: []
+       },
+       methods: {
+         handleBtnClick: function(){
+           this.list.push(this.todoVal)
+           this.todoVal = ''
+         },
+         handelItemDelete: function(index){
+            console.log(index)
+            this.list.splice(index,1)
+         }
+       },
+       components: {
+        TodoItem:TodoItem
+       }
+     })
+   </script>
+ </body>
+ </html>
+```
 
 ## 2-9 章节小结
 
+* 通过`script`标签引入vuejs进行基础代码编写
+* 数据的双向绑定
+* 父子组件传值
+
+[阅读官网介绍部分内容：https://v2.cn.vuejs.org/v2/guide/index.html](https://v2.cn.vuejs.org/v2/guide/index.html)
 
 
-
-    
 ## 个人总结
 
 1. 不支持ie8及以下版本，因为使用了 ECMAScript 5 特性，ie8及以下版本无法模拟这些特性
-2. 
