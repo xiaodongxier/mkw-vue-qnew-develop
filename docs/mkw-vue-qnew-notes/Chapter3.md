@@ -509,22 +509,118 @@ var app = new Vue({
 
 ### `class` 数组绑定
 
+> 动态的新增 `class` 或删除 `class`，实现页面效果的变更
 
 
+```html
+<div id="app">
+  <div @click="handleDivClick"
+      :class="[activated, activatedOne]"
+  >
+    hello world
+  </div>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+    activated: "",
+    activatedOne: "activated-one"
+    },
+    methods: {
+      handleDivClick: function(){
+      // if(this.activated === "activated") {
+      //   this.activated = ""
+      // } else {
+      //   this.activated = "activated"
+      // }
+      console.log(this.activated === "activated")
+      this.activated = (this.activated === "activated") ? "" : "activated"
+      }
+    }
+  })
+</script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的样式绑定-class数组绑定" src="https://codepen.io/xiaodongxier/embed/ZEjEpoG?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/ZEjEpoG">
+  Vue中的样式绑定-class数组绑定</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
+### `style` 改变样式 (内链)
+
+#### 对象方式
 
 
-### `style` 改变样式
+```html
+  <div id="app">
+    <div @click="handleDivClick"
+        :style="styleObj"
+    >
+      hello world
+    </div>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+      styleObj: {
+        color: '#000'
+      }
+      },
+      methods: {
+        handleDivClick: function(){
+        this.styleObj.color = (this.styleObj.color === "#000") ? "red" : "#000"
+        }
+      }
+    })
+  </script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的样式绑定-style对象" src="https://codepen.io/xiaodongxier/embed/RwBwGeJ?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/RwBwGeJ">
+  Vue中的样式绑定-style对象</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
+#### 数组方式
 
 
+> 由数组里的对象所决定，数组内可以添加多个对象
 
 
+```html
+<div id="app">
+    <div @click="handleDivClick" :style="[styleObj, {fontSize: '30px'}]">
+        hello world
+    </div>
+</div>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            styleObj: {
+                color: '#000'
+            }
+        },
+        methods: {
+            handleDivClick: function() {
+                this.styleObj.color = (this.styleObj.color === "#000") ? "red" : "#000"
+            }
+        }
+    })
+</script>
+```
 
 
-
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的样式绑定-style数组" src="https://codepen.io/xiaodongxier/embed/YzjzGda?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/YzjzGda">
+  Vue中的样式绑定-style数组</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 

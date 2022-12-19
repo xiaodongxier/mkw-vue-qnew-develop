@@ -1,0 +1,52 @@
+<!--
+  * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-12-19 16:07:45
+  * @Author: WangYongJie
+  * @Work-email: wangyongjie2@gome.com.cn
+  * @Private-email: admin@xiaodongxier.com
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Vue中的样式绑定</title>
+   <script src="./static/vue.js"></script>
+   <style>
+     .activated {
+       color: red;
+     }
+   </style>
+ </head>
+ <body>
+   <div id="app">
+     <div @click="handleDivClick"
+          :class="[activated, activatedOne]"
+     >
+       hello world
+     </div>
+   </div>
+   <script>
+     var app = new Vue({
+       el: "#app",
+       data: {
+        activated: "",
+        activatedOne: "activated-one"
+       },
+       methods: {
+         handleDivClick: function(){
+          // if(this.activated === "activated") {
+          //   this.activated = ""
+          // } else {
+          //   this.activated = "activated"
+          // }
+          console.log(this.activated === "activated")
+          this.activated = (this.activated === "activated") ? "" : "activated"
+         }
+       }
+     })
+   </script>
+ </body>
+ </html>
+ 
