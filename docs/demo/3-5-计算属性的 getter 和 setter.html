@@ -1,0 +1,42 @@
+<!--
+ * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-12-19 15:22:32
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计算属性的 getter 和 setter</title>
+  <script src="./static/vue.js"></script>
+</head>
+<body>
+  <div id="app">{{fullName}}</div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        firstName: "xiao",
+        lastName: "dongxier"
+      },
+      computed: {
+        fullName: {
+          get: function(){
+            return this.firstName + " " + this.lastName
+          },
+          set: function(val){
+            console.log(val)
+            var arr = val.split(" ");
+            this.firstName = arr[0]
+            this.lastName = arr[1]
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>

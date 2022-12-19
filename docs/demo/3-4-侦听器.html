@@ -1,0 +1,58 @@
+<!--
+  * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-12-19 15:02:18
+  * @Author: WangYongJie
+  * @Work-email: wangyongjie2@gome.com.cn
+  * @Private-email: admin@xiaodongxier.com
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性,方法与侦听器</title>
+    <script src="./static/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{fullName}} {{age}}
+        <hr>
+        <button @click="count">侦听器缓冲机制，当计算的内容没有发生变化时，页面重新渲染的时候不会重新进行计算渲染该元素/控制台只会在运行的时候打印1次</button>
+        <br><br>
+        <button @click="upName">侦听器缓冲机制，当计算的内容发生变化时，页面重新渲染的时候会重新进行计算渲染该元素/控制台会在运行的时候再打印1次</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                firstName: "xiao",
+                lastName: "dongxier",
+                fullName: "xiao dongxier",
+                age: "28"
+            },
+            watch: {
+                firstName: function() {
+                    console.log("计算了1次")
+                    this.fullName = this.firstName + " " + this.lastName
+                },
+                lastName: function() {
+                    console.log("计算了1次")
+                    this.fullName = this.firstName + " " + this.lastName
+                }
+            },
+            methods: {
+                count: function() {
+                    this.age++
+                },
+                upName: function() {
+                    this.firstName += "xiao"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

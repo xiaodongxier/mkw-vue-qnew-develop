@@ -1,0 +1,127 @@
+<!--
+ * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-12-19 11:19:03
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生命周期</title>
+  <script src="./static/vue.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script> -->
+</head>
+<body>
+  <div id="app">
+    <h1>通过控制台查看生命周期函数的执行过程</h1>
+      <div id="mydomid">
+        {{number}}
+      </div>
+      <input type="text" v-model="number"><hr>
+      <button @click="upDataClick">更新数据</button>
+      <button @click="delVueClick">销毁实例</button>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        mess:"hello world",
+        number: 0
+      },
+      methods: {
+        upDataClick: function(){
+          this.number ++
+        },
+        delVueClick: function(){
+          this.$destroy()
+        }
+      },
+      beforeCreate: function(){   //无法通过实例访问data数据和methods方法
+        console.table([{
+          生命周期: "beforeCreate",
+          解释说明: "无法通过实例访问data数据和methods方法",
+          时间戳: new Date().getTime(),
+          data数据: this.number,
+          渲染数据: document.getElementById("mydomid").innerText,
+          挂载节点:this.$el
+        }])
+      },  
+      created: function(){    //可以通过实例访问data数据和methods方法
+        console.table([{
+          生命周期: "created",
+          解释说明: "可以通过实例访问data数据和methods方法",
+          时间戳: new Date().getTime(),
+          data数据: this.number,
+          渲染数据: document.getElementById("mydomid").innerText,
+          挂载节点:this.$el
+        }])
+      },
+      beforeMount: function(){  // data数据并未渲染到页面上
+        console.table([{
+          生命周期: "beforeMount",
+          解释说明: "data数据未渲染到页面上",
+          时间戳: new Date().getTime(),
+          data数据: this.number,
+          渲染数据: document.getElementById("mydomid").innerText,
+          挂载节点:this.$el
+        }])
+      },
+      mounted: function(){    //  data数据已经渲染到页面上
+        console.table([{
+          生命周期: "mounted",
+          解释说明: "data数据已渲染到页面上",
+          时间戳: new Date().getTime(),
+          data数据: this.number,
+          渲染数据: document.getElementById("mydomid").innerText,
+          挂载节点:this.$el
+        }])
+      },
+      beforeDestroy: function(){  // 实例销毁之前执行
+        console.table([{
+          生命周期: "beforeDestroy",
+          解释说明: "实例销毁之前执行",
+          时间戳: new Date().getTime(),
+          data数据: this.number,
+          渲染数据: document.getElementById("mydomid").innerText,
+          挂载节点:this.$el
+        }])
+      },
+      destroyed: function(){  // 实例销毁之后执行
+        console.table([{
+          生命周期: "destroyed",
+          解释说明: "实例销毁之后执行",
+          时间戳: new Date().getTime(),
+          data数据: this.number,
+          渲染数据: document.getElementById("mydomid").innerText,
+          挂载节点: this.$el
+        }])
+      },
+      beforeUpdate: function(){    // 数据发生改变，还未渲染之前
+        console.table([{
+          生命周期: "beforeUpdate",
+          解释说明: "数据发生改变，还未渲染之前",
+          时间戳: new Date().getTime(),
+          data数据: this.number,
+          渲染数据: document.getElementById("mydomid").innerText,
+          挂载节点:this.$el
+        }])
+      },
+      updated: function(){    // 数据发生改变，重新渲染之后
+        console.table([{
+          生命周期: "updated",
+          解释说明: "数据发生改变，重新渲染之后",
+          时间戳: new Date().getTime(),
+          data数据: this.number,
+          渲染数据: document.getElementById("mydomid").innerText,
+          挂载节点:this.$el
+        }])
+      },
+    })
+  </script>
+</body>
+</html>
+

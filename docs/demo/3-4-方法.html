@@ -1,0 +1,44 @@
+<!--
+ * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-12-19 14:47:14
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计算属性,方法与侦听器</title>
+  <script src="./static/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{fullName()}}
+    {{age}}
+    <hr>
+    <button @click="count">方法，当计算的内容没有发生变化时，页面重新渲染的时候会重新进行计算渲染该元素/弹窗会在每次改变的时候弹出1次</button>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        firstName: "xiao",
+        lastName: "dongxier",
+        age: "28"
+      },
+      methods: {
+        fullName: function(){
+          alert("计算了1次")
+          return this.firstName + " " + this.lastName;
+        },
+        count: function(){
+          this.age ++
+        }
+      },
+    })
+  </script>
+</body>
+</html>

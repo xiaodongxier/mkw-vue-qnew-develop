@@ -1,0 +1,37 @@
+<!--
+  * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-12-19 14:06:43
+  * @Author: WangYongJie
+  * @Work-email: wangyongjie2@gome.com.cn
+  * @Private-email: admin@xiaodongxier.com
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>模版语法</title>
+   <script src="./static/vue.js"></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script> -->
+ </head>
+ <body>
+   <div id="app">
+        <div v-text="mess + ' 表达式拼接'"></div>
+        <div v-html="mess + ' 表达式拼接'"></div>
+        <div v-html="messhtml + ' 表达式拼接'"></div>
+         {{mess + ' 表达式拼接'}}
+   </div>
+   <script>
+     var vm = new Vue({
+       el: "#app",
+       data: {
+         mess:"hello world",
+         messhtml:"<h1>hello world</h1>",
+       }
+     })
+   </script>
+ </body>
+ </html>
+ 
+ 

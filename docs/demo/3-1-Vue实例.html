@@ -1,0 +1,41 @@
+<!--
+ * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-12-16 10:50:10
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue实例</title>
+  <script src="./static/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <div v-on:click="handleBtnClick">
+      {{mess}}
+    </div>
+    <item></item>
+  </div>
+  <script>
+    Vue.component("item",{
+      template: "<div>hello item</div>"
+    })
+    var app = new Vue({
+      el: "#root",
+      data: {
+        mess:"hello world"
+      },
+      methods: {
+        handleBtnClick: function(){
+          alert(this.mess)
+        }
+      },
+    })
+  </script>
+</body>
+</html>
