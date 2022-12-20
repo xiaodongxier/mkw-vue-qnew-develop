@@ -793,7 +793,6 @@ var app = new Vue({
 
 ## 3-8 Vue中的列表渲染
 
-
 ### key
 
 `key` 值唯一，最好不要用 `index` 下标作为 `key` ，正式项目一般后端会返回前端一个唯一的值
@@ -845,6 +844,17 @@ var app = new Vue({
 
 
 
+### 数组的循环
+
+> push / pop /  shift / unshift / splice / sort / reverse
+
+
+
+
+
+### 对象的循环
+
+
 
 
 
@@ -875,7 +885,28 @@ var app = new Vue({
 
 
 
+### 对象的 `set` 方法
+
+
+
+
+
+### 数组的 `set` 方法
+
+- 直接改变数组的引用
+
+
+
+
 ## 3-10 （新）Vue中的事件绑定
+
+
+
+
+
+
+
+
 
 
 
