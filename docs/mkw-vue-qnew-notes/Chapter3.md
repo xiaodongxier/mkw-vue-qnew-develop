@@ -218,7 +218,7 @@ vue 一共有11个生命周期函数，上面只讲解了8个生命周期函数�
 
 
 
-课下阅读官方文档 [Vue实例](https://v2.cn.vuejs.org/v2/guide/instance.html) 章节内容
+<wangyongjie class="wang-success">课下阅读官方文档 [Vue实例](https://v2.cn.vuejs.org/v2/guide/instance.html) 章节内容 </wangyongjie>
 
 
 不要在选项 property 或回调上使用[箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数并没有 `this`，`this` 会作为变量一直向上级词法作用域查找，直至找到为止，经常导致 `Uncaught TypeError: Cannot read property of undefined` 或 `Uncaught TypeError: this.myMethod is not a function` 之类的错误。
@@ -423,7 +423,7 @@ vue 一共有11个生命周期函数，上面只讲解了8个生命周期函数�
 
 
 
-课下阅读官方文档 [计算属性和侦听器](https://v2.cn.vuejs.org/v2/guide/computed.html) 章节内容
+<wangyongjie class="wang-success">课下阅读官方文档 [计算属性和侦听器](https://v2.cn.vuejs.org/v2/guide/computed.html) 章节内容 </wangyongjie>
 
 - 模板内的表达式非常便利，但是设计它们的初衷是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护。
 - 
@@ -465,7 +465,7 @@ var app = new Vue({
   on <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
-课下阅读官方文档 [计算属性的 setter](https://v2.cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E7%9A%84-setter) 章节内容
+<wangyongjie class="wang-success">课下阅读官方文档 [计算属性的 setter](https://v2.cn.vuejs.org/v2/guide/computed. <html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E7%9A%84-setter) 章节内容/wangyongjie>
 
 
 
@@ -632,38 +632,240 @@ var app = new Vue({
 
 ## 3-7 Vue中的条件渲染
 
+### `v-if`
+
+> DOM节点移除或添加
+
+`v-if` 和 `v-else-if` 和 `v-else` 同时使用的时候要紧挨着使用，否则会报错
+
+```html
+<div v-if="show === 'a'">This is A</div>
+<div v-else-if="show === 'b'">This is B</div>
+<div v-else>This is others</div>
+```
 
 
 
+### `v-show`
+
+> DOm节点一直存在，display：none/blcok
 
 
 
+```html
+  <div id="app">
+    <!-- 不存在dom节点/移除节点 -->
+    <div v-if="show === 'a'">This is A</div>
+    <div v-else-if="show === 'b'">This is B</div>
+    <div v-else>This is others</div>
+    <!-- 存在dom节点/display:none -->
+    <div v-show="show" >{{mess}}</div>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        show: "a",
+        mess: "hello world"
+      }
+    })
+  </script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的条件渲染" src="https://codepen.io/xiaodongxier/embed/KKBKbZY?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/KKBKbZY">
+  Vue中的条件渲染</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+- 频繁的显示或者隐藏情况下 `v-show` 性能优于 `v-if`
 
 
 
+### key
+
+> `Vue` 重新渲染页面时，会优先复用页面上已经存在的 `DOM` (内容不清空，如果输入了内容切换的时候，`input` 中的内容还是存在)，例子如下
+
+```html
+<div id="app">
+  <div v-if="show">
+    用户名：<input type="text">
+  </div>
+  <div v-else>
+    密码：<input type="text">
+  </div>
+  <button @click="btnClick">切换</button>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      show: true,
+    },
+    methods: {
+    btnClick: function() {
+      this.show = !this.show
+    }
+    },
+  })
+</script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的条件渲染key" src="https://codepen.io/xiaodongxier/embed/dyjywKz?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/dyjywKz">
+  Vue中的条件渲染key</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+通过添加 `key` 可以解决上面存在的问题
+
+当给元素添加 `key` 的时候，`Vue` 认为是页面上唯一的一个元素，如果两个元素的 `key` 不一样，`Vue` 就不会尝试去复用该元素，就可以避免上面的情况发生
 
 
 
+```html
+<div id="app">
+  <div v-if="show">
+    用户名：<input type="text" key="username">
+  </div>
+  <div v-else>
+    密码：<input type="text" key="password">
+  </div>
+  <button @click="btnClick">切换</button>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      show: true,
+    },
+    methods: {
+    btnClick: function() {
+      this.show = !this.show
+    }
+    },
+  })
+</script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的条件渲染key2" src="https://codepen.io/xiaodongxier/embed/dyjywgV?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/dyjywgV">
+  Vue中的条件渲染key2</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
+<wangyongjie class="wang-success">课下阅读官方文档 [条件渲染](https://v2.cn.vuejs.org/v2/guide/conditional.html) 章节内容</wangyongjie>
+
+- 因为 `v-if` 是一个指令，所以必须将它添加到一个元素上。但是如果想切换多个元素呢？此时可以把一个 `<template>` 元素当做不可见的包裹元素，并在上面使用 `v-if`。最终的渲染结果将不包含 `<template>` 元素。
+
+```html
+<template v-if="ok">
+  <h1>Title</h1>
+  <p>Paragraph 1</p>
+  <p>Paragraph 2</p>
+</template>
+```
+
+- `v-else` 元素必须紧跟在带 `v-if` 或者 `v-else-if` 的元素的后面，否则它将不会被识别。
+- 类似于 `v-else`，`v-else-if` 也必须紧跟在带 `v-if` 或者 `v-else-if` 的元素之后。
+- `Vue` 会尽可能高效地渲染元素，通常会复用已有元素而不是从头开始渲染。这么做除了使 `Vue` 变得非常快之外，还有其它一些好处。例如，如果你允许用户在不同的登录方式之间切换。`<input>` 不会被替换掉——仅仅是替换了它的 `placeholder`。
+
+<wangyongjie class="wang-tip">注意，`v-show` 不支持 `<template>` 元素，也不支持 `v-else`。</wangyongjie>
 
 
+### v-if vs v-show
+
+- `v-if` 是“真正”的条件渲染，因为它会确保在切换过程中条件块内的事件监听器和子组件适当地被销毁和重建。
+- `v-if` 也是**惰性的**：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。
+- 相比之下，`v-show` 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 进行切换。
+- 一般来说，`v-if` 有更高的切换开销，而 `v-show` 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 `v-show` 较好；如果在运行时条件很少改变，则使用 `v-if` 较好。
 
 
+### v-if 与 v-for 一起使用
 
+<wangyongjie class="wang-tip">**不推荐**同时使用 `v-if` 和 `v-for`。请查阅[风格指南](https://v2.cn.vuejs.org/v2/style-guide/#%E9%81%BF%E5%85%8D-v-if-%E5%92%8C-v-for-%E7%94%A8%E5%9C%A8%E4%B8%80%E8%B5%B7-%E5%BF%85%E8%A6%81)以获取更多信息。</wangyongjie>
 
-
-
-
-
-
-
-
-
-
+当 `v-if` 与 `v-for` 一起使用时，`v-for` 具有比 `v-if` 更高的优先级。请查阅[列表渲染指南](https://v2.cn.vuejs.org/v2/guide/list.html#v-for-with-v-if)以获取详细信息。
 
 
 ## 3-8 Vue中的列表渲染
+
+
+### key
+
+`key` 值唯一，最好不要用 `index` 下标作为 `key` ，正式项目一般后端会返回前端一个唯一的值
+
+```html
+<div id="app">
+  <ul>
+    <li v-for="(item,index) of list"
+        :key="item.id">
+      {{item.name}} --- {{index}}
+    </li>
+  </ul>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      list: [
+        {
+          name: "xiao",
+          id: "00001"
+        },
+        {
+          name: "dong",
+          id: "00002"
+        },
+        {
+          name: "xi",
+          id: "00003"
+        },
+        {
+          name: "er",
+          id: "00004"
+        }
+      ]
+    }
+  })
+</script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的列表渲染" src="https://codepen.io/xiaodongxier/embed/bGjGZwg?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/bGjGZwg">
+  Vue中的列表渲染</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
