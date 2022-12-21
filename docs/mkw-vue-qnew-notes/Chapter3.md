@@ -929,36 +929,92 @@ app.list = [
 
 ### 对象的循环
 
+> key : 键名 ； index ：当前项的索引，类似数组的下标
+
+
+```html
+<div id="app">
+  <!-- key: 键值  index: 当前项的索引 -->
+  <div v-for="(item,key,index) of list">
+    {{item}}---{{key}} ---{{index}}
+  </div>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      list: {
+        name: "xiaodonxgier",
+        age: "18",
+        gender: "male",
+        salary: "secret"
+      }
+    }
+  })
+```
 
 
 
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的列表渲染-对象的循环" src="https://codepen.io/xiaodongxier/embed/YzjPjYK?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/YzjPjYK">
+  Vue中的列表渲染-对象的循环</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 
+##### 数据改变的方法
+
+> 直接加值是无法渲然到页面上的
+
+- 改变引用
+
+```js
+app.list = {
+  name: "xiaodongxier",
+  age: "18",
+  gender: "male",
+  salary: "secret",
+  address: "Beijing"
+}
+```
 
 
 
+<wangyongjie class="wang-success">课下阅读官方文档 [列表渲染](https://v2.cn.vuejs.org/v2/guide/list.html) 章节内容 </wangyongjie>
 
+- 你也可以用 `of` 替代 `in` 作为分隔符，因为它更接近 `JavaScript` 迭代器的语法：
 
+```html
+<div v-for="item in items"></div>
+<div v-for="item of items"></div>
 
+```
 
+<wangyongjie class="wang-tip">在遍历对象时，会按 `Object.keys()` 的结果遍历，但是**不能**保证它的结果在不同的 JavaScript 引擎下都一致。 </wangyongjie>
 
+<wangyongjie class="wang-tip">不要使用对象或数组之类的非基本类型值作为 `v-for` 的 `key`。请用字符串或数值类型的值。 </wangyongjie>
 
+- 由于 JavaScript 的限制，Vue **不能检测**数组和对象的变化。[深入响应式原理](https://v2.cn.vuejs.org/v2/guide/reactivity.html#%E6%A3%80%E6%B5%8B%E5%8F%98%E5%8C%96%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9)中有相关的讨论。
+- `v-for` 也可以接受整数。在这种情况下，它会把模板重复对应次数。
 
+```html
+<div>
+  <span v-for="n in 10">{{ n }} </span>
+</div>
+```
 
+输出结果
+```
+1 2 3 4 5 6 7 8 9 10
+```
 
-
-
+- 2.2.0+ 的版本里，当在组件上使用 `v-for` 时，`key` 现在是必须的。
 
 
 
 
 ## 3-9 Vue中的set方法
-
-
-
-
-
 
 
 
