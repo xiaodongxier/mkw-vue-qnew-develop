@@ -1,0 +1,65 @@
+<!--
+  * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-12-21 21:40:28
+  * @Author: WangYongJie
+  * @Work-email: wangyongjie2@gome.com.cn
+  * @Private-email: admin@xiaodongxier.com
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Vue中的列表渲染</title>
+   <script src="./static/vue.js"></script>
+ </head>
+ <body>
+   <div id="app">
+     <div v-for="(item,index) of list"
+          :key="item.id">
+       <div>
+         {{item.name}} --- {{index}}
+       </div>
+       <span>
+        {{item.name}} 
+       </span>
+     </div>
+     <template v-for="(item,index) of list"
+          :key="item.id">
+       <div>
+         {{item.name}} --- {{index}}
+       </div>
+       <span>
+        {{item.name}} 
+       </span>
+     </template>
+   </div>
+   <script>
+     var app = new Vue({
+       el: "#app",
+       data: {
+         list: [
+           {
+             name: "xiao",
+             id: "00001"
+           },
+           {
+             name: "dong",
+             id: "00002"
+           },
+           {
+             name: "xi",
+             id: "00003"
+           },
+           {
+             name: "er",
+             id: "00004"
+           }
+         ]
+       }
+     })
+   </script>
+ </body>
+ </html>
+ 

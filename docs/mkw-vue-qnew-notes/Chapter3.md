@@ -846,10 +846,85 @@ var app = new Vue({
 
 ### 数组的循环
 
-> push / pop /  shift / unshift / splice / sort / reverse
+> push / pop /  shift / unshift / splice - 数组的截取/ sort - 对数组进行排序 / reverse -对数组进行取反
+
+修改数组内容的时候， 不能通过下标的方式进行修改，这样操作打印 `data` 数据的时候，数据虽然添加成功了，但是不会渲染到页面上，只能通过 `Vue` 提供的几个变异方法来操作数组才能数据发生变化
+
+##### 数据改变的方法
+
+- `slice("截取开始位置下标", "删除条数", "增加的内容")` 或者 以上的其他的方法
+- 改变引用 
+
+```js
+app.list = [
+    {
+      name: "xiao",
+      id: "00001"
+    },
+    {
+      name: "dong",
+      id: "00002"
+    },
+    {
+      name: "xi",
+      id: "00003"
+    },
+    {
+      name: "er",
+      id: "00004"
+    }
+];
+```
 
 
+##### 模版占位符 `template`
 
+> `template` 可以包裹一些元素，但在循环的过程中并不会渲染到页面上
+
+```html
+<div id="app">
+  <template v-for="(item,index) of list"
+      :key="item.id">
+    <div>
+      {{item.name}} --- {{index}}
+    </div>
+    <span>
+    {{item.name}} 
+    </span>
+  </template>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      list: [
+        {
+          name: "xiao",
+          id: "00001"
+        },
+        {
+          name: "dong",
+          id: "00002"
+        },
+        {
+          name: "xi",
+          id: "00003"
+        },
+        {
+          name: "er",
+          id: "00004"
+        }
+      ]
+    }
+  })
+</script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="模版占位符" src="https://codepen.io/xiaodongxier/embed/qByEKmV?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/qByEKmV">
+  模版占位符</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 ### 对象的循环
@@ -878,9 +953,12 @@ var app = new Vue({
 
 
 
-
-
 ## 3-9 Vue中的set方法
+
+
+
+
+
 
 
 
