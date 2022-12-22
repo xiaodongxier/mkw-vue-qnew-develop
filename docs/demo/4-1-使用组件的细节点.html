@@ -1,0 +1,63 @@
+<!--
+ * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-03-11 17:11:55
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用组件的细节点</title>
+  <script src="./static/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!--  -->
+    <table>
+      <tbody>
+        <row></row>
+        <row></row>
+        <row></row>
+      </tbody>
+    </table>
+    <!--  -->
+    <table>
+      <tbody>
+        <tr is="row"></tr>
+        <tr is="row"></tr>
+        <tr is="row"></tr>
+      </tbody>
+    </table>
+    <!--  -->
+    <ul>
+      <li is="row"></li>
+      <li is="row"></li>
+      <li is="row"></li>
+    </ul>
+    <!--  -->
+    <select>
+      <option value="1" is="op"></option>
+      <option value="2" is="op"></option>
+      <option value="3" is="op"></option>
+    </select>
+  </div>
+  <script>
+    Vue.component('row',{
+      template: '<tr><td>this is row</td></tr>'
+    })
+    Vue.component('op',{
+      template: '<option>this is option</option>'
+    })
+    var app = new Vue({
+      el: "#app",
+      data: {
+        mess:"hello world"
+      }
+    })
+  </script>
+</body>
+</html>

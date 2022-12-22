@@ -4,6 +4,7 @@
     
 ## 4-1 使用组件的细节点
 
+### `is` 属性
 
 > table 层级结构不对
 
@@ -56,7 +57,151 @@
 ![符合语意化](https://upfile.wangyongjie.cn/preview/20220929232540TpKyxdHKE.png)
 
 
-----------------------------------------------分割线----------------------------------------------
+<iframe height="300" style="width: 100%;" scrolling="no" title="使用组件的细节点" src="https://codepen.io/xiaodongxier/embed/eYjNJwY?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/eYjNJwY">
+  使用组件的细节点</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+### 子组件data数据
+
+> 在组件中定义 `data` 的时候必须是一个函数，不能是对象，他不同于跟组件只调用一次，子组件可能会在很多地方调用多次，但是每个地方的数据又不能冲突，所以通过一个函数来返回对象的目的就是每一个子组件都拥有一个独立的数据存储，不会出现每个子组件之间互相影响的情况
+
+```html
+<div id="app">
+  <table>
+    <tbody>
+      <tr is="row"></tr>
+      <tr is="row"></tr>
+      <tr is="row"></tr>
+    </tbody>
+  </table>
+</div>
+<script>
+  Vue.component('row',{
+  data: function(){
+    return {
+      mess: "this is row"
+    }
+  },
+    template: '<tr><td>{{mess}}</td></tr>'
+  })
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess:"hello world"
+    }
+  })
+</script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="子组件data数据" src="https://codepen.io/xiaodongxier/embed/MWBwyaW?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/MWBwyaW">
+  子组件data数据</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<wangyongjie class="wang-success">课下阅读官方文档 [is](https://v2.cn.vuejs.org/v2/api/#is) 章节内容 </wangyongjie>
+
+
+
+### `ref`/引用
+
+#### 标签上使用`ref`
+
+> 获取 DOM 节点
+
+```html
+<div id="app">
+  <div @click="hanleBtnClick"
+      ref="hello"
+      >
+    hello world
+  </div>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess:"hello world"
+    },
+    methods: {
+    hanleBtnClick: function() {
+      alert(this.$refs.hello.innerHTML)
+    }
+    },
+  })
+</script>
+```
+
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="ref/引用" src="https://codepen.io/xiaodongxier/embed/WNKvwxW?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/WNKvwxW">
+  ref/引用</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+#### 组件上使用`ref`
+
+> 获取的是子组件的引用
+
+```html
+<div id="app">
+  <counter ref="one" @change="handleChange"></counter>
+  <counter ref="two" @change="handleChange"></counter>
+  <div>{{total}}</div>
+</div>
+<script>
+  Vue.component('counter', {
+    template: '<div @click="handleClick">{{number}}</div>',
+    data: function () {
+      return {
+        number: 0
+      }
+    },
+    methods: {
+      handleClick: function () {
+        this.number++
+        this.$emit('change')
+      }
+    }
+  })
+  var app = new Vue({
+    el: "#app",
+    data: {
+      total: 0
+    },
+    methods: {
+      handleChange: function () {
+        // console.log('change')
+        console.log(this.$refs.one.number) // 打印出组件的引用
+        console.log(this.$refs.two.number) // 打印出组件的引用
+        this.total = this.$refs.one.number + this.$refs.two.number
+      }
+    }
+  })
+</script>
+```
+
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="组件上使用ref" src="https://codepen.io/xiaodongxier/embed/VwBLadd?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/VwBLadd">
+  组件上使用ref</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+
+
+<wangyongjie class="wang-success">课下阅读官方文档 [ref](https://v2.cn.vuejs.org/v2/api/#ref) 章节内容 </wangyongjie>
+
+
+
+
+
+
 
 
 
