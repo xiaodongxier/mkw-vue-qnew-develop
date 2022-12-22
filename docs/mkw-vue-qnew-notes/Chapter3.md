@@ -1329,6 +1329,35 @@ app.$set(app.list, 1, 22)
 ## 3-11 （新）Vue中的表单绑定
 
 
+```html
+<div id="app">
+<div @click.right="handleRightClick">handleRightClick</div>
+<div @click.left="handleLeftClick">handleLeftClick</div>
+<div @click.middle="handleMiddleClick">handleMiddleClick</div>
+</div>
+<script>
+var app = new Vue({
+  el: "#app",
+  methods: {
+    handleRightClick: function () {
+      console.log("handleRightClick")
+    },
+    handleLeftClick: function () {
+      console.log("handleRightClick")
+    },
+    handleMiddleClick: function () {
+      console.log("handleRightClick")
+    }
+  },
+})
+```
+
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的事件绑定-鼠标修饰符" src="https://codepen.io/xiaodongxier/embed/bGjdNEY?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/bGjdNEY">
+  Vue中的事件绑定-鼠标修饰符</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 ## 3-12 （新）章节小节
@@ -1376,10 +1405,54 @@ app.$set(app.list, 1, 22)
     - option
 
 
-
 ## 3-13 【讨论题】你对前端中的面向对象有怎样的了解？
 
 
+### 什么是面向对象
 
+*   `Object`：一切皆对象
+*   对象并不是计算机领域凭空造出来的概念，它是顺着人类思维模式产生的一种抽象
+*   人的成长过程中先认识到对象，然后才有过程、值的概念【一个苹果（实例）可以吃——所有苹果（类）可以吃——3（值）个苹果和3个梨的关系】
+*   所以`面对对象编程`是更接近人类思维的一种编程范式
+*   最成功的流派使用**类**的方式来描述对象，如`JAVA`
+*   `JavaScript`选择了较冷门的**原型**【*因为一些公司政治原因，JavaScript 推出之时受管理层之命被要求模仿 Java,JavaScript 创始人 Brendan Eich 在“原型运行时”的基础上引入了 new、this 等语言特性，使之“看起来更像 Java”*】
+*   `ES6`之前，很多人试图将`JavaScript`变得更像基于类的语言，进而产生了很多所谓的“框架”，比如 `PrototypeJS、Dojo`【*事实上，它们成为了某种 JavaScript 的古怪方言，甚至产生了一系列互不相容的社群，显然这样做的收益是远远小于损失的*】
+*   从运行角度谈论对象：任何代码执行都必定绕不开运行时的对象模型【*运行时类的概念都是被弱化的*】
+*   `JavaScript`面向对象编程：
+    *   `命名空间`是一个容器，它允许开发人员在一个独特的，特定于应用程序的名称下捆绑所有的功能。 `JavaScript`中，命名空间只是另一个包含方法、属性、对象的对象
+    *   注意：需要认识到重要的一点是：与其他面向对象编程语言不同的是，**`Javascript`中的普通对象和命名空间在语言层面上没有区别**。这点可能会让`JavaScript`初学者感到迷惑。
+    *   创造的`JavaScript`命名空间背后的想法很简单：一个全局对象被创建，所有的变量，方法和功能成为该对象的属性。使用命名空间也最大程度地减少应用程序的名称冲突的可能性。
+    *   `JavaScript`有包括在其核心的几个对象，例如，`Math，Object，Array和String`对象
+
+
+### `JavaScript`对象的特征
+
+1.  对象具有唯一标识性：即使是完全相同的两个对象，也并非是同一个对象
+
+```js
+let o1 = {a: 1}
+let o2 = {a: 1}
+console.log(o1 == o2) //false
+```
+
+2.  对象具有状态：同一对象可能处于不同的状态之下
+3.  对象具有行为：对象的状态可能因为它的行为而产生变迁
+
+```javascript
+a) 状态和行为在不同的语言中使用不同的术语来描述
+b) java中称为属性（状态）和方法（行为）
+c) javascript中将状态和行为统一抽象为“属性”
+d) javascript中函数是一种特殊的对象
+let age = 20
+let o  = {
+    name: 'Lily',
+    sayHi(){
+        console.log('Hi')
+    }
+}
+```
+
+4.  除了上述3个基本特征外，`JavaScript`的独特之处：高度的动态性，运行时改变对象的状态和行为（属性）的能力
+5.  `JavaScript`的属性比别的语言更复杂，它提供了数据属性和访问属性（`getter/setter`）[`JavaScript`对象的两类属性](https://juejin.cn/post/6844903856468410382#heading-4 "https://juejin.cn/post/6844903856468410382#heading-4")
 
     

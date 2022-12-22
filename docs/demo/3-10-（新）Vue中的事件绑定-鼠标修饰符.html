@@ -1,0 +1,40 @@
+<!--
+  * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-12-21 23:10:31
+  * @Author: WangYongJie
+  * @Work-email: wangyongjie2@gome.com.cn
+  * @Private-email: admin@xiaodongxier.com
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue中的事件绑定-鼠标修饰符</title>
+  <script src="./static/vue.js"></script>
+<body>
+  <div id="app">
+    <div @click.right="handleRightClick">handleRightClick</div>
+    <div @click.left="handleLeftClick">handleLeftClick</div>
+    <div @click.middle="handleMiddleClick">handleMiddleClick</div>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      methods: {
+        handleRightClick: function () {
+          console.log("handleRightClick")
+        },
+        handleLeftClick: function () {
+          console.log("handleRightClick")
+        },
+        handleMiddleClick: function () {
+          console.log("handleRightClick")
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
