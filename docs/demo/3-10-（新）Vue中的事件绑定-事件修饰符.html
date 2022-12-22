@@ -1,0 +1,110 @@
+<!--
+  * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-12-21 23:10:31
+  * @Author: WangYongJie
+  * @Work-email: wangyongjie2@gome.com.cn
+  * @Private-email: admin@xiaodongxier.com
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue中的事件绑定</title>
+  <script src="./static/vue.js"></script>
+  <style>
+    form {
+      border: 1px solid #000;
+      padding: 10px;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <form action="/abc">
+      <input type="submit">
+      <span>未添加事件</span>
+    </form>
+    <form action="/abc" @click="handleBtnClcik">
+      <input type="submit">
+      <span>添加了阻止事件</span>
+    </form>
+    <form action="/abc" @click.prevent>
+      <input type="submit">
+      <span>添加了事件修复</span>
+    </form>
+    <form action="/abc" @click.prevent="handleBtnClcik">
+      <input type="submit">
+      <span>添加了事件修复/后面也可以添加其他事件不影响</span>
+    </form>
+    <form action="/abc" @click.stop>
+      <input type="submit">
+      <span>stop修饰符/阻止向外冒泡</span>
+    </form>
+    <form action="/abc" @click.self>
+      <div @click="handleSelfClick">
+        父元素
+        <div>
+          子元素
+        </div>
+      </div>
+      <span>未加self修饰符/点击父元素和子元素都能触发事件</span>
+    </form>
+    <form action="/abc" @click.self>
+      <div @click.self="handleSelfClick">
+        父元素
+        <div>
+          子元素
+        </div>
+      </div>
+      <span>加了self修饰符/只有点击父元素才都能触发事件，点击子元素是不会触发的</span>
+      <br>
+      <span>self要求，click事件只有在e.target = e.currenTaget 的时候才会执行/触发事件和绑定事件的元素相等的时候才会执行</span>
+    </form>
+    <form action="/abc" @click.self>
+      <div @click.once="handleOnceClick">
+        <div>点我触发事件</div>
+      </div>
+      <span>once修饰符/事件执行一次之后自动解绑/事件只执行一次</span>
+    </form>
+    <form action="/abc" @click.self>
+      <div @click="handleCaptureClickA">
+        <div @click="handleCaptureClickB">点我触发事件</div>
+      </div>
+      <span>未加Capture修饰符/默认事件冒泡(内->外)/先执行子事件在执行父事件</span>
+    </form>
+    <form action="/abc" @click.self>
+      <div @click.capture="handleCaptureClickA">
+        <div @click.capture="handleCaptureClickB">点我触发事件</div>
+      </div>
+      <span>加了Capture修饰符/默认事件冒泡(内->外)被改变未捕获(外->内)/先执行父事件在执行子事件</span>
+    </form>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      methods: {
+        handleBtnClcik: function (e,) {
+          e.preventDefault();
+        },
+        handleSelfClick: function(){
+          alert("handleSelfClick")
+        },
+        handleOnceClick: function(){
+          alert("handleOnceClick")
+        },
+        handleCaptureClickA: function(){
+          alert("父元素事件/外")
+        },
+        handleCaptureClickB: function(){
+          alert("子元素事件/内")
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!--
+  * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-12-21 23:10:31
+  * @Author: WangYongJie
+  * @Work-email: wangyongjie2@gome.com.cn
+  * @Private-email: admin@xiaodongxier.com
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue中的事件绑定-按键修饰符</title>
+  <script src="./static/vue.js"></script>
+<body>
+  <div id="app">
+    <input type="text" @keydown="handleKeyDown">：输入的实时弹出内容
+    <br><br>
+    <input type="text" @keydown.enter="handleKeyDown">：回车/enter 的时候弹出结果
+    <br><br>
+    <input type="text" @keydown.delete="handleKeyDown">：delete的时候弹出结果
+    <br><br>
+    <input type="text" @keydown.esc="handleKeyDown">：esc的时候弹出结果
+    <br><br>
+    <input type="text" @keydown.shift="handleKeyDown">：shift的时候弹出结果
+    <br><br>
+    <input type="text" @keydown.alt="handleKeyDown">：alt的时候弹出结果
+    <br><br>
+    <input type="text" @keydown.tab="handleKeyDown">：tab的时候弹出结果
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      methods: {
+        handleKeyDown: function (e) {
+          // e.target 指的是 input dom框这个节点，通过原生value可以把输入框的内容弹出来
+          alert(e.target.value)
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

@@ -853,7 +853,7 @@ var app = new Vue({
 ##### 数据改变的方法
 
 - `slice("截取开始位置下标", "删除条数", "增加的内容")` 或者 以上的其他的方法
-- 改变引用 
+- 改变数组的引用 
 
 ```js
 app.list = [
@@ -1016,31 +1016,312 @@ app.list = {
 
 ## 3-9 Vue中的set方法
 
-
+> 即使 `Vue` 全局的一个方法，也是 `Vue` 实例上的方法
 
 
 ### 对象的 `set` 方法
 
+```html
+<div id="app">
+  <!-- key: 键值  index: 对象的位置 -->
+  <div v-for="(item,key,index) of list">
+    {{item}}---{{key}} ---{{index}}
+  </div>
+  <span v-for="n in 10">{{ n }} </span>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      list: {
+        name: "xiaodonxgier",
+        age: "18",
+        gender: "male",
+        salary: "secret"
+      }
+    }
+  })
+</script>
+```
 
+`Vue.set("实例数据", "新增的属性键", "新增的数据值")`
 
+通过 `set` 方法往上面案例添加数据的写法为：
+
+**全局方法：**
+
+```js
+Vue.set(app.list, "address", "Beijing")
+```
+
+**实例方法：**
+
+```js
+app.$set(app.list, "address", "Beijing")
+```
 
 
 ### 数组的 `set` 方法
 
-- 直接改变数组的引用
+```html
+<div id="app">
+  <!-- key: 键值  index: 对象的位置 -->
+  <div v-for="(item,key,index) of list">
+    {{item}}---{{key}} ---{{index}}
+  </div>
+  <span v-for="n in 10">{{ n }} </span>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+        list: [1,2,3,4,5,6,7,8]
+    }
+  })
+</script>
+```
+
+`Vue.set("实例数据", "需要改变的数组下标", "更新的内容")`
+
+通过 `set` 方法向上面案例中的数据 `2` 变成 `22` 的方法为：
+
+**全局方法：**
+
+```js
+Vue.set(app.list, 1, 22)
+```
+
+**实例方法：**
+
+```js
+app.$set(app.list, 1, 22)
+```
 
 
+<wangyongjie class="wang-success">课下阅读官方文档 [Vue.set( target, propertyName/index, value )](https://v2.cn.vuejs.org/v2/api/#Vue-set) 章节内容 </wangyongjie>
 
 
 ## 3-10 （新）Vue中的事件绑定
 
+```html
+<div id="app">
+    <button @click="handleBtnClcik">Button</button>
+    <button @click="handleBtnClcik()">Button()</button>
+    <button @click="handleBtnClcik($event)">Button($event)</button>
+    <button @click="handleBtnClcik($event,1,2,3)">Button($event)优势/可以传参</button>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      list: [1,2,3,4,5,6,7,8]
+    },
+    methods: {
+    handleBtnClcik:function(e,one,teo,three){
+      console.log(e,one,teo,three)
+    }
+    },
+  })
+</script>
+```
+
+![打印结果](https://gitcdn.xiaodongxier.com/image/20221222142324.png)
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的事件绑定" src="https://codepen.io/xiaodongxier/embed/RwBNXmj?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/RwBNXmj">
+  Vue中的事件绑定</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+
+#### 事件修饰符
+
+**prevent**
+
+> 阻止跳转
+
+**stop**
+
+>  阻止向外冒泡
+
+**self**
+
+> self要求，click事件只有在e.target = e.currenTaget 的时候才会执行/触发事件和绑定事件的元素相等的时候才会执行
+
+**once**
+
+> once修饰符/事件执行一次之后自动解绑/事件只执行一次
+
+**capture** 
+
+> 加了Capture修饰符/默认事件冒泡(内->外)被改变未捕获(外->内)/先执行父事件在执行子事件
+
+
+```html
+<div id="app">
+  <form action="/abc">
+    <input type="submit">
+    <span>未添加事件</span>
+  </form>
+  <form action="/abc" @click="handleBtnClcik">
+    <input type="submit">
+    <span>添加了阻止事件</span>
+  </form>
+  <form action="/abc" @click.prevent>
+    <input type="submit">
+    <span>添加了事件修复</span>
+  </form>
+  <form action="/abc" @click.prevent="handleBtnClcik">
+    <input type="submit">
+    <span>添加了事件修复/后面也可以添加其他事件不影响</span>
+  </form>
+  <form action="/abc" @click.stop>
+    <input type="submit">
+    <span>stop修饰符/阻止向外冒泡</span>
+  </form>
+  <form action="/abc" @click.self>
+    <div @click="handleSelfClick">
+      父元素
+      <div>
+        子元素
+      </div>
+    </div>
+    <span>未加self修饰符/点击父元素和子元素都能触发事件</span>
+  </form>
+  <form action="/abc" @click.self>
+    <div @click.self="handleSelfClick">
+      父元素
+      <div>
+        子元素
+      </div>
+    </div>
+    <span>加了self修饰符/只有点击父元素才都能触发事件，点击子元素是不会触发的</span>
+    <br>
+    <span>self要求，click事件只有在e.target = e.currenTaget 的时候才会执行/触发事件和绑定事件的元素相等的时候才会执行</span>
+  </form>
+  <form action="/abc" @click.self>
+    <div @click.once="handleOnceClick">
+      <div>点我触发事件</div>
+    </div>
+    <span>once修饰符/事件执行一次之后自动解绑/事件只执行一次</span>
+  </form>
+  <form action="/abc" @click.self>
+    <div @click="handleCaptureClickA">
+      <div @click="handleCaptureClickB">点我触发事件</div>
+    </div>
+    <span>未加Capture修饰符/默认事件冒泡(内->外)/先执行子事件在执行父事件</span>
+  </form>
+  <form action="/abc" @click.self>
+    <div @click.capture="handleCaptureClickA">
+      <div @click.capture="handleCaptureClickB">点我触发事件</div>
+    </div>
+    <span>加了Capture修饰符/默认事件冒泡(内->外)被改变未捕获(外->内)/先执行父事件在执行子事件</span>
+  </form>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    methods: {
+      handleBtnClcik: function (e,) {
+        e.preventDefault();
+      },
+      handleSelfClick: function(){
+        alert("handleSelfClick")
+      },
+      handleOnceClick: function(){
+        alert("handleOnceClick")
+      },
+      handleCaptureClickA: function(){
+        alert("父元素事件/外")
+      },
+      handleCaptureClickB: function(){
+        alert("子元素事件/内")
+      }
+    },
+  })
+</script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的事件绑定-事件修饰符" src="https://codepen.io/xiaodongxier/embed/KKBpPgP?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/KKBpPgP">
+  Vue中的事件绑定-事件修饰符</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+<wangyongjie class="wang-success">课下阅读官方文档 [事件修饰符](https://v2.cn.vuejs.org/v2/guide/events.html#%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6) 章节内容 </wangyongjie>
+
+
+#### 按键修饰符
+
+
+**enter/tab/delete/esc/shift/alt/....**
+
+> 当摁下哪个键的时候执行
+
+```html
+<div id="app">
+  <input type="text" @keydown="handleKeyDown">：输入的实时弹出内容
+  <br><br>
+  <input type="text" @keydown.enter="handleKeyDown">：回车/enter 的时候弹出结果
+  <br><br>
+  <input type="text" @keydown.delete="handleKeyDown">：delete的时候弹出结果
+  <br><br>
+  <input type="text" @keydown.esc="handleKeyDown">：esc的时候弹出结果
+  <br><br>
+  <input type="text" @keydown.shift="handleKeyDown">：shift的时候弹出结果
+  <br><br>
+  <input type="text" @keydown.alt="handleKeyDown">：alt的时候弹出结果
+  <br><br>
+  <input type="text" @keydown.tab="handleKeyDown">：tab的时候弹出结果
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    methods: {
+      handleKeyDown: function (e) {
+        // e.target 指的是 input dom框这个节点，通过原生value可以把输入框的内容弹出来
+        alert(e.target.value)
+      }
+    },
+  })
+</script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的事件绑定-按键修饰符" src="https://codepen.io/xiaodongxier/embed/abjOoyW?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/abjOoyW">
+  Vue中的事件绑定-按键修饰符</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+
+<wangyongjie class="wang-success">课下阅读官方文档 [按键修饰符](https://v2.cn.vuejs.org/v2/guide/events.html#%E6%8C%89%E9%94%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6) 章节内容 </wangyongjie>
+
+
+#### 系统修饰符
+
+**ctrl/alt/shift/meta**
+
+> 需要同时摁住才能执行
+
+<wangyongjie class="wang-success">课下阅读官方文档 [系统修饰键](https://v2.cn.vuejs.org/v2/guide/events.html#%E7%B3%BB%E7%BB%9F%E4%BF%AE%E9%A5%B0%E9%94%AE) 章节内容 </wangyongjie>
 
 
 
 
 
 
+#### 鼠标修饰符
 
+**right/left/middle**
+
+<wangyongjie class="wang-success">课下阅读官方文档 [鼠标修饰键](https://v2.cn.vuejs.org/v2/guide/events.html#%E9%BC%A0%E6%A0%87%E6%8C%89%E9%92%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6) 章节内容 </wangyongjie>
+
+
+- 有一些按键 (`.esc` 以及所有的方向键) 在 IE9 中有不同的 `key` 值, 如果你想支持 IE9，这些内置的别名应该是首选。
+- 注意：在 Mac 系统键盘上，meta 对应 command 键 (⌘)。在 Windows 系统键盘 meta 对应 Windows 徽标键 (⊞)。在 Sun 操作系统键盘上，meta 对应实心宝石键 (◆)。在其他特定键盘上，尤其在 MIT 和 Lisp 机器的键盘、以及其后继产品，比如 Knight 键盘、space-cadet 键盘，meta 被标记为“META”。在 Symbolics 键盘上，meta 被标记为“META”或者“Meta”。
+- 请注意修饰键与常规按键不同，在和 `keyup` 事件一起用时，事件触发时修饰键必须处于按下状态。换句话说，只有在按住 `ctrl` 的情况下释放其它按键，才能触发 `keyup.ctrl`。而单单释放 `ctrl` 也不会触发事件。如果你想要这样的行为，请为 `ctrl` 换用 `keyCode`：`keyup.17`。
 
 
 
@@ -1052,6 +1333,47 @@ app.list = {
 
 ## 3-12 （新）章节小节
 
+- 实例
+- 模版语法
+  - v-if
+  - v-text
+  - v-html
+  - v-for
+  - v-if
+  - v-else
+  - v-else-if
+  - v-show
+  - v-bind
+  - v-on
+- 计算属性
+  - 避免代码冗余
+- 样式
+  - class
+  - style
+  - 对象绑定
+  - 数组绑定
+- 条件渲染
+  - v-if
+  - v-else
+  - v-else-if
+  - template 占位符
+- 列表渲染
+  - 数组
+    - value值
+    - index值(索引值)
+  - 对象
+    - value值
+    - key值(键值)
+    - index值(索引值)
+- 事件处理
+  - 事件绑定
+  - 事件修饰符
+    - 
+- 表单绑定
+  - v-model
+    - textarea
+    - input
+    - option
 
 
 

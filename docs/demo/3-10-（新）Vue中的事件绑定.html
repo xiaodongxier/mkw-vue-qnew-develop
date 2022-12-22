@@ -1,6 +1,6 @@
 <!--
   * @Date: 2022-02-10 14:36:00
- * @LastEditTime: 2022-12-21 22:54:25
+ * @LastEditTime: 2022-12-21 23:10:31
   * @Author: WangYongJie
   * @Work-email: wangyongjie2@gome.com.cn
   * @Private-email: admin@xiaodongxier.com
@@ -12,30 +12,27 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Vue中的列表渲染-对象的循环</title>
+   <title>Vue中的事件绑定</title>
    <script src="./static/vue.js"></script>
  </head>
- 
  <body>
    <div id="app">
-     <!-- key: 键值  index: 对象的位置 -->
-     <div v-for="(item,key,index) of list">
-       {{item}}---{{key}} ---{{index}}
-     </div>
-     <span v-for="n in 10">{{ n }} </span>
- 
+       <button @click="handleBtnClcik">Button</button>
+       <button @click="handleBtnClcik()">Button()</button>
+       <button @click="handleBtnClcik($event)">Button($event)</button>
+       <button @click="handleBtnClcik($event,1,2,3)">Button($event)优势/可以传参</button>
    </div>
    <script>
      var app = new Vue({
        el: "#app",
        data: {
-         list: {
-           name: "xiaodonxgier",
-           age: "18",
-           gender: "male",
-           salary: "secret"
-         }
-       }
+         list: [1,2,3,4,5,6,7,8]
+       },
+       methods: {
+        handleBtnClcik:function(e,one,teo,three){
+          console.log(e,one,teo,three)
+        }
+       },
      })
    </script>
  </body>
