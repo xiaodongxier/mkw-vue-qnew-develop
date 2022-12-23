@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>组件参数校验与非 props 特性</title>
+   <script src="./static/vue.js"></script>
+ </head>
+ <body>
+   <div id="app">
+     <child :content="mess"></child>
+   </div>
+   <script>
+ 
+     Vue.component('child',{
+       // 接收参数
+       // props:['content'],    
+       // 接收参数，约束接受参数类型
+       // props:{
+       //   content: [String,Number]
+       // },
+       // 接收参数，约束接受参数类型，及其他约束
+      //  props:{
+      //    content: {
+      //      // 约束类型
+      //      type: [String,Number],
+      //      // 值为 true/false ，约束 content 必须传/可不传
+      //      required: true,
+      //      // 如果 required 配置为 false，不是必传的，可以在此设置 default，default为不传值的情况下显示的默认值
+      //      default: "required 配置为 false的默认值",
+      //      // 自定义校验器
+      //     //  validator: function(value){
+      //     //    console.log(value)
+      //     //    console.log(value.length)
+      //     //    return value.length > 5
+      //     //  }
+      //    }
+      //  },
+       template: '<div>hello</div>'
+     })
+ 
+     var app = new Vue({
+       el: "#app",
+       data: {
+         // 上面自定义校验的是数据的leng长度，所以只能是字符串不能是数字，因为 Number 数字类型没有 leng 长度属性
+         // https://xiaodongxier.com/1946.html
+         mess: '1234567890'
+       }
+     })
+   </script>
+ </body>
+ </html>
+ 

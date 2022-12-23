@@ -348,9 +348,19 @@
 
 
 
+### props 特性
 
+**props 特性**
 
+> 通过 `props` 接收的数据能直接通过插值表达式的方式使用
 
+- 父组件传，子组件接，直接插值表达式用
+- 不会把属性显示在 `dom` 标签中
+
+**非 props 特性**
+
+- 父组件传，子组件不接，就是如果不进行 `props` 接收的话是不能直接使用数据的
+- 组件/父元素 的属性会展示着子组件的最外层标签上
 
 
 
@@ -364,7 +374,87 @@
 
 
 
+
+```html
+<div id="app">
+  <!-- <child @handle="btnClick"></child> -->
+  <child @click.native="ysClick"></child>
+</div>
+<script>
+  Vue.component('child',{
+    // template: '<div @click="handleClick">child</div>',
+    template: '<div>child</div>',
+    methods: {
+      // handleClick: function(){
+      //   alert("handleClick/子组件事件",)
+      //   this.$emit("handle")
+      // }
+    },
+  })
+  
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess:"hello world"
+    },
+    methods: {
+      ysClick: function(){
+        alert("ysClick/原生事件")
+      },
+    }
+  })
+</script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="给组件绑定原生事件" src="https://codepen.io/xiaodongxier/embed/QWBbQzw?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/QWBbQzw">
+  给组件绑定原生事件</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+<wangyongjie class="wang-success">课下阅读官方文档 [将原生事件绑定到组件](https://v2.cn.vuejs.org/v2/guide/components-custom-events.html#%E5%B0%86%E5%8E%9F%E7%94%9F%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E5%88%B0%E7%BB%84%E4%BB%B6) 章节内容 </wangyongjie>
+
+
+
+
+
 ## 4-5 非父子组件间的传值
+
+### vuex
+
+> 放在后面项目中讲解
+
+
+### 总线机制(发布/订阅模式)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
