@@ -200,15 +200,85 @@
 
 
 
-
-
-
-
-
-
 ## 4-2 父子组件间的数据传递
 
 
+### 父->子 传值
+
+> 父组件通过属性的方式向子组件传递数据，子组件通过 `props` 的方式接受数据
+
+
+
+### 单项数据流
+
+> 父组件可以随意的向子组件传递参数，但是子组件只能使用父组件传递过来的参数，不能反过来修改父组件的参数。
+
+> 如果传递过来的是 `Object` 的数据，如果改变了数据的话，此数据可能还被其他数据所引用，改变数据的话会对其他组件产生影响，所以不允许这么做
+
+> 子组件的 `data` 一定要是一个函数
+
+
+### 子->父 传值
+
+
+```html
+<div id="app">
+  <!-- 
+    count="0"  传递的是一个字符串
+    :count="0"  传递的是一个数字，加了':'后双引号内是js表达式
+    
+    父组件通过属性的方式向子组件传递数据，子组件通过 props 的方式接受数据
+    -->
+  <counter :count="countOne" @total="handleTotal"></counter>
+  <counter :count="countTwo" @total="handleTotal"></counter>
+  <div>{{total}}</div>
+</div>
+<script>
+  var counter = {
+    props:['count'],
+    //子组件的data一定要是一个函数, 通过克隆一个副本出来避免修改父组件传递过来的数据
+    data: function(){
+      return {
+        number: this.count
+      }
+    },
+    template: '<div @click="handleClick">{{number}}</div>',
+    methods: {
+      handleClick: function(){
+        this.number = this.number + 1
+        this.$emit("total",1)
+        // 可以携带多个参数，如下
+        // this.$emit("total",1,23)
+      }
+    },
+  }
+  var app = new Vue({
+    el: "#app",
+    data: {
+      countOne: 1,
+      countTwo: 2,
+      total: 3
+    },
+    components: {
+      counter: counter
+    },
+    methods: {
+      handleTotal: function(data1){
+        // this.total = this.total + data1
+        // 上面简写如下
+        this.total +=  data1
+      }
+    }
+  })
+</script>
+```
+
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="父子组件间的数据传递-子向父传值" src="https://codepen.io/xiaodongxier/embed/ZEjGJYM?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/ZEjGJYM">
+  父子组件间的数据传递-子向父传值</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 ## 4-3 组件参数校验与非 props 特性

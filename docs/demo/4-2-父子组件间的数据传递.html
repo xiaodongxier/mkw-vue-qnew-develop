@@ -1,0 +1,68 @@
+<!--
+ * @Date: 2022-02-10 14:36:00
+ * @LastEditTime: 2022-03-11 17:11:55
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>父子组件间的数据传递-局部组件</title>
+  <script src="./static/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+      count="0"  传递的是一个字符串
+      :count="0"  传递的是一个数字，加了':'后双引号内是js表达式
+      
+      父组件通过属性的方式向子组件传递数据，子组件通过 props 的方式接受数据
+     -->
+    <counter :count="countOne" @total="handleTotal"></counter>
+    <counter :count="countTwo" @total="handleTotal"></counter>
+    <div>{{total}}</div>
+  </div>
+  <script>
+    var counter = {
+      props:['count'],
+      //子组件的data一定要是一个函数, 通过克隆一个副本出来避免修改父组件传递过来的数据
+      data: function(){
+        return {
+          number: this.count
+        }
+      },
+      template: '<div @click="handleClick">{{number}}</div>',
+      methods: {
+        handleClick: function(){
+          this.number = this.number + 1
+          this.$emit("total",1)
+          // 可以携带多个参数，如下
+          // this.$emit("total",1,23)
+        }
+      },
+    }
+    var app = new Vue({
+      el: "#app",
+      data: {
+        countOne: 1,
+        countTwo: 2,
+        total: 3
+      },
+      components: {
+        counter: counter
+      },
+      methods: {
+        handleTotal: function(data1){
+          // this.total = this.total + data1
+          // 上面简写如下
+          this.total +=  data1
+        }
+      }
+    })
+  </script>
+</body>
+</html>
