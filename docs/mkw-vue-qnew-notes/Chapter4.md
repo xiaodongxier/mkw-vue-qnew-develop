@@ -281,8 +281,81 @@
 </iframe>
 
 
+
+<wangyongjie class="wang-success">课下阅读官方文档 [通过 Prop 向子组件传递数据](https://v2.cn.vuejs.org/v2/guide/components.html#%E9%80%9A%E8%BF%87-Prop-%E5%90%91%E5%AD%90%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE) 章节内容 </wangyongjie>
+
+
+
 ## 4-3 组件参数校验与非 props 特性
 
+
+
+### 组件参数校验
+
+> 父传值的数据类型是可以约束(校验)的 
+
+> 相关知识点记录在下面代码中
+
+```html
+<div id="app">
+  <child :content="mess"></child>
+</div>
+<script>
+  Vue.component('child',{
+    // 接收参数
+    // props:['content'],    
+    // 接收参数，约束接受参数类型
+    // props:{
+    //   content: [String,Number]
+    // },
+    // 接收参数，约束接受参数类型，及其他约束
+    props:{
+      content: {
+        // 约束类型
+        type: [String,Number],
+        // 值为 true/false ，约束 content 必须传/可不传
+        required: true,
+        // 如果 required 配置为 false，不是必传的，可以在此设置 default，default为不传值的情况下显示的默认值
+        default: "required 配置为 false的默认值",
+        // 自定义校验器
+        validator: function(value){
+          console.log(value)
+          console.log(value.length)
+          return value.length > 5
+        }
+      }
+    },
+    template: '<div>{{content}}</div>'
+  })
+
+  var app = new Vue({
+    el: "#app",
+    data: {
+      // 上面自定义校验的是数据的leng长度，所以只能是字符串不能是数字，因为 Number 数字类型没有 leng 长度属性
+      // https://xiaodongxier.com/1946.html
+      mess: '1234567890'
+    }
+  })
+</script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="组件参数校验" src="https://codepen.io/xiaodongxier/embed/vYaOJpy?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/vYaOJpy">
+  组件参数校验</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+
+
+
+
+
+
+
+
+
+<wangyongjie class="wang-success">课下阅读官方文档 [Prop](https://v2.cn.vuejs.org/v2/guide/components-props.html) 章节内容 </wangyongjie>
 
 
 
@@ -322,3 +395,4 @@
 
 
     
+<wangyongjie class="wang-success">课下阅读官方文档 [is](https://v2.cn.vuejs.org/v2/api/#is) 章节内容 </wangyongjie>
