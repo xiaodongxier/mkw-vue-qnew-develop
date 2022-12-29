@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在Vue中使用插槽(slot)</title>
+  <script src="./static/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <child>
+      <body-content>
+        <div class="header" slot="header">header</div> 
+        <div class="footer" slot="footer">footer</div> 
+      </body-content> 
+    </child>
+  </div>
+  <script>
+    Vue.component('body-content',{
+      template: `<div>
+                    <slot name="header">默认内容</slot>
+                    <div>hello </div>
+                    <slot name="footer">默认内容</slot>
+                    <slot>
+                      <h1>默认插槽内容/可以是标签内容</h1>  
+                    </slot>
+                 </div>`
+    })
+    var app = new Vue({
+      el: "#app",
+      data: {
+        mess:"hello world"
+      }
+    })
+  </script>
+</body>
+</html>

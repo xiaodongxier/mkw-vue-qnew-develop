@@ -1,0 +1,60 @@
+<!--
+ * @Date: 2022-12-27 17:22:43
+ * @LastEditTime: 2022-12-29 11:40:42
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动态组件与v-once指令</title>
+  <script src="./static/vue.js"></script>
+</head>
+<body>
+  <div id="app" v-once>
+    <h2>直接使用组件</h2>
+    <child-one v-if="type == 'child-one'"></child-one>
+    <child-two v-if="type == 'child-two'"></child-two>
+    <h2>使用component动态组件</h2>
+    <component :is="type"></component>
+    <button @click="handleBtnClick">切换</button>
+
+    <h2>直接使用component动态组件</h2>
+    <!-- :is 使用的是data的 键 -->
+    <component :is="type1"></component>
+  </div>
+  <script>
+    Vue.component('child-one',{
+      template: '<div>child-one</div>'
+    })
+
+    Vue.component('child-two',{
+      template: '<div>child-two</div>'
+    })
+
+    Vue.component('child-three',{
+      template: '<div>child-three</div>'
+    })
+
+    var app = new Vue({
+      el: "#app",
+      data: {
+        type: 'child-one',
+        type1: 'child-three',
+      },
+      methods: {
+        handleBtnClick: function(){
+          this.type = (this.type == 'child-one' ? this.type = 'child-two' : this.type = 'child-one')
+          console.log(this.type)
+        }
+      },
+    })
+  </script>
+</body>
+</html>
+
+ 

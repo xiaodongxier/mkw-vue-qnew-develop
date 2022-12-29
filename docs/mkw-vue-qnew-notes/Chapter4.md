@@ -426,31 +426,56 @@
 > 放在后面项目中讲解
 
 
-### 总线机制(发布/订阅模式)
+### 总线机制(Bus/总线/发布订阅模式/观察者模式)
 
 
 
+```html
+<div id="app">
+    <child content="Xiao"></child>
+    <child content="Dongxier"></child>
+</div>
+<script>
+  Vue.prototype.bus = new Vue()
+  Vue.component('child',{
+    data: function(){
+      return {
+        selfContent: this.content
+      }
+    },
+    props: {
+      content: String
+    },
+    template: '<div @click="handleClick">{{selfContent}}</div>',
+    methods: {
+      handleClick: function(){
+        // alert(this.content)
+        this.bus.$emit('change',this.selfContent)
+      }
+    },
+    mounted: function(){
+      var _this = this;
+      // 执行两次
+      this.bus.$on('change',function(msg){
+        // alert(msg)
+        _this.selfContent = msg
+      })
+    }
+  })
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess:"hello world"
+    }
+  })
+</script>
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<iframe height="300" style="width: 100%;" scrolling="no" title="Untitled" src="https://codepen.io/xiaodongxier/embed/MWBaBRE?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/MWBaBRE">
+  Untitled</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 
@@ -461,28 +486,316 @@
 
 ## 4-6 在Vue中使用插槽
 
+> 父组件向子组件优雅的传递dom结构
+
+
+```html
+<div id="app">
+  <child>
+    <body-content>
+      <div class="header" slot="header">header</div> 
+      <div class="footer" slot="footer">footer</div> 
+    </body-content> 
+  </child>
+</div>
+<script>
+  Vue.component('body-content',{
+    template: `<div>
+                  <slot name="header">默认内容</slot>
+                  <div>hello </div>
+                  <slot name="footer">默认内容</slot>
+                  <slot>
+                    <h1>默认插槽内容/可以是标签内容</h1>  
+                  </slot>
+                </div>`
+  })
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess:"hello world"
+    }
+  })
+</script>
+```
+
+
+
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="在Vue中使用插槽(slot)" src="https://codepen.io/xiaodongxier/embed/eYjJYOZ?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/eYjJYOZ">
+  在Vue中使用插槽(slot)</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+
+<wangyongjie class="wang-success">课下阅读官方文档 [slot](https://v2.cn.vuejs.org/v2/api/#slot) 章节内容 </wangyongjie>
+
+<wangyongjie class="wang-success">课下阅读官方文档 [插槽](https://v2.cn.vuejs.org/v2/guide/components-slots.html) 章节内容 </wangyongjie>
+
+
+<wangyongjie class="wang-tip">在 2.6.0 中，我们为具名插槽和作用域插槽引入了一个新的统一的语法 (即 `v-slot` 指令)。它取代了 `slot` 和 `slot-scope` 这两个目前已被废弃但未被移除且仍在[文档中](https://v2.cn.vuejs.org/v2/guide/components-slots.html#%E5%BA%9F%E5%BC%83%E4%BA%86%E7%9A%84%E8%AF%AD%E6%B3%95)的 attribute。新语法的由来可查阅这份 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)。</wangyongjie>
 
 
 
 ## 4-7 作用域插槽
+
+> 当子组件做循环，或某一部分他的dom结构由外部传入进来的时候用作用域卡槽
+
+> 子组件可以向父组件里面传数据，父组件想接收的话必须在外层使用 template ，同时通过 slot-scope="属性的名字" 来接收传递过来的所有数据
+
+
+
+```html
+<div id="app">
+  <child>
+    <!-- 接收的数据放在 props 里面 -->
+    <template slot-scope="props">
+      <li>{{props.item}} -- hello</li>
+    </template>
+  </child>
+</div>
+<script>
+  Vue.component('child',{
+    data: function(){
+      return {
+        list: [1,2,3,4,5,6,7,8,9]
+      }
+    },
+    template: `<div>
+                  <ol>
+                    <slot 
+                          v-for='item of list'
+                          :item=item
+                    >
+                      {{item}}
+                    </slot>
+                  </ol>
+                </div>`
+  })
+
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess:"hello world"
+    }
+  })
+</script>
+```
+
+
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="作用域插槽" src="https://codepen.io/xiaodongxier/embed/dyjGooX?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/dyjGooX">
+  作用域插槽</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
 
 
 
 
 ## 4-8 （新）动态组件与v-once指令
 
+### 动态组件
+
+> component 动态组件
 
 
+```html
+<div id="app">
+  <h2>直接使用组件</h2>
+  <child-one v-if="type == 'child-one'"></child-one>
+  <child-two v-if="type == 'child-two'"></child-two>
+  <h2>使用component动态组件</h2>
+  <component :is="type"></component>
+  <button @click="handleBtnClick">切换</button>
+
+  <h2>直接使用component动态组件</h2>
+  <!-- :is 使用的是data的 键 -->
+  <component :is="type1"></component>
+</div>
+<script>
+  Vue.component('child-one',{
+    template: '<div>child-one</div>'
+  })
+
+  Vue.component('child-two',{
+    template: '<div>child-two</div>'
+  })
+
+  Vue.component('child-three',{
+    template: '<div>child-three</div>'
+  })
+
+  var app = new Vue({
+    el: "#app",
+    data: {
+      type: 'child-one',
+      type1: 'child-three',
+    },
+    methods: {
+      handleBtnClick: function(){
+        this.type = (this.type == 'child-one' ? this.type = 'child-two' : this.type = 'child-one')
+        console.log(this.type)
+      }
+    },
+  })
+</script>
+```
+
+### v-once指令
+
+> 只对内部的模版渲染一次，后期数据发生了改变也不会进行渲染
+
+
+```html
+<div id="app" v-once>
+  <h2>直接使用组件</h2>
+  <child-one v-if="type == 'child-one'"></child-one>
+  <child-two v-if="type == 'child-two'"></child-two>
+  <h2>使用component动态组件</h2>
+  <component :is="type"></component>
+  <button @click="handleBtnClick">切换</button>
+
+  <h2>直接使用component动态组件</h2>
+  <!-- :is 使用的是data的 键 -->
+  <component :is="type1"></component>
+</div>
+<script>
+  Vue.component('child-one',{
+    template: '<div>child-one</div>'
+  })
+
+  Vue.component('child-two',{
+    template: '<div>child-two</div>'
+  })
+
+  Vue.component('child-three',{
+    template: '<div>child-three</div>'
+  })
+
+  var app = new Vue({
+    el: "#app",
+    data: {
+      type: 'child-one',
+      type1: 'child-three',
+    },
+    methods: {
+      handleBtnClick: function(){
+        this.type = (this.type == 'child-one' ? this.type = 'child-two' : this.type = 'child-one')
+        console.log(this.type)
+      }
+    },
+  })
+</script>
+```
+
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="动态组件与v-once指令" src="https://codepen.io/xiaodongxier/embed/QWBNWeN?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/QWBNWeN">
+  动态组件与v-once指令</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+
+### template模版
+
+
+> template 里面的内容，中间没有内容的话可以写单标签就行
+
+```js
+template: `
+  <div>
+    <child-one v-if="type == 'child-one'"></child-one>
+    <child-two v-if="type == 'child-two'"></child-two>
+    <button @click="handleBtnClick">切换</button>
+  </div>
+`,
+```
+等于
+
+```js
+template: `
+  <div>
+    <child-one v-if="type == 'child-one'"/>
+    <child-two v-if="type == 'child-two'"/>
+    <button @click="handleBtnClick">切换</button>
+  </div>
+`,
+```
+
+
+
+```html
+<div id="app"></div>
+<script>
+  Vue.component('child-one',{
+    template: '<div>child-one</div>'
+  })
+
+  Vue.component('child-two',{
+    template: '<div>child-two</div>'
+  })
+
+  var app = new Vue({
+    el: "#app",
+    data: {
+      type: 'child-one',
+      type1: 'child-three',
+    },
+    // 中间没有内容的话可以写单标签就行
+    // 也可把v-once写在外层
+    template: `
+      <div>
+        <child-one v-if="type == 'child-one'"/>
+        <child-two v-if="type == 'child-two'"/>
+        <button @click="handleBtnClick">切换</button>
+      </div>
+    `,
+    methods: {
+      handleBtnClick: function(){
+        this.type = (this.type == 'child-one' ? this.type = 'child-two' : this.type = 'child-one')
+        console.log(this.type)
+      }
+    },
+  })
+</script>
+```
+
+
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="动态组件与v-once指令-template" src="https://codepen.io/xiaodongxier/embed/vYaGEOP?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/vYaGEOP">
+  动态组件与v-once指令-template</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
+
+<wangyongjie class="wang-success">课下阅读官方文档 [动态组件 & 异步组件](https://v2.cn.vuejs.org/v2/guide/components-dynamic-async.html) 章节内容 </wangyongjie>
 
 ## 4-9 （新）章节小结
+
+> 阅读官方文档 基础及深入了解组件 两部分内容
+
+
+- [组件基础](https://v2.cn.vuejs.org/v2/guide/components.html)
+- [深入了解组件](https://v2.cn.vuejs.org/v2/guide/components-registration.html)
+
+
+**复杂/后期项目讲解**
+
+- [异步组件](https://v2.cn.vuejs.org/v2/guide/components-dynamic-async.html)
+- [访问父组件实例](https://v2.cn.vuejs.org/v2/guide/components-edge-cases.html#%E8%AE%BF%E9%97%AE%E7%88%B6%E7%BA%A7%E7%BB%84%E4%BB%B6%E5%AE%9E%E4%BE%8B)
 
 
 
 
 ## 4-10 【讨论题】组件究竟是什么？
 
+> 组件是Vue.js最强大的功能之一。组件可以扩展HTML元素，封装可重用的代码。在较高层面上，组件是自定义的元素，Vue.js的编译器为它添加特殊功能。在有些情况下，组件也可以是原生HTML元素的形式，以is特性扩展
 
 
-
-    
-<wangyongjie class="wang-success">课下阅读官方文档 [is](https://v2.cn.vuejs.org/v2/api/#is) 章节内容 </wangyongjie>

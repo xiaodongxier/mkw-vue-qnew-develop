@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作用域插槽</title>
+  <script src="./static/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <child>
+      <!-- 接收的数据放在 props 里面 -->
+      <template slot-scope="props">
+        <li>{{props.item}} -- hello</li>
+      </template>
+    </child>
+  </div>
+  <script>
+    Vue.component('child',{
+      data: function(){
+        return {
+          list: [1,2,3,4,5,6,7,8,9]
+        }
+      },
+      template: `<div>
+                    <ol>
+                      <slot 
+                           v-for='item of list'
+                           :item=item
+                      >
+                        {{item}}
+                      </slot>
+                    </ol>
+                 </div>`
+    })
+
+    var app = new Vue({
+      el: "#app",
+      data: {
+        mess:"hello world"
+      }
+    })
+  </script>
+</body>
+</html>
