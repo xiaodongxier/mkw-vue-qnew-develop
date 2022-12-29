@@ -1,0 +1,52 @@
+<!--
+ * @Date: 2022-12-29 15:25:52
+ * @LastEditTime: 2022-12-29 16:12:12
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue动画-Vue中CSS动画原理</title>
+  <script src="./static/vue.js"></script>
+  <style>
+    .fade-leave-to,
+    .fade-enter {
+      opacity: 0;
+    }
+
+    .fade-leave-active,
+    .fade-enter-active { 
+      transition: opacity 1s;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <transition name="fade">
+      <div v-show="show">v-show</div>
+    </transition>
+    <transition name="fade">
+      <div v-if="show">v-if</div>
+    </transition>
+    <button @click="handleBtnClick">切换</button>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        show:true
+      },
+      methods: {
+        handleBtnClick: function(){
+          this.show = !this.show
+        }
+      },
+    })
+  </script>
+</body>
+</html>
