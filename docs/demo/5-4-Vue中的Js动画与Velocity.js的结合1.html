@@ -1,0 +1,67 @@
+<!--
+  * @Date: 2022-10-12 11:33:13
+ * @LastEditTime: 2023-01-03 15:12:13
+  * @Author: WangYongJie
+  * @Work-email: wangyongjie2@gome.com.cn
+  * @Private-email: admin@xiaodongxier.com
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Vue中的Js动画与Velocity.js的结合</title>
+   <link rel="stylesheet" href="./static/animate.min.css">
+   <script src="./static/vue.js"></script>
+   <script src="./static/velocity.min.js"></script>
+   <style>
+ 
+   </style>
+ </head>
+ <body>
+   <div id="app">
+     <transition
+       @before-enter="handleBeforeClick"
+       @enter="handlEnterClick"
+       @after-enter="handlAfterClick"
+     >
+       <div v-show="show">
+         {{mess}}
+       </div>
+     </transition>
+     <button @click="handleBtnClick">toggle</button>
+   </div>
+   <script>
+     var app = new Vue({
+       el: "#app",
+       data: {
+         mess:"hello world",
+         show: true
+       },
+       methods: {
+         handleBtnClick: function(){
+           this.show = !this.show
+         },
+         // 显示/入场 的时候执行,一个参数
+         handleBeforeClick: function(el) {
+           el.style.opacity = 0
+         },
+         // 显示/入场 的时候执行，两个参数el,done(回调函数)
+         handlEnterClick: function(el,done){
+           Velocity(el,
+           {
+            opacity:1
+          },{
+            duration:1000,
+            complete: done
+          })
+         },
+         handlAfterClick: function(el){
+           alert("动画结束")
+         }
+       },
+     })
+   </script>
+ </body>
+ </html>

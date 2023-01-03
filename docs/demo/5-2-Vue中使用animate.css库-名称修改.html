@@ -1,0 +1,64 @@
+<!--
+  * @Date: 2022-12-29 15:25:52
+ * @LastEditTime: 2022-12-30 10:28:15
+  * @Author: WangYongJie
+  * @Work-email: wangyongjie2@gome.com.cn
+  * @Private-email: admin@xiaodongxier.com
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Vue中使用animate.css库-修改默认命名方式</title>
+   <link rel="stylesheet" href="./static/animate.min.css">
+   <script src="./static/vue.js"></script>
+   <style>
+     @keyframes bounce-in {
+       0% {
+         transform: scale(0);
+       }
+       50% {
+         transform: scale(1.5);
+       }
+       100% {
+         transform: scale(1);
+       }
+     }
+ 
+     .leave {
+       animation: shake 1s reverse;
+     }
+ 
+     .active { 
+       animation: swing 1s;
+     }
+   </style>
+ </head>
+ <body>
+  <div id="app">
+    <transition 
+     enter-active-class="animated swing"
+     leave-active-class="animated shake"
+    >
+      <div v-show="show">v-show</div>
+    </transition>
+    <button @click="handleBtnClick">Toggle</button>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        show:true
+      },
+      methods: {
+        handleBtnClick: function(){
+          this.show = !this.show
+        }
+      },
+    })
+  </script>
+ </body>
+ </html>
+ 

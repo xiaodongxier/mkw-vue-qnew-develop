@@ -156,23 +156,129 @@ Vue 提供了 `transition` 的封装组件，在下列情形中，可以给任�
 
 
 
-
 ## 5-2 在`Vue` 中使用 `animate.css` 库
 
+### 动画库使用
+
+
+```html
+<style>
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .fade-leave-active {
+    transform-origin: left center;
+    animation: bounce-in 1s reverse;
+  }
+
+  .fade-enter-active { 
+    transform-origin: left center;
+    animation: bounce-in 1s;
+  }
+</style>
+<div id="app">
+  <transition name="fade">
+    <div v-show="show">v-show</div>
+  </transition>
+  <button @click="handleBtnClick">Toggle</button>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      show:true
+    },
+    methods: {
+      handleBtnClick: function(){
+        this.show = !this.show
+      }
+    },
+  })
+</script>
+```
+
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中使用animate.css库" src="https://codepen.io/xiaodongxier/embed/JjBXYMr?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/JjBXYMr">
+  Vue中使用animate.css库</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+### 修改默认命名方式
+
+通过给 `transition` 添加 `enter-active-class` 及 `leave-enter-class` 实现自定义命名
+
+```html
+<style>
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .leave {
+    animation: bounce-in 1s reverse;
+  }
+
+  .active { 
+    animation: bounce-in 1s;
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <transition 
+  enter-active-class="active"
+  leave-active-class="leave"
+  >
+    <div v-show="show">v-show</div>
+  </transition>
+  <button @click="handleBtnClick">Toggle</button>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      show:true
+    },
+    methods: {
+      handleBtnClick: function(){
+        this.show = !this.show
+      }
+    },
+  })
+</script>
+```
 
 
 
+### 使用 `animate.css` 库
+
+- 必须自定义 `class` 名字来使用 `animate.css`
+- `class` 类里面必须包含 `animated` 类，同时根据情况添加需要的动画效果的 `class` 类
 
 
 
-
-
-
-
-
-
-
-
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中使用animate.css库-名称修改" src="https://codepen.io/xiaodongxier/embed/poZyEXL?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/poZyEXL">
+  Vue中使用animate.css库-名称修改</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 
@@ -181,17 +287,109 @@ Vue 提供了 `transition` 的封装组件，在下列情形中，可以给任�
 
 
 
+### 打开既执行动画
+
+> 增加 `appear` 
+
+```html
+<transition
+  appear
+  appear-active-class="animated swing"
+>
+<!-- 内容 -->
+</transition>
+```
+
+```html
+<div id="app">
+  <transition
+    appear
+    enter-active-class="animated shake"   // 元素显示执行
+    leave-active-class="animated tada"    // 元素隐藏执行
+    appear-active-class="animated swing"  // 打开页面就执行
+  >
+    <div v-show="show">
+      {{mess}}
+    </div>
+  </transition>
+  <button @click="handleBtnClick">toggle</button>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess:"hello world",
+      show: true
+    },
+    methods: {
+      handleBtnClick: function(){
+        this.show = !this.show
+      }
+    },
+  })
+</script>
+```
 
 
 
 
+### 增加过渡效果
 
 
+```html
+<style>
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+  }
+  @keyframes identifier {
+    
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 1s;
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <transition
+    type="transition"
+    appear
+    enter-active-class="animated shake fade-enter-active"
+    leave-active-class="animated tada fade-leave-active"
+    appear-active-class="animated swing"
+  >
+    <div v-show="show">
+      {{mess}}
+    </div>
+  </transition>
+  <button @click="handleBtnClick">toggle</button>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess:"hello world",
+      show: true
+    },
+    methods: {
+      handleBtnClick: function(){
+        this.show = !this.show
+      }
+    },
+  })
+</script>
+```
 
-
-
-
-
+- 使用 `transition` 过渡动画为总时间
+  - `type="transition"`
+- 使用 `@keyframes` `animated` 动画时间为总时间
+  - ??????????????????
+- 自定义动画播放时间(例如：总时长为2s)
+  - `:duration = "2000"`
+- 复杂自定义动画播放时间(动画开始/结束时间不一样)
+  - `:duratione="{center:5000,leave:1000}"`
 
 
 
@@ -199,22 +397,140 @@ Vue 提供了 `transition` 的封装组件，在下列情形中，可以给任�
 
 ## 5-4 `Vue` 中的 `Js` 动画与 `Velocity.js` 的结合
 
+> [`Velocity.js`](http://www.velocityjs.org) 官网：http://www.velocityjs.org
+
+### JS动画钩子
+
+
+进场钩子
+
+- `before-enter`
+- `enter`
+- `after-enter`
+
+
+出场钩子
+
+- `before-leave`
+- `leave`
+- `after-leave`
+
+
+> 下面为进场动画案例，出场动画与此类似
+
+```html
+<div id="app">
+  <transition
+    @before-enter="handleBeforeClick"
+    @enter="handlEnterClick"
+    @after-enter="handlAfterClick"
+  >
+    <div v-show="show">
+      {{mess}}
+    </div>
+  </transition>
+  <button @click="handleBtnClick">toggle</button>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess:"hello world",
+      show: true
+    },
+    methods: {
+      handleBtnClick: function(){
+        this.show = !this.show
+      },
+      // 显示/入场 的时候执行,一个参数
+      handleBeforeClick: function(el) {
+        el.style.color="red"
+        console.log("handleBeforeClick",el)
+      },
+      // 显示/入场 的时候执行，两个参数el,done(回调函数)
+      handlEnterClick: function(el,done){
+        setTimeout(()=>{
+          el.style.color="blue"
+          // 要调用一下done回调函数，证明动画已经结束了
+        },1000)
+        setTimeout(() => {
+          done()
+        }, 3000);
+        console.log("handlEnterClick",el,done)
+      },
+      handlAfterClick: function(el){
+        el.style.color="pink"
+      }
+    },
+  })
+</script>
+```
+
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的Js动画与Velocity.js的结合" src="https://codepen.io/xiaodongxier/embed/dyjXgEM?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/dyjXgEM">
+  Vue中的Js动画与Velocity.js的结合</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 
+###  `Velocity.js` 
 
 
 
+```html
+<div id="app">
+  <transition
+    @before-enter="handleBeforeClick"
+    @enter="handlEnterClick"
+    @after-enter="handlAfterClick"
+  >
+    <div v-show="show">
+      {{mess}}
+    </div>
+  </transition>
+  <button @click="handleBtnClick">toggle</button>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess:"hello world",
+      show: true
+    },
+    methods: {
+      handleBtnClick: function(){
+        this.show = !this.show
+      },
+      // 显示/入场 的时候执行,一个参数
+      handleBeforeClick: function(el) {
+        el.style.opacity = 0
+      },
+      // 显示/入场 的时候执行，两个参数el,done(回调函数)
+      handlEnterClick: function(el,done){
+        Velocity(el,
+        {
+        opacity:1
+      },{
+        duration:1000,
+        complete: done
+      })
+      },
+      handlAfterClick: function(el){
+        alert("动画结束")
+      }
+    },
+  })
+</script>
+```
 
 
 
-
-
-
-
-
-
-
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的 Velocity.js" src="https://codepen.io/xiaodongxier/embed/vYaKbdL?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/vYaKbdL">
+  Vue中的 Velocity.js</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 ## 5-5 `Vue` 中多个元素或组件的过渡

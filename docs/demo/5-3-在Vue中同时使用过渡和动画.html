@@ -1,0 +1,63 @@
+<!--
+ * @Date: 2022-10-12 11:33:13
+ * @LastEditTime: 2022-12-30 11:54:54
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在Vue中同时使用过渡和动画</title>
+  <link rel="stylesheet" href="./static/animate.min.css">
+  <script src="./static/vue.js"></script>
+  <style>
+    .fade-enter,
+    .fade-leave-to {
+      opacity: 0;
+    }
+
+    @keyframes identifier {
+      
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: opacity 1s;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <transition
+      type="transition"
+      appear
+      enter-active-class="animated shake fade-enter-active"
+      leave-active-class="animated tada fade-leave-active"
+      appear-active-class="animated swing"
+    >
+      <div v-show="show">
+        {{mess}}
+      </div>
+    </transition>
+    <button @click="handleBtnClick">toggle</button>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        mess:"hello world",
+        show: true
+      },
+      methods: {
+        handleBtnClick: function(){
+          this.show = !this.show
+        }
+      },
+    })
+  </script>
+</body>
+</html>
