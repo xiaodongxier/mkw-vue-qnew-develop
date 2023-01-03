@@ -1,3 +1,52 @@
+<!--
+ * @Date: 2023-01-03 15:35:49
+ * @LastEditTime: 2023-01-03 15:50:08
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模版</title>
+  <link rel="stylesheet" href="./static/animate.min.css">
+  <script src="./static/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <transition>
+      <div v-show="show">
+        {{mess}}
+      </div>
+    </transition>
+    <button @click="handleClick">toggle</button>
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        mess:"hello world",
+        show: true
+      },
+      methods: {
+        handleClick: function(){
+          this.show = !this.show
+        }
+      },
+    })
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,3 +69,6 @@
   </script>
 </body>
 </html>
+
+
+

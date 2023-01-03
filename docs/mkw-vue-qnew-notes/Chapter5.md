@@ -537,13 +537,64 @@ Vue 提供了 `transition` 的封装组件，在下列情形中，可以给任�
 
 
 
+### 多个元素的过渡
+
+- 不使用key的话节点直接复用了，不存在动画效果了，使用 key 解决复用dom的情况，动画恢复
+- `mode="in-out"` 先进入在隐藏
+- `mode="out-in"` 先隐藏在进入 
+
+```html
+<style>
+  .v-enter,
+  .v-leave-to {
+    opacity: 0;
+  }
+
+  .v-enter-active,
+  .v-leave-active{
+    transition: opacity 1s;
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- 
+  mode="in-out" 先进入在隐藏
+  mode="out-in" 先隐藏在进入 
+  -->
+  <transition mode="out-in">
+    <!-- 不使用key的话节点直接复用了，不存在动画效果了，使用 key 解决复用dom的情况，动画恢复 -->
+    <div v-if="show" key="hello">{{mess1}}</div>
+    <div v-else key="bye">{{mess2}}</div>
+  </transition>
+  <button @click="handleClick">toggle</button>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess1:"Hello World",
+      mess2:"Bye world",
+      show: true
+    },
+    methods: {
+      handleClick: function(){
+        this.show = !this.show
+      }
+    },
+  })
+</script>
+```
 
 
+<iframe height="300" style="width: 100%;" scrolling="no" title="多个元素的过渡" src="https://codepen.io/xiaodongxier/embed/mdjEowq?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/mdjEowq">
+  多个元素的过渡</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
-
-
-
+### 多个组件的过渡
 
 
 

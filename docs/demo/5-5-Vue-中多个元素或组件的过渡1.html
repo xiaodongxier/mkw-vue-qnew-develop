@@ -1,0 +1,65 @@
+<!--
+  * @Date: 2023-01-03 15:35:49
+ * @LastEditTime: 2023-01-03 16:57:12
+  * @Author: WangYongJie
+  * @Work-email: wangyongjie2@gome.com.cn
+  * @Private-email: admin@xiaodongxier.com
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>中多个元素或组件的过渡</title>
+   <script src="./static/vue.js"></script>
+   <style>
+     .v-enter,
+     .v-leave-to {
+       opacity: 0;
+     }
+ 
+     .v-enter-active,
+     .v-leave-active{
+       transition: opacity 1s;
+     }
+   </style>
+ </head>
+ <body>
+   <div id="app">
+     <!-- 
+     in-out 先进入在隐藏
+     out-in 先隐藏在进入 
+     -->
+     <transition mode="out-in">
+        <child v-if="show">{{mess1}}</child>
+        <child-one v-else>{{mess2}}</child-one>
+     </transition>
+     <button @click="handleClick">toggle</button>
+   </div>
+   <script>
+    Vue.component('child',{
+      template: '<div>child</div>'
+    })
+
+    Vue.component('child-one',{
+      template: '<div>child-one</div>'
+    })
+
+     var app = new Vue({
+       el: "#app",
+       data: {
+         mess1:"Hello World",
+         mess2:"Bye world",
+         show: true
+       },
+       methods: {
+         handleClick: function(){
+           this.show = !this.show
+         }
+       },
+     })
+   </script>
+ </body>
+ </html>
+ 
