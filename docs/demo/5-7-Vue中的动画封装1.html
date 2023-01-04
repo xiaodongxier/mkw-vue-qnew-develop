@@ -1,0 +1,66 @@
+<!--
+  * @Date: 2023-01-03 15:35:49
+ * @LastEditTime: 2023-01-04 14:38:42
+  * @Author: WangYongJie
+  * @Work-email: wangyongjie2@gome.com.cn
+  * @Private-email: admin@xiaodongxier.com
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Vue中的动画封装</title>
+   <link rel="stylesheet" href="./static/animate.min.css">
+   <script src="./static/vue.js"></script>
+ </head>
+ <body>
+   <div id="app">
+     <fade :show="show">
+       <div>{{mess}}</div>
+     </fade>
+     <fade :show="show">
+       <h1>{{mess}}</h1>
+     </fade>
+     <button @click="handleClick">toggle</button>
+   </div>
+   <script> 
+    // 完整的动画全部封装在组件中
+     Vue.component('fade', {
+       props: ['show'],
+       template: `
+       <transition @before-enter="handleBeforeEnter"
+                   @enter="handleEnter"
+       >
+         <slot v-if="show"></slot>
+       </transition>
+       `,
+       methods: {
+        handleBeforeEnter: function(el){
+          el.style.color = "red"
+        },
+         handleEnter: function(el,down){
+          setTimeout(() => {
+            el.style.color = "blue"
+            down()
+          }, 1000);
+         }
+       }
+     })
+     var app = new Vue({
+       el: "#app",
+       data: {
+         mess:"hello world",
+         show: true
+       },
+       methods: {
+         handleClick: function(){
+           this.show = !this.show
+         }
+       },
+     })
+   </script>
+ </body>
+ </html>
+ 

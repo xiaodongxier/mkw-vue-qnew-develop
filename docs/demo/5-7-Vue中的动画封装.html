@@ -1,6 +1,6 @@
 <!--
  * @Date: 2023-01-03 15:35:49
- * @LastEditTime: 2023-01-04 11:16:07
+ * @LastEditTime: 2023-01-04 14:01:32
  * @Author: WangYongJie
  * @Work-email: wangyongjie2@gome.com.cn
  * @Private-email: admin@xiaodongxier.com
@@ -14,17 +14,37 @@
   <title>Vue中的动画封装</title>
   <link rel="stylesheet" href="./static/animate.min.css">
   <script src="./static/vue.js"></script>
+  <style>
+    .v-enter ,
+    .v-leave-to {
+      opacity: 0;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: opacity 1s;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
-    <transition>
-      <div v-show="show">
-        {{mess}}
-      </div>
-    </transition>
+    <fade :show="show">
+      <div>{{mess}}</div>
+    </fade>
+    <fade :show="show">
+      <h1>{{mess}}</h1>
+    </fade>
     <button @click="handleClick">toggle</button>
   </div>
-  <script>
+  <script> 
+    Vue.component('fade', {
+      props: ['show'],
+      template: `
+      <transition>
+        <slot v-if="show"></slot>
+      </transition>
+      `
+    })
     var app = new Vue({
       el: "#app",
       data: {

@@ -736,15 +736,109 @@ Vue.component('child-one',{
 
 
 
+```html
+<style>
+  .v-enter ,
+  .v-leave-to {
+    opacity: 0;
+  }
+
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 1s;
+  }
+</style>
+<div id="app">
+  <fade :show="show">
+    <div>{{mess}}</div>
+  </fade>
+  <fade :show="show">
+    <h1>{{mess}}</h1>
+  </fade>
+  <button @click="handleClick">toggle</button>
+</div>
+<script> 
+  Vue.component('fade', {
+    props: ['show'],
+    template: `
+    <transition>
+      <slot v-if="show"></slot>
+    </transition>
+    `
+  })
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess:"hello world",
+      show: true
+    },
+    methods: {
+      handleClick: function(){
+        this.show = !this.show
+      }
+    },
+  })
+</script>
+```
 
 
 
+> 全部封装在组件中
 
 
+```html
+<div id="app">
+  <fade :show="show">
+    <div>{{mess}}</div>
+  </fade>
+  <fade :show="show">
+    <h1>{{mess}}</h1>
+  </fade>
+  <button @click="handleClick">toggle</button>
+</div>
+<script> 
+// 完整的动画全部封装在组件中
+  Vue.component('fade', {
+    props: ['show'],
+    template: `
+    <transition @before-enter="handleBeforeEnter"
+                @enter="handleEnter"
+    >
+      <slot v-if="show"></slot>
+    </transition>
+    `,
+    methods: {
+    handleBeforeEnter: function(el){
+      el.style.color = "red"
+    },
+      handleEnter: function(el,down){
+      setTimeout(() => {
+        el.style.color = "blue"
+        down()
+      }, 1000);
+      }
+    }
+  })
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess:"hello world",
+      show: true
+    },
+    methods: {
+      handleClick: function(){
+        this.show = !this.show
+      }
+    },
+  })
+</script>
+```
 
-
-
-
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中的动画封装" src="https://codepen.io/xiaodongxier/embed/xxJEqjY?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/xxJEqjY">
+  Vue中的动画封装</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 ## 5-8 本章小节
