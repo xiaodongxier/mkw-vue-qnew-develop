@@ -1,0 +1,68 @@
+<!--
+ * @Date: 2023-01-04 10:48:47
+ * @LastEditTime: 2023-01-04 11:03:46
+ * @Author: WangYongJie
+ * @Work-email: wangyongjie2@gome.com.cn
+ * @Private-email: admin@xiaodongxier.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue中的列表过渡</title>
+  <link rel="stylesheet" href="./static/animate.min.css">
+  <script src="./static/vue.js"></script>
+  <style>
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: opacity 1s;
+      color: #48b785;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <transition-group>
+      <div v-for="(item,index) of list" :key="item.id">
+        {{item.title}}
+      </div>
+    </transition-group>
+    <!-- 
+      <transition>
+        <div>hello world</div>
+      </transition>
+      <transition>
+        <div>hello world</div>
+      </transition>
+      <transition>
+        <div>hello world</div>
+      </transition> 
+    -->
+    <button @click="handleBtnClick">Add</button>
+  </div>
+  <script>
+    var count = 0;
+    var app = new Vue({
+      el: "#app",
+      data: {
+        list:[]
+      },
+      methods: {
+        handleBtnClick: function(){
+          this.list.push({
+            id: count++,
+            title: 'hello world'+ count
+          })
+        }
+      },
+    })
+  </script>
+</body>
+</html>

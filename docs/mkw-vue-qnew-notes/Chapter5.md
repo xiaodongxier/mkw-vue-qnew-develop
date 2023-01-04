@@ -594,12 +594,68 @@ Vue 提供了 `transition` 的封装组件，在下列情形中，可以给任�
 </iframe>
 
 
-### 多个组件的过渡
+### 多个组件的过渡 / 动态组件
+
+```html
+<style>
+  .v-enter,
+  .v-leave-to {
+    opacity: 0;
+  }
+
+  .v-enter-active,
+  .v-leave-active{
+    transition: opacity 1s;
+  }
+</style>
+<div id="app">
+  <!-- 
+  in-out 先进入在隐藏
+  out-in 先隐藏在进入 
+  -->
+  <transition mode="out-in">
+    <!-- 动态组件 -->
+    <component :is="type"></component>
+    <!-- 
+      <child v-if="show">{{mess1}}</child>
+      <child-one v-else>{{mess2}}</child-one> 
+    -->
+  </transition>
+  <button @click="handleClick">toggle</button>
+</div>
+<script>
+Vue.component('child',{
+  template: '<div>child</div>'
+})
+
+Vue.component('child-one',{
+  template: '<div>child-one</div>'
+})
+
+  var app = new Vue({
+    el: "#app",
+    data: {
+      mess1:"Hello World",
+      mess2:"Bye world",
+      type: 'child'
+    },
+    methods: {
+      handleClick: function(){
+        this.type = ( this.type === 'child' ? 'child-one' : 'child' )
+      }
+    },
+  })
+</script>
+```
 
 
 
 
-
+<iframe height="300" style="width: 100%;" scrolling="no" title="Vue中多个元素或组件的过渡/动态组件" src="https://codepen.io/xiaodongxier/embed/zYLKooL?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/zYLKooL">
+  Vue中多个元素或组件的过渡/动态组件</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 
@@ -607,18 +663,65 @@ Vue 提供了 `transition` 的封装组件，在下列情形中，可以给任�
 ## 5-6 `Vue` 中的列表过渡
 
 
+```html
+<style>
+  .v-enter,
+  .v-leave-to {
+    opacity: 0;
+  }
+
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 1s;
+    color: #48b785;
+  }
+</style>
+<div id="app">
+  <transition-group>
+    <div v-for="(item,index) of list" :key="item.id">
+      {{item.title}}
+    </div>
+  </transition-group>
+  <!-- 
+    <transition>
+      <div>hello world</div>
+    </transition>
+    <transition>
+      <div>hello world</div>
+    </transition>
+    <transition>
+      <div>hello world</div>
+    </transition> 
+  -->
+  <button @click="handleBtnClick">Add</button>
+</div>
+<script>
+  var count = 0;
+  var app = new Vue({
+    el: "#app",
+    data: {
+      list:[]
+    },
+    methods: {
+      handleBtnClick: function(){
+        this.list.push({
+          id: count++,
+          title: 'hello world'+ count
+        })
+      }
+    },
+  })
+</script>
+```
 
 
 
 
-
-
-
-
-
-
-
-
+<iframe height="300" style="width: 100%;" scrolling="no" title="Untitled" src="https://codepen.io/xiaodongxier/embed/OJwRbQb?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/xiaodongxier/pen/OJwRbQb">
+  Untitled</a> by 小东西儿 (<a href="https://codepen.io/xiaodongxier">@xiaodongxier</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 
