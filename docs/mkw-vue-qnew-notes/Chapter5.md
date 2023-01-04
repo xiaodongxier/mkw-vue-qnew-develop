@@ -844,15 +844,15 @@ Vue.component('child-one',{
 ## 5-8 本章小节
 
 
+- `Vue` 过渡动画
+- `keyframes` 动画
+- 通过 `js` 实现动画
+- `animate.css` 与 `Velocity.js` 动画库
+- 多个元素切换动画
+- 列表动画
 
 
-
-
-
-
-
-
-
+<wangyongjie class="wang-success">课下阅读官方文档 [状态过渡](https://v2.cn.vuejs.org/v2/guide/transitioning-state.html) 章节内容 </wangyongjie>
 
 
 
@@ -863,6 +863,31 @@ Vue.component('child-one',{
 
 ## 5-9 【讨论题】前端动画是如何实现的？
 
+
+- transition 过渡动画
+  - 常与 :hover, :active等伪类使用,实现相应等动画效果。
+- animation 关键帧动画
+  - 比如：loading 展示，代码如上。
+  - 优点：
+    - 1、无需每一帧都被记录，通过关键帧设置，方便开发；
+    - 2.实现简单，通常 UI 可以直接给到 css 文件，前端只需要导入即可【移动端注意屏幕适配】。
+  - 缺点：
+    - 1.css 没法动画交互，无法得知当前动画执行阶段；
+    - 2.transition: 需要触发，无法自动播放；
+    - 3.animation 兼容性需要加前缀，导致代码量成倍增长；
+    - 4.对于复杂动画的实现，导入的 css 文件过大，影响页面的渲染树生成，从而阻塞渲染。比如实现一个摇钱树的效果，css 文件达到百 kb，就要采取一些必要的压缩手段，缩减文件大小。
+-  js 逐帧动画
+   -  JS 动画的原理是通过 setTimeout 或 requestAnimationFrame 方法绘制动画帧，从而动态地改变 网页中图形的显示属性(如 DOM 样式，canvas 位图数据，SVG 对象属性等)，进而达到动画的目的。
+- 使用canvas绘制动画
+  - canvas作为H5新增元素，是借助Web API来实现动画的。
+  - 优点：
+    - 可以应对页面中多个动画元素渲染较慢的情况，完全通过javascript来渲染控制动画的执行。可用于实现较复杂动画。
+- SVG 动画
+  - SVG是一种基于XML的图像格式，非常类似于HTML的工作方式。它为许多熟悉的几何形状定义了不同的元素，这些元素可以在标记中组合以产生二维图形。
+  - 优点：
+    - 优化 SEO 和无障碍的利器，因为 SVG 图像是使用XML(可扩展标记语言【英语：Extensible Markup Language，简称：XML】标记指计算机所能理解的信息符号，通过此种标记，计算机之间可以处理包含各种信息的文章等)来标记构建的，浏览器通过绘制每个点和线来打印它们，而不是用预定义的像素填充某些空间。这确保 SVG 图像可以适应不同的屏幕大小和分辨率。
+    - 由于是在 XML 中定义的，SVG 图像比 JPG 或 PNG 图像更灵活，而且我们可以使用 CSS 和 JavaScript 与它们进行交互。SVG 图像设置可以包含 CSS 和 JavaScript。在 react、vue 这种数据驱动视图的框架下，对于 SVG 操作就更加如鱼得水了。（下文会跟大家分享一些小的 SVG 动画在我们项目中的实践）
+    - 在运用层面上，SVG 提供了一些图像编辑效果，比如屏蔽和剪裁、应用过滤器等等。并且 SVG 只是文本，因此可以使用 GZip 对其进行有效压缩。
 
 
 
