@@ -181,40 +181,48 @@ cnpm install [name]
 
 ## 6-3 Vue项目预热 - 项目代码介绍
 
+> 最主要是 `src` 目录下项目代码的开发
 
 
-* README - 项目的说明文件
-* package - 第三方模块依赖包
-* package-lock - package的一个锁文件，确定安装第三方包的版本，保证团队编程的统一
-* LICENSE - 开源协议声明
-* index.html - 默认的项目首页模版文件
-* .postcssrc.js - post css配置项
-* .gitignore - git提交过滤，不想提交到仓库的文件可以进行配置
-* .eslintrc - 代码规范检测
-* .eslintignore - 文件不想被 eslintrc 进行检测可以配置到里面，写的不标准也不会进行提示
-* .editorconfig - 关于编辑器的一些配置，方便统一编程
-* .babelrc -  语法转换，转换成浏览器可以正常编译执行的代码
-* static - 静态资源
-  * .gitkeep - 
-* src - 整个项目的源代码
-  * assets - 静态资源
-  * components - 组件
-  * router/index.js - 路由
-  * App.vue - 最原始的根组建
-  * main.js - 整个项目的入口文件
-* node_modules - 项目依赖的第三方包
-* config - 项目的配置文件
-  * dev.env.js - 开发环境配置
-  * index.js.js - 基础的配置信息
-  * prod.env.js - 线上环境配置
-* build - webpack配置项/vue-cli自动构建的/无需修改
-  * build.js - 
-  * check-versions.js - 
-  * utils.js - 
-  * vue-loader.conf.js - 
-  * webpack.base.conf.js - 基础的webpack配置项
-  * webpack.dev.conf.js - 开发环境的webpack配置项
-  * webpack.prod.conf.js - 线上环境的webpack配置项
+![初始化文件结构](https://gitcdn.xiaodongxier.com/image/20230104171656.png)
+
+* `README` - 项目的说明文件
+* `package` - 第三方模块依赖包
+* `package-lock` - `package` 的一个锁文件，确定安装第三方包的版本，保证团队编程的统一
+* `LICENSE` - 开源协议声明
+* `index.html` - 默认的项目首页模版文件
+* `.postcssrc.js` - `post css`配置项
+* `.gitignore` - `git` 提交过滤，不想提交到仓库的文件可以进行配置
+* `.eslintrc` - 代码规范检测
+* `.eslintignore` - 文件不想被 `eslintrc` 进行检测可以配置到里面，写的不标准也不会进行提示
+* `.editorconfig` - 关于编辑器的一些配置，方便统一编程
+* `.babelrc` -  语法转换，转换成浏览器可以正常编译执行的代码
+* `static` - 静态资源(图片/模拟的数据)
+  * `.gitkeep` - 
+* `src` - 整个项目的源代码
+  * `assets` - 静态资源(图片类资源)
+  * `components` - 组件
+  * `router/index.js` - 路由
+  * `App.vue` - 最原始的根组建
+  * `main.js` - 整个项目的入口文件
+* `node_modules` - 项目依赖的第三方包
+* `config` - 项目的配置文件
+  * `dev.env.js` - 开发环境配置
+  * `index.js.js` - 基础的配置信息
+  * `prod.env.js` - 线上环境配置
+* `build` - `webpack` 配置项/`vue-cli`自动构建的/无需修改
+  * `build.js` - 打包过程额外的 `webpack` 配置？
+  * `check-versions.js` - 
+  * `utils.js` - 
+  * `vue-loader.conf.js` - 
+  * `webpack.base.conf.js` - 基础的 `webpack` 配置项
+  * `webpack.dev.conf.js` - 开发环境的 `webpack` 配置项
+  * `webpack.prod.conf.js` - 线上环境的 `webpack` 配置项
+
+
+
+
+
 
 
 ## 6-4 Vue项目预热 - 单文件组件与Vue中的路由
