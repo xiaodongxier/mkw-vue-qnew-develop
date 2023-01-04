@@ -62,24 +62,51 @@ Vue 提供了一个[官方的 CLI](https://github.com/vuejs/vue-cli)，为单页
 
 
 
+```bash
+git status
+git add .
+git commit -m "变更内容注释"
+git push
+```
 
 
+#### 课外补充，md代码块支持的高亮标识
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| 开发语言 | md中的标识 |
+| - | - | 
+| Bash | bash |
+| C++ | cpp |
+| C# | cs |
+| CSS | css |
+| D | d |
+| Dart | d (dart) |
+| Delphi | delphi |
+| Go | go |
+| Gradle | gradle |
+| Groovy | groovy |
+| HTML | html |
+| Java | java |
+| JavaScript | javascript |
+| JSON | json |
+| Less | less |
+| Lisp | lisp |
+| Lua | lua |
+| Objective C | objectivec |
+| Markdown | markdown |
+| Nginx | nginx |
+| Perl | perl |
+| PHP | php |
+| PowersShell | powershell |
+| Python | python |
+| Ruby | ruby |
+| SCSS | scss |
+| SQL | sql |
+| Swift | swift |
+| text | text/plain |
+| TypeScript | typescript |
+| Vim Script | vim |
+| XML | xml |
+| YAML | yml |
 
 
 
@@ -96,9 +123,57 @@ Vue 提供了一个[官方的 CLI](https://github.com/vuejs/vue-cli)，为单页
 
 > 淘宝镜像 https://developer.aliyun.com/mirror/NPM
 
-
+ 
 
 ![安装](https://gitcdn.xiaodongxier.com/image/20230104154456.jpg)
+
+
+
+### 移除新版 `vue-cli`
+
+```base
+npm uninstall @vue/cli -g
+```
+
+### 安装旧版 `vue-cli`
+
+```base
+npm install vue-cli -g
+```
+
+卸载旧版
+
+```base
+npm uninstall vue-cli -g
+```
+
+
+###  淘宝 NPM 镜像
+
+> 淘宝 NPM 镜像: https://developer.aliyun.com/mirror/NPM （旧）
+
+> npmmirror 中国镜像站: http://www.npmmirror.com/?spm=a2c6h.14029880.0.0.3ba63839KoGSmz（新）
+
+- 你可以使用我们定制的 [cnpm](https://github.com/cnpm/cnpm) (gzip 压缩支持) 命令行工具代替默认的 `npm`:
+
+```
+npm install -g cnpm --registry=https://registry.npmmirror.com
+```
+
+- 安装模块
+
+```
+cnpm install [name]
+```
+
+
+
+
+
+
+
+
+
 
 
 
