@@ -907,4 +907,3 @@ Vue.component('child-one',{
 
 
     
-<wangyongjie class="wang-success">课下阅读官方文档 [动态组件 & 异步组件](https://v2.cn.vuejs.org/v2/guide/components-dynamic-async.html) 章节内容 </wangyongjie>

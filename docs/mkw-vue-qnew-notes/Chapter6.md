@@ -29,7 +29,59 @@ Current - 最新版
 `$ vue init webpack my-project`
 
 
-![项目初始化](https://upfile.wangyongjie.cn/preview/20220316232411T031kDaxX.png)
+![项目初始化](https://gitcdn.xiaodongxier.com/image/20230104150210.jpg)
+
+- `Target directory exists. Continue?` - 文件夹已经存在是否往文件夹里添加
+- `Project name` - 项目名称，不填自动以文件夹名字命名
+  - `Sorry name can no longer contain capital letters.` - 抱歉，名称不能再包含大写字母。
+- `Proiect description` - 项目描述
+- `Author` - 作者
+- `Vue build` - 编译形式
+  - `Runtime Compiler: recommended for most users` - 运行时编译 ✅
+  - `Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specific HTML are ONLY allowed in .vue files render functions are required elsewhere` - 运行时和其他时间编译
+- `Install vue-router?`  - 是否安装 `vue-router` 路由 ✅
+- `Use ESLint to lint your code?` - 是否使用 `ESLint` 对代码的公正度进行检查
+- `Pick an ESLint preset` - 代码检测规范
+  - `Standard (https://github.com/standard/standard)` ✅
+  - `Airbnb (https://github.com/airbnb/javascript)`
+  - `none (configure it yourself)`
+- `Set up unit tests` - 自动化测试相关
+- `Setup e2e tests with Nightwatch?` e2e端到端测试
+- `Should we run npm install for you after the project has been created? (recommended)(Use arrow keys)` - 项目包管理工具
+  - `Yes, use NPM` ✅
+  - `Yes, use Yarn`
+  - `No. I will handle that myself`
+
+
+
+
+<wangyongjie class="wang-success">课下阅读官方文档 [命令行工具 (CLI)](https://v2.cn.vuejs.org/v2/guide/installation.html#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7-CLI) 章节内容 </wangyongjie>
+
+
+Vue 提供了一个[官方的 CLI](https://github.com/vuejs/vue-cli)，为单页面应用 (SPA) 快速搭建繁杂的脚手架。它为现代前端工作流提供了开箱即用的构建设置。只需要几分钟的时间就可以运行起来并带有热重载、保存时 lint 校验，以及生产环境可用的构建版本。更多详情可查阅 [Vue CLI 的文档](https://cli.vuejs.org)。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -46,7 +98,7 @@ Current - 最新版
 
 
 
-![安装](https://upfile.wangyongjie.cn/preview/20220316232411T031kDaxX.png)
+![安装](https://gitcdn.xiaodongxier.com/image/20230104154456.jpg)
 
 
 
@@ -425,4 +477,10 @@ git add .     //本地修改提交到git缓存区
 git commit -m "注释"      //本地缓冲区提交的本地仓库
 git push      //本地代码提交到线上
 ```
+
+
+
+
+
+
 
