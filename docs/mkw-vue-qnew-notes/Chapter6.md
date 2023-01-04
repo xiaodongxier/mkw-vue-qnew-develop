@@ -233,7 +233,7 @@ cnpm install [name]
 
 es6的写法，同下面写法
 
-```
+```js
 components: { 
   App : App
 } 
@@ -249,7 +249,38 @@ components: {
 
 > 以.vue结尾的文件称之为单文件组件
 
-单文件组件
+
+单文件组件基本结构
+
+
+```vue
+<template>
+  <div id="app">
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'App'
+}
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+```
+
+
+
+
+
 
 
 ### 路由
@@ -260,10 +291,29 @@ components: {
 > `<router-view/>`当前路由地址所对应的内容 
     
 
+路由配置在 `./router/index.js` 文件
+
 ### 注意
 
 1. `style` 后面要回车一行
 2. `export default`中`name`的值要是单引号
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
