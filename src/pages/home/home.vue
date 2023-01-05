@@ -1,3 +1,4 @@
+<!-- 首页组件/首页总组件 -->
 <template>
   <div>
     <home-header></home-header>

@@ -1,8 +1,8 @@
+// - 整个项目的入口文件
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-// 整个项目的入口文件 - wangyongjie.cn
 import Vue from 'vue'
-// 没有后缀是因为，他会自己寻找，查看有没有 .vue .js .json 等等，直到找到和名字匹配的文件为止
+// - 没有后缀是因为，他会自己寻找，查看有没有 .vue .js .json 等等，直到找到和名字匹配的文件为止
 import App from './App'
 import router from './router'
 import fastClick from 'fastclick'

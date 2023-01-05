@@ -1,3 +1,4 @@
+<!-- 最原始的根组建 -->
 <template>
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->

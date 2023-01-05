@@ -1,7 +1,8 @@
-// 路由文件 - wangyongjie.cn
+// - 路由文件 - wangyongjie.cn
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/home/home'
+// - @ 指的是 src 目录， home.vue 简写成 home
+import Home from '@/pages/home/Home'
 
 Vue.use(Router)
 
