@@ -619,7 +619,7 @@ a {color: #25a4bb;text-decoration: none;}
 
 ### fastclick
 
-> 300ms click点击延迟的问题，安装fastclick `sudo npm i fastclick --save` 进行解决，安装到依赖之中，`--save`不管是开发环境，还是打包成线上版本的代码，都需要使用fastclick
+> 300ms click点击延迟的问题，安装fastclick `sudo npm i fastclick --save` 进行解决，安装到依赖之中，`--save`不管是开发环境，还是打包成线上版本的代码，都需要使用`fastclick`
 
 > 安装存储在 `package.json` 中的 `dependencies` 里面
 

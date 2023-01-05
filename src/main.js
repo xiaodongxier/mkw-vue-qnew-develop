@@ -5,11 +5,15 @@ import Vue from 'vue'
 // - 没有后缀是因为，他会自己寻找，查看有没有 .vue .js .json 等等，直到找到和名字匹配的文件为止
 import App from './App'
 import router from './router'
+// - 延迟300ms问题解决
 import fastClick from 'fastclick'
+// - 默认样式重制/保证各个浏览器访问效果一样
 import 'styles/reset.css'
+// - 1px边框问题
 import 'styles/border.css'
 import 'styles/iconfont.css'
 
+// 使用 fastclick
 Vue.config.productionTip = false
 fastClick.attach(document.body)
 
