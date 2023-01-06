@@ -160,39 +160,47 @@ export default {
 
 
 
-### iconfont的使用和代码优化
+### iconfont的使用
 
-> iconfont引入
+> [`iconfont`](https://www.iconfont.cn/) 引入
 
 ```js
 import './assets/styles/iconfont.css'
 ```
 
+### 代码优化
 
-> css值放到一个变量里面 - 方便后期视觉主题维护 -提高可维护性
+> css 色值放到一个变量里面 - 方便后期视觉主题维护 -提高可维护性，创建 `styl` 文件
 
 
 > 样式里面引入样式 ，css引用需要使用 @import
 
 
-![styl引用](https://upfile.wangyongjie.cn/preview/20220413170924TTM1E2Z1O.png)
+![styl引用](https://gitcdn.xiaodongxier.com/image/20230106151546.jpg)
 
 
 
 ```css
+<style lang="stylus" scoped>
 @import '../../../assets/styles/varibles.styl';
+</style>
+```
+
+```css
+$bgColor = #00bcd4
 ```
 
 `@` 代表 `src` 这个目录，但是在`css`引用其他的`css`使用的时候需要前面加`~`
 
 
 ```css
+<style lang="stylus" scoped>
 @import '~@/assets/styles/varibles.styl';
+</style>
 ```
 
 
-
-> styles 文件夹路径使用比较高，起一个别名代替，类似上面的 @，使代码变得更加精简
+> `styles` 文件夹路径使用比较高，起一个别名代替，类似上面的 @，使代码变得更加精简
 
 
 找到`build/webpack.base.conf.js`这个文件(34行)
@@ -223,25 +231,34 @@ resolve: {
 ```
 
 
-![Header.vue 中 ~styles使用](https://upfile.wangyongjie.cn/preview/20220413173351T6zYm8aGd.png)
+![Header.vue 中 ~styles使用](https://gitcdn.xiaodongxier.com/image/20230106152256.jpg)
 
 
-![main.js中 styles使用](https://upfile.wangyongjie.cn/preview/20220413173627TsPLS18W5.png)
+![main.js中 styles使用](https://gitcdn.xiaodongxier.com/image/20230106152309.jpg)
 
 
 修改后会有报错提示
 
 
-![修改配置项报错](https://upfile.wangyongjie.cn/preview/20220413173730TFsA95QZm.png)
+![修改配置项报错](https://gitcdn.xiaodongxier.com/image/20230106152323.jpg)
 
-这是因为项目修改配置项，需要重启下服务器
+**这是因为项目修改配置项，需要重启下服务器**
 
 
 ### 课程总结
 
-* 如何在 `head` 组建使用 `iconfont`
-* 如果在 `styl` 定义变量并在 `css` 中使用变量
+* 如何在 `Header` 组建使用 `iconfont`
 * 如何通过 `webpack` 对代码进行简化(文件夹路径)
+* 如果在 `styl` 定义变量并在 `css` 中使用变量
+
+
+
+
+
+
+
+
+
 
 
 

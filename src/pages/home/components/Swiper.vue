@@ -1,8 +1,7 @@
 <!-- 头部组件 -->
 <template>
   <div class="swiper">
-    swiper
-    <div>1111</div>
+    <div>22222</div>
   </div>
 </template>
 
@@ -15,6 +14,6 @@ export default {
 <style lang="stylus" scoped>
 .swiper
   background: red
-  div
-    background: blue
+  line-height:1rem
+  text-align: center
 </style>

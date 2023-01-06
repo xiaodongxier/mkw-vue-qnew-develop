@@ -11,6 +11,7 @@ import fastClick from 'fastclick'
 import 'styles/reset.css'
 // - 1px边框问题
 import 'styles/border.css'
+// - 引入 iconfont 图标文件
 import 'styles/iconfont.css'
 
 // 使用 fastclick
