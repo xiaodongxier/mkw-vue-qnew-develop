@@ -9,7 +9,9 @@
 
 ### stylus 安装
 
-```
+> [Stylus](https://www.stylus-lang.cn/) 是一款 CSS 的预处理器，也就是我们常说的 CSS 框架
+
+```base
 npm i stylus --save
 ```
 
@@ -23,6 +25,7 @@ npm i stylus-loader --save
 ```
 
 > 让webpack理解stylus
+
 
 ### 局部组建使用
 
@@ -59,17 +62,17 @@ export default {
 
 > 报错截图
 
-![报错](https://upfile.wangyongjie.cn/preview/20220323173330Tg9PvfOGb.png)
+![报错](https://gitcdn.xiaodongxier.com/image/20230106110729.jpg)
 
 > 报错版本
 
-![报错版本](https://upfile.wangyongjie.cn/preview/20220323173826TBysA0dn2.png)
+![报错版本](https://gitcdn.xiaodongxier.com/image/20230106110741.jpg)
 
 > 解决方法：https://segmentfault.com/q/1010000025218065 ，下面的评论
 
 > stylus-loader 版本太高 把版本降到3.0.2就解决了最后贴一个GitHub issues的地址[https://github.com/vuejs/vue-cli/issues/5947](https://github.com/vuejs/vue-cli/issues/5947)
 
-![解决办法](https://upfile.wangyongjie.cn/preview/20220323174025TBfaTVWgD.png)
+![解决办法](https://gitcdn.xiaodongxier.com/image/20230106110753.jpg)
 
 卸载命令 `npm uninstall stylus-loader`
 
@@ -91,6 +94,19 @@ export default {
 2. 运行命令 `npm update stylus-loader@3.0.2`
 
 
+
+### scoped
+
+限制 `css` 样式仅对当前组件有效
+
+```html
+<style lang="stylus" scoped>
+  /* css内容 */
+</style>
+```
+
+
+
 #### 知识点
 
 ```
@@ -101,6 +117,36 @@ export default {
 #### 注释事项
 1. 代码缩减问题
 2. 代码一行结束后面不能跟空格
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## 7-2 Vue项目首页 - iconfont 的使用和代码优化
@@ -193,12 +239,56 @@ resolve: {
 
 ### 课程总结
 
-* 如何在head组建使用iconfont
-* 如果在styl定义变量并在css中使用变量
-* 如何通过webpack对代码进行简化(文件夹路径)
+* 如何在 `head` 组建使用 `iconfont`
+* 如果在 `styl` 定义变量并在 `css` 中使用变量
+* 如何通过 `webpack` 对代码进行简化(文件夹路径)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## 7-3 【讨论题】对于静态资源，如何处理会比较优雅呢？
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -208,7 +298,63 @@ resolve: {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 7-5 Vue项目首页 - 图标区域页面布局
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -218,7 +364,63 @@ resolve: {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 7-7 Vue项目首页 - 热销推荐组件开发
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -228,12 +430,96 @@ resolve: {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 7-9 Vue项目首页 - 使用 axios 发送 ajax 请求
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 7-10 Vue项目首页 - 首页父子组组件间传值
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
