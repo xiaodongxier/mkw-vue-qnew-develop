@@ -7,16 +7,23 @@ import App from './App'
 import router from './router'
 // - 延迟300ms问题解决
 import fastClick from 'fastclick'
+// - 引入 vue-awesome-swiper
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 // - 默认样式重制/保证各个浏览器访问效果一样
 import 'styles/reset.css'
 // - 1px边框问题
 import 'styles/border.css'
 // - 引入 iconfont 图标文件
 import 'styles/iconfont.css'
+// - 引入 vue-awesome-swipercss文件
+import 'swiper/dist/css/swiper.css'
 
 // 使用 fastclick
 Vue.config.productionTip = false
 fastClick.attach(document.body)
+
+// 使用vue-awesome-swiper
+Vue.use(VueAwesomeSwiper)
 
 /* eslint-disable no-new */
 new Vue({

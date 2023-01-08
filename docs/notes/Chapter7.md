@@ -404,63 +404,32 @@ module.exports = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 7-4 Vue项目首页 - 首页轮播图
 
 
+### 新建 index-swiper 分支
+
+- 线上平台新建 `index-swiper` 分支
+- 本地 `git pull` 拉取远程分支
+- 本地 `git checkout index-swiper` 切换本地分支到 `index-swiper` 分支进行开发
 
 
 
+### 轮播插件 `vue-awesome-swiper`
 
+> [vue-awesome-swiper 插件介绍](https://github.com/surmon-china/vue-awesome-swiper)
 
+安装  `vue-awesome-swiper`
 
+```
+npm install vue-awesome-swiper --save
+```
 
+采用2.6.7版本
 
-
-
-
-
-
-
+```
+npm install vue-awesome-swiper@2.6.7 --save
+```
 
 
 
