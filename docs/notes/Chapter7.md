@@ -425,14 +425,25 @@ module.exports = {
 npm install vue-awesome-swiper --save
 ```
 
-采用2.6.7版本
+由于视频讲解版本问题，暂时采用下载 `2.6.7` 版本
 
 ```
 npm install vue-awesome-swiper@2.6.7 --save
 ```
 
 
+使用方法 `main.js` 进行配置
 
+
+```js
+// - 引入 vue-awesome-swiper
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+// - 引入 vue-awesome-swipercss文件
+import 'swiper/dist/css/swiper.css'
+
+// 使用vue-awesome-swiper
+Vue.use(VueAwesomeSwiper)
+```
 
 
 
