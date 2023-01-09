@@ -419,7 +419,7 @@ module.exports = {
 
 > [vue-awesome-swiper 插件介绍](https://github.com/surmon-china/vue-awesome-swiper)
 
-安装  `vue-awesome-swiper`
+#### 安装  `vue-awesome-swiper`
 
 ```
 npm install vue-awesome-swiper --save
@@ -432,7 +432,7 @@ npm install vue-awesome-swiper@2.6.7 --save
 ```
 
 
-使用方法 `main.js` 进行配置
+#### 使用方法 `main.js` 进行配置
 
 
 ```js
@@ -445,6 +445,46 @@ import 'swiper/dist/css/swiper.css'
 Vue.use(VueAwesomeSwiper)
 ```
 
+
+#### `swiper.vue` 组件开发使用 `vue-awesome-swiper`
+
+
+```html
+<!-- 头部组件 -->
+<template>
+  <swiper :options="swiperOption">
+    <swiper-slide>
+      <img class="swiper-img" src="https://imgs.qunarzz.com/sight/source/1505/9e/21df651e19af5d.jpg_r_640x214_3ea5bb38.jpg" alt="">
+    </swiper-slide>
+    <swiper-slide>
+      <img class="swiper-img" src="https://imgs.qunarzz.com/sight/source/1510/6e/1ea71e2f04e.jpg_r_640x214_aa6f091d.jpg" alt="">
+    </swiper-slide>
+    <div class="swiper-pagination"  slot="pagination"></div>
+  </swiper>
+</template>
+
+<script>
+export default {
+  name: 'HomeSwiper',
+  data: function () {
+    return {
+      swiperOption: {}
+    }
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+.swiper-img
+  width 100%
+</style>
+```
+
+#### 加载抖动问题
+
+> 轮播图片没加载成功的时候会不显示轮博区域，高度为0，当加载成功的时候会把下面部分挤下去，出现一个抖动的情况
+
+![加载抖动问题](https://gitcdn.xiaodongxier.com/image/20230109165505.gif)
 
 
 
