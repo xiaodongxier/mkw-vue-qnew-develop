@@ -487,11 +487,143 @@ export default {
 ![加载抖动问题](https://gitcdn.xiaodongxier.com/image/20230109165505.gif)
 
 
+```html
+<template>
+  <div class="wrapper">
+    <swiper :options="swiperOption">
+      <swiper-slide>
+        <img class="swiper-img" src="https://imgs.qunarzz.com/sight/p0/1501/f4/f467729126949c3a.water.jpg_640x276_267de9bb.jpg" alt="">
+      </swiper-slide>
+      <swiper-slide>
+        <img class="swiper-img" src="https://imgs.qunarzz.com/sight/p0/1602/92/920e47352552c1c990.water.jpg_640x276_078119ce.jpg" alt="">
+      </swiper-slide>
+      <div class="swiper-pagination"  slot="pagination"></div>
+    </swiper>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'HomeSwiper',
+  data: function () {
+    return {
+      swiperOption: {}
+    }
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+.wrapper
+  width: 100%
+  height: 0
+  overflow: hidden
+  // 宽高比 276/640 = 43.12
+  padding-bottom: 43.12%
+  background-color: #eee
+.swiper-img
+    width 100%
+</style>
+```
+
+或者使用 `vw` **存在兼容问题**
+
+```html
+<template>
+  <div class="wrapper">
+    <swiper :options="swiperOption">
+      <swiper-slide>
+        <img class="swiper-img" src="https://imgs.qunarzz.com/sight/source/1505/9e/21df651e19af5d.jpg_r_640x214_3ea5bb38.jpg" alt="">
+      </swiper-slide>
+      <swiper-slide>
+        <img class="swiper-img" src="https://imgs.qunarzz.com/sight/source/1510/6e/1ea71e2f04e.jpg_r_640x214_aa6f091d.jpg" alt="">
+      </swiper-slide>
+      <div class="swiper-pagination"  slot="pagination"></div>
+    </swiper>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'HomeSwiper',
+  data: function () {
+    return {
+      swiperOption: {}
+    }
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+.wrapper
+  width: 100%
+  // 宽高比 276/640 = 43.12
+  height: 43.12vw
+  .swiper-img
+    width 100%
+</style>
+```
 
 
 
 
+#### `pagination`设置及颜色修改
 
+
+> `pagination` 设置
+
+```js
+export default {
+  name: 'HomeSwiper',
+  data: function () {
+    return {
+      swiperOption: {
+        // 设置pagination，选择器选择dom节点class
+        pagination: '.swiper-pagination'
+      }
+    }
+  }
+}
+```
+
+> `pagination` 选中颜色设置
+
+直接这样做是不生效的，因为不在一个组件中，css设置了 scoped 仅对当前组件生效css样式
+
+```css
+.wrapper
+  width: 100%
+  height: 0
+  overflow: hidden
+  // 宽高比 276/640 = 43.12
+  padding-bottom: 43.12%
+  background-color: #eee
+  /* 直接这样做是不生效的，因为不在一个组件中，css设置了 scoped 仅对当前组件生效css样式*/
+  .swiper-pagination-bullet-active
+    background-color: red !important
+.swiper-img
+    width 100%
+```
+
+
+通过 `.wrapper >>> .swiper-pagination-bullet-active` 样式穿透来设置
+
+```css
+// 样式穿透
+.wrapper >>> .swiper-pagination-bullet-active
+    background-color: red !important
+.wrapper
+  width: 100%
+  height: 0
+  overflow: hidden
+  // 宽高比 276/640 = 43.12
+  padding-bottom: 43.12%
+  background-color: #eee
+  .swiper-pagination-bullet-active
+    background-color: red !important
+.swiper-img
+    width 100%
+```
 
 
 

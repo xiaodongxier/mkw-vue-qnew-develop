@@ -1,14 +1,15 @@
-<!-- 头部组件 -->
 <template>
-  <swiper :options="swiperOption">
-    <swiper-slide>
-      <img class="swiper-img" src="https://imgs.qunarzz.com/sight/source/1505/9e/21df651e19af5d.jpg_r_640x214_3ea5bb38.jpg" alt="">
-    </swiper-slide>
-    <swiper-slide>
-      <img class="swiper-img" src="https://imgs.qunarzz.com/sight/source/1510/6e/1ea71e2f04e.jpg_r_640x214_aa6f091d.jpg" alt="">
-    </swiper-slide>
-    <div class="swiper-pagination"  slot="pagination"></div>
-  </swiper>
+  <div class="wrapper">
+    <swiper :options="swiperOption">
+      <swiper-slide>
+        <img class="swiper-img" src="https://imgs.qunarzz.com/sight/p0/1501/f4/f467729126949c3a.water.jpg_640x276_267de9bb.jpg" alt="">
+      </swiper-slide>
+      <swiper-slide>
+        <img class="swiper-img" src="https://imgs.qunarzz.com/sight/p0/1602/92/920e47352552c1c990.water.jpg_640x276_078119ce.jpg" alt="">
+      </swiper-slide>
+      <div class="swiper-pagination"  slot="pagination"></div>
+    </swiper>
+  </div>
 </template>
 
 <script>
@@ -16,13 +17,28 @@ export default {
   name: 'HomeSwiper',
   data: function () {
     return {
-      swiperOption: {}
+      swiperOption: {
+        // 设置pagination，选择器选择dom节点class
+        pagination: '.swiper-pagination'
+      }
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+// 样式穿透
+.wrapper >>> .swiper-pagination-bullet-active
+    background-color: red !important
+.wrapper
+  width: 100%
+  height: 0
+  overflow: hidden
+  // 宽高比 276/640 = 43.12
+  padding-bottom: 43.12%
+  background-color: #eee
+  .swiper-pagination-bullet-active
+    background-color: red !important
 .swiper-img
-  width 100%
+    width 100%
 </style>
