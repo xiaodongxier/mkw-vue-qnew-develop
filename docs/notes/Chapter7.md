@@ -639,7 +639,7 @@ export default {
   - 2. `git add .`
   - 3. `git commit -m "代码内容注释"`
   - 4. `git push`
-- 分支合并(`main`(`master`)) / `git` 目前默认分支不是 `master`，而是 `main`
+- 分支合并(`main`(`master`)) / `git` 目前新建项目默认分支不是 `master`，而是 `main`，其实意义一样
   - 1. `git checkout main` - 先切换到主分支
   - 2. `git merge origin/index-swiper` - 新增的内容合并到本地的 `main`(`master`) 分支
   - 3. git push 把本地 `main`(`master`) 分支内容提交到线上
