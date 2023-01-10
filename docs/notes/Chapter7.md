@@ -588,7 +588,7 @@ export default {
 
 > `pagination` 选中颜色设置
 
-直接这样做是不生效的，因为不在一个组件中，css设置了 scoped 仅对当前组件生效css样式
+**直接这样做是不生效的，因为不在一个组件中，css设置了 scoped 仅对当前组件生效css样式**
 
 ```css
 .wrapper
@@ -611,7 +611,7 @@ export default {
 ```css
 // 样式穿透
 .wrapper >>> .swiper-pagination-bullet-active
-    background-color: red !important
+    background-color: #fff
 .wrapper
   width: 100%
   height: 0
@@ -626,21 +626,30 @@ export default {
 ```
 
 
+### 回顾总结
+
+- `vue-awesome-swipercss` 轮播插件使用
+  - `pagination` 设置
+  - `pagination` 颜色修改 (样式穿透)
+  - 轮播数据放在 `data` 进行循环展示
+  - 轮播图加载空白抖动问题
+  - 轮播图变形问题(计算宽高比)
+- 代码提交
+  - 1. 先关闭服务
+  - 2. `git add .`
+  - 3. `git commit -m "代码内容注释"`
+  - 4. `git push`
+- 分支合并(`main`(`master`)) / `git` 目前默认分支不是 `master`，而是 `main`
+  - 1. `git checkout main` - 先切换到主分支
+  - 2. `git merge origin/index-swiper` - 新增的内容合并到本地的 `main`(`master`) 分支
+  - 3. git push 把本地 `main`(`master`) 分支内容提交到线上
 
 
+<!-- `main`(`master`) 分支放置的是所有功能最新的代码，index-swiper 分支上防止的是开发的具体功能，开发完成时的代码，一般工作的开发流程是先自己开发一个分支，然后测试没有问题的时候，上线的时候会把开发的分支代码合并到`main`(`master`) 主分支上 -->
 
 
-
-
-
-
-
-
-
-
-
-
-
+<wangyongjie class="wang-success">`main`(`master`) 分支放置的是所有功能最新的代码，`index-swiper` 分支上放置的是开发的具体功能的代码，一般工作的开发流程是先自己开发一个分支，然后测试没有问题的时候，上线的时候会把开发的分支代码合并到`main`(`master`) 主分支上
+ </wangyongjie>
 
 
 
