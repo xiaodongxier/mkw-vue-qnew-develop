@@ -905,7 +905,11 @@ ellipsis()
 </style>
 ```
 
+### 分支合并
 
+- `git checkout main`  - 切换到主分支
+- `git merge origin/index-icons` - `main` 分支与线上的 `index-icons` 分支进行合并
+- `git push` - 提交
 
 
 
