@@ -15,59 +15,76 @@
 
 <script>
 export default {
-  name: 'Icons',
+  name: 'homeIcons',
   data: function () {
     return {
       iconList: [
         {
           id: '0001',
-          srcUrl: 'https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon1.png',
+          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon1.png',
           desc: '景点门票'
         },
         {
           id: '0002',
-          srcUrl: 'https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon2.png',
+          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon2.png',
           desc: '滑雪季节'
         },
         {
           id: '0003',
-          srcUrl: 'https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon3.png',
+          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon3.png',
           desc: '泡温泉'
         },
         {
           id: '0004',
-          srcUrl: 'https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon4.png',
+          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon4.png',
           desc: '动物园'
         },
         {
           id: '0005',
-          srcUrl: 'https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon5.png',
+          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon5.png',
           desc: '植物园'
         },
         {
           id: '0006',
-          srcUrl: 'https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon6.png',
+          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon6.png',
           desc: '看日出'
         },
         {
           id: '0007',
-          srcUrl: 'https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon7.png',
+          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon7.png',
           desc: '看日落'
         },
         {
           id: '0008',
-          srcUrl: 'https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon8.png',
+          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon8.png',
           desc: '故宫游'
         },
         {
           id: '0009',
-          srcUrl: 'https://cdn.jsdelivr.net/gh/xiaodongxier/gitcdn@master/image/mkw-vue-qnew-develop/icons/icon9.png',
+          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon9.png',
           desc: '长城游'
         }
       ]
     }
   },
   computed: {
+    pages () {
+      const pages = []
+      // 对data里的每一项数据进行循环 (每一项内容, 每一项下标)
+      // this.iconList.forEach((item, index) => {
+      this.iconList.forEach(function (item, index) {
+        // 当前下标数据应该展示在轮博的第几页，页面计算
+        // 比如第 3 项数据，下标是2，2/8 向下取整是 0 页
+        // 比如第 9 项数据，下标是8，8/8 向下取整是 1 页
+        const page = Math.floor(index / 8)
+        // pages 下面的 page 不存在，pages[page] 等于一个空数组
+        if (!pages[page]) {
+          pages[page] = []
+        }
+        pages[page].push(item)
+      })
+      return pages
+    }
   }
 }
 </script>

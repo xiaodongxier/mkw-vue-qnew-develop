@@ -828,7 +828,24 @@ export default {
   padding-bottom: 50%
 ```
 
+### 浏览器插件安装(需要科学上网)
+
+> [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+
+![Vue.js devtools](https://gitcdn.xiaodongxier.com/image/20230111131130.png)
+
+
+
+
+
+
 ### 分页判断处理
+
+
+
+
+
+
 
 
 
