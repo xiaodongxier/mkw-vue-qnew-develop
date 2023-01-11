@@ -1,8 +1,10 @@
 <template>
   <div class="icons">
     <swiper>
-      <swiper-slide>
-        <div class="icon"  v-for="item of iconList" :key="item.id">
+      <!-- 循环页数 -->
+      <swiper-slide v-for="(page, index) of pages" :key="index">
+        <!-- 循环每页的数据 -->
+        <div class="icon"  v-for="item of page" :key="item.id">
           <div class="icon-img">
             <img class="icon-img-content" :src="item.srcUrl" alt="">
           </div>
