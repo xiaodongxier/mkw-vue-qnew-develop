@@ -818,13 +818,21 @@ export default {
 
 
 
+### 高度处理(上半段滑动/下半段滑动都可以)
+
+
+```css
+.icons >>> .swiper-container
+  overflow hidden
+  height:0
+  padding-bottom: 50%
+```
+
+### 分页判断处理
 
 
 
-
-
-
-
+### 超出文字省略号处理/封装
 
 
 
