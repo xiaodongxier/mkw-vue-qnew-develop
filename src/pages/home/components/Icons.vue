@@ -20,50 +20,56 @@ export default {
   name: 'homeIcons',
   data: function () {
     return {
+      swiperOption: {
+        // 设置pagination，选择器选择dom节点class
+        pagination: '.swiper-pagination',
+        // 设置轮播循环展示
+        loop: true
+      },
       iconList: [
         {
           id: '0001',
-          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon1.png',
-          desc: '景点门票'
+          srcUrl: '//s.qunarzz.com/homenode/images/touchheader/hotel.png',
+          desc: '景点门票文字超出'
         },
         {
           id: '0002',
-          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon2.png',
+          srcUrl: '//s.qunarzz.com/homenode/images/touchheader/flight.png',
           desc: '滑雪季节'
         },
         {
           id: '0003',
-          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon3.png',
+          srcUrl: '//s.qunarzz.com/homenode/images/touchheader/train.png',
           desc: '泡温泉'
         },
         {
           id: '0004',
-          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon4.png',
+          srcUrl: '//s.qunarzz.com/homenode/images/touchheader/package.png',
           desc: '动物园'
         },
         {
           id: '0005',
-          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon5.png',
+          srcUrl: '//s.qunarzz.com/homenode/images/touchheader/piao.png',
           desc: '植物园'
         },
         {
           id: '0006',
-          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon6.png',
+          srcUrl: '//s.qunarzz.com/homenode/images/touchheader/train.png',
           desc: '看日出'
         },
         {
           id: '0007',
-          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon7.png',
+          srcUrl: '//s.qunarzz.com/homenode/images/touchheader/package.png',
           desc: '看日落'
         },
         {
           id: '0008',
-          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon8.png',
+          srcUrl: '//s.qunarzz.com/homenode/images/touchheader/flight.png',
           desc: '故宫游'
         },
         {
           id: '0009',
-          srcUrl: 'https://gitcdn.xiaodongxier.com/image/mkw-vue-qnew-develop/icons/icon9.png',
+          srcUrl: '//s.qunarzz.com/homenode/images/touchheader/hotel.png',
           desc: '长城游'
         }
       ]
@@ -93,6 +99,7 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~styles/varibles.styl';
+@import '~styles/mixins.styl';
 .icons >>> .swiper-container
   overflow hidden
   height:0
@@ -125,4 +132,6 @@ export default {
     line-height: .44rem
     text-align: center
     color: $darkTextColor
+    // 封装方法使用
+    ellipsis()
 </style>

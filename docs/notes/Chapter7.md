@@ -841,9 +841,31 @@ export default {
 
 ### 分页判断处理
 
+> 根据数据项的不同，自动化的构建页码，实现多页切换的效果
 
+**逻辑部分**
 
-
+```js
+computed: {
+  pages () {
+    const pages = []
+    // 对data里的每一项数据进行循环 (每一项内容, 每一项下标)
+    // this.iconList.forEach((item, index) => {
+    this.iconList.forEach(function (item, index) {
+      // 当前下标数据应该展示在轮博的第几页，页面计算
+      // 比如第 3 项数据，下标是2，2/8 向下取整是 0 页
+      // 比如第 9 项数据，下标是8，8/8 向下取整是 1 页
+      const page = Math.floor(index / 8)
+      // pages 下面的 page 不存在，pages[page] 等于一个空数组
+      if (!pages[page]) {
+        pages[page] = []
+      }
+      pages[page].push(item)
+    })
+    return pages
+  }
+}
+```
 
 
 
@@ -851,10 +873,37 @@ export default {
 
 ### 超出文字省略号处理/封装
 
+> `styl`  提供的 `mixin` 封装 `css` 公用
 
 
+- 新建 `mixins.styl`, 封装方法
 
 
+```css
+ellipsis()
+    overflow hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+```
+
+- 使用 `mixins.styl` 方法
+
+```html
+<style lang="stylus" scoped>
+@import '~styles/mixins.styl';
+  .icon-desc
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 0
+    height: .44rem
+    line-height: .44rem
+    text-align: center
+    color: $darkTextColor
+    // 封装方法使用
+    ellipsis()
+</style>
+```
 
 
 
