@@ -927,12 +927,19 @@ ellipsis()
 
 ## 7-7 Vue项目首页 - 热销推荐组件开发
 
+![热销推荐区块](https://gitcdn.xiaodongxier.com/image/20230112144755.png)
 
 #### 新建 `Recommend` 组件
 
 
 
+
+
 #### 1像素边框问题解决
+
+
+
+
 
 
 
