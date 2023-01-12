@@ -1093,6 +1093,7 @@ export default {
 ## 7-8 Vue项目首页 - 开发周末游组件
 
 
+![热销推荐区块](https://gitcdn.xiaodongxier.com/image/20230112145059.png)
 
 
 
