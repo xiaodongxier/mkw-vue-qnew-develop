@@ -1230,15 +1230,16 @@ npm install axios --save
 ```
 
 
+### 使用 axios 
+
+子组件使用 `axios` 获取数据的话需要至少发起5次 `ajax` 请求，会导致性能不好，所以把 `ajax` 请求放在 `Home.vue` 中的 `mounted` 生命周期函数中即可
+
+#### 数据模拟
 
 
+#### 转发机制
 
-
-
-
-
-
-
+> 不是 `vue` 提供的，是 `webpak-dev-server` 提供的
 
 
 
