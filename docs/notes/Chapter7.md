@@ -1204,15 +1204,30 @@ export default {
 
 
 
-
-
-
-
-
-
 ## 7-9 Vue项目首页 - 使用 axios 发送 ajax 请求
 
 
+> axios 数据请求
+
+### 新建 index-ajax 分支
+
+上章内容忘记合并主分支，而 `index-ajax` 分支是从主分支复制过来的，所以本分支缺少上节 `index-commend` 分支内容，处理办法，通过下面命令
+
+
+```
+git merge index-commend
+```
+
+把 `index-commend` 分支内容，融合到 `index-ajax` 分支
+
+![1](https://gitcdn.xiaodongxier.com/image/20230117104324.png)
+
+
+### 安装 axios
+
+```
+npm install axios --save
+```
 
 
 
