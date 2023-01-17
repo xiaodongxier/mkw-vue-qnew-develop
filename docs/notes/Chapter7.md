@@ -1207,7 +1207,11 @@ export default {
 ## 7-9 Vue项目首页 - 使用 axios 发送 ajax 请求
 
 
-> axios 数据请求
+> axios 数据请求，可是实现跨平台数据请求
+
+之前的方法有 
+- `fetch` - 浏览器自带的
+- `vue-resource` - 第三方的模块
 
 ### 新建 index-ajax 分支
 
@@ -1234,28 +1238,106 @@ npm install axios --save
 
 子组件使用 `axios` 获取数据的话需要至少发起5次 `ajax` 请求，会导致性能不好，所以把 `ajax` 请求放在 `Home.vue` 中的 `mounted` 生命周期函数中即可
 
+
+`Home.vue` 组件发起 `ajax` 请求，然后通过组件传递把数据传递给每个子组件
+
+```
+import axios from 'axios'
+```
+
+**数据获取**
+
+```js
+methods: {
+  getHomeInfo: function () {
+    axios.get('/static/mock/index.json')
+      .then(this.getHomeInfoSucc)
+  },
+  getHomeInfoSucc: function (data) {
+    console.log(data)
+  }
+},
+mounted: function () {
+  this.getHomeInfo()
+```
+
 #### 数据模拟
 
+`static` 目录存放静态文件，创建 `mock` 文件夹放置模拟数据文件
 
-#### 转发机制
+- 问：为什么放置在 `static` 目录下？ 
+- 答：只有 `static` 目录下的文件才能被外部访问，其他目录下的文件会被重定向到首页
+
+
+#### 模拟数据屏蔽提交到线上
+
+> `.gitignore` 内添加 `static/mock`，以防止提交到线上
+
+也不会提交到本地的仓库
+
+
+
+#### 转发机制，代理
 
 > 不是 `vue` 提供的，是 `webpak-dev-server` 提供的
 
 
+```js
+methods: {
+  getHomeInfo: function () {
+    axios.get('/static/mock/index.json')
+      .then(this.getHomeInfoSucc)
+  },
+  getHomeInfoSucc: function (data) {
+    console.log(data)
+  }
+},
+mounted: function () {
+  this.getHomeInfo()
+}
+```
 
 
+正式开发环境请求路径应该如下这样，`axios.get('/api/index.json')`
 
 
+```js
+methods: {
+  getHomeInfo: function () {
+    axios.get('/api/index.json')
+      .then(this.getHomeInfoSucc)
+  },
+  getHomeInfoSucc: function (data) {
+    console.log(data)
+  }
+},
+mounted: function () {
+  this.getHomeInfo()
+}
+```
 
+`config` 目录下 `index.js` 文件
 
+`proxyTable` 配置项
 
+```js
+proxyTable: {
+  // 当请求api目录的时候
+  '/api': {
+    // 把请求转发到服务器8080端口上
+    target: 'http://localhost:8080',
+    // 路径进行一个替换
+    pathRewrite: {
+      // 一旦请求的地址是以api开头的,就请求到本地的 static 目录下 mock 文件夹下
+      '^/api': '/static/mock/'
+    }
+  }
+}
+```
 
+是 `webpak-dev-server` 提供的
 
-
-
-
-
-
+当改完配置项文件的时候，需要重启下服务器
 
 ## 7-10 Vue项目首页 - 首页父子组组件间传值
 
