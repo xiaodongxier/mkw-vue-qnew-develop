@@ -1210,7 +1210,7 @@ export default {
 > axios 数据请求，可是实现跨平台数据请求
 
 之前的方法有 
-- `fetch` - 浏览器自带的
+- `fetch` - 浏览器自带的函数
 - `vue-resource` - 第三方的模块
 
 ### 新建 index-ajax 分支
@@ -1260,6 +1260,10 @@ methods: {
 mounted: function () {
   this.getHomeInfo()
 ```
+
+
+
+
 
 #### 数据模拟
 

@@ -18,7 +18,7 @@ export default {
         // 设置pagination，选择器选择dom节点class
         pagination: '.swiper-pagination',
         // 设置轮播循环展示
-        loop: true
+        loop: false
       },
       swiperList: [
         {

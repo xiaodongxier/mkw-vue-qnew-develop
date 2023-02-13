@@ -27,7 +27,9 @@ export default {
   },
   methods: {
     getHomeInfo: function () {
+      // 获取ajax数据
       axios.get('/api/index.json')
+      // 数据获取成功执行 getHomeInfoSucc 函数
         .then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc: function (data) {
@@ -35,6 +37,8 @@ export default {
     }
   },
   mounted: function () {
+    // 页面挂载完成 使用axios 进行数据的获取
+    // 函数定义在 methods 里面
     this.getHomeInfo()
   }
 }
