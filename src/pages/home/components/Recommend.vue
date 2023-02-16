@@ -19,7 +19,7 @@ export default {
   name: 'HomeRecommend',
   props: {
     list: Array
-  },
+  }
   // data: function () {
   //   return {
   //     recommendList: [
