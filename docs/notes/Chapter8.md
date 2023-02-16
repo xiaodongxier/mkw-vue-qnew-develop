@@ -4,6 +4,180 @@
     
 ## 8-1 Vue项目城市选择页 - 路由配置
 
+### 路由配置
+
+`router > index.js`
+
+```js
+import Vue from 'vue'
+import Router from 'vue-router'
+import Home from '@/pages/home/Home'
+import City from '@/pages/city/city'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    },
+    // 配置city 路由
+    {
+      path: '/City',
+      name: 'City',
+      component: City
+    }
+  ]
+})
+```
+
+
+### 首页header点击跳转
+
+`Header.vue` 组件配置 `router-link` 进行跳转
+
+```html
+<router-link to="/city">
+  <div class="header-right">
+    <!-- 三亚 -->
+    {{this.city}}
+    <span class="iconfont arrow-icon">&#xe6aa;</span>
+  </div>
+</router-link>
+```
+
+
+### city 页面开发
+
+#### 组件使用
+
+`Header.vue` 组件导出
+
+```html
+<template>
+  <div class="header">
+    城市选择
+  </div>
+</template>
+
+<script>
+  // 导出
+export default {
+  name: 'CityHeader'
+}
+</script>
+
+<style lang="stylus" scoped>
+  .header
+    height .86rem
+    line-height: .86rem
+</style>
+```
+
+`city.vue` 组件导入
+
+```html
+<template>
+  <div>
+    <city-header></city-header>
+  </div>
+</template>
+
+<script>
+  // 导入
+import CityHeader from './components/Header'
+export default {
+  name: 'City',
+  // 注册组件
+  components: {
+    CityHeader: CityHeader
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+
+</style>
+
+```
+
+
+### header 组件开发
+
+```html
+<template>
+  <div class="header">
+    城市选择
+    <!-- 返回首页 -->
+    <router-link to="/">
+      <div class="iconfont header-icon">&#xe624;</div>
+    </router-link>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'CityHeader'
+}
+</script>
+
+<style lang="stylus" scoped>
+  @import '~styles/varibles.styl';
+  .header
+    position relative
+    overflow hidden
+    height .86rem
+    line-height: .86rem
+    background: $bgColor
+    text-align: center
+    color #fff
+    font-size: .32rem
+    .header-icon
+      width .64rem
+      height .64rem
+      font-size .4rem
+      color #fff
+      position absolute
+      top 0
+      left 0
+</style>
+```
+
+添加常用值 `$headerHeight` 到 `viribles.styl` ,替换 `header.vue` 等组件值，方便后期整个项目的管理
+
+```css
+$headerHeight = .86rem
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

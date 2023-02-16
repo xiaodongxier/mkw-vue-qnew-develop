@@ -10,11 +10,13 @@
       输入城市/经典/游玩主题
       </div>
     <!-- 128*86 -->
-    <div class="header-right">
-      <!-- 三亚 -->
-      {{this.city}}
-      <span class="iconfont arrow-icon">&#xe6aa;</span>
+    <router-link to="/city">
+      <div class="header-right">
+        <!-- 三亚 -->
+        {{this.city}}
+        <span class="iconfont arrow-icon">&#xe6aa;</span>
       </div>
+    </router-link>
   </div>
 </template>
 
@@ -32,7 +34,7 @@ export default {
 .header
   display: flex
   height: .86rem
-  line-height: .86rem
+  line-height: $headerHeight
   background: $bgColor
   color #fff
   .header-left
@@ -56,6 +58,7 @@ export default {
     width: 1.24rem;
     float: right;
     text-align: center
+    color: #fff
     .arrow-icon
       margin-left: -.07rem
       font-size .3rem
