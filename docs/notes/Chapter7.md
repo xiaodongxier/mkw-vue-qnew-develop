@@ -1453,8 +1453,9 @@ export default {
 
 模版里面尽量避免出现逻辑性的代码(例如上面)
 
+最优方案如下：
 
-```html
+ ```html
 <template>
   <div class="wrapper">
     <!-- showSwipeer -->
@@ -1482,7 +1483,7 @@ export default {
       }
     }
   },
-  // 计算属性
+  // 计算属性，数据长度
   computed: {
     showSwipeer: function () {
       return this.list.length
