@@ -1493,10 +1493,71 @@ export default {
 ```
 
 
+自动轮博问题解决
+
+```html
+<template>
+  <div class="icons">
+      <!-- 添加 :options="swiperOption" 属性 -->
+    <swiper :options="swiperOption">
+      <swiper-slide v-for="(page, index) of pages" :key="index">
+        <div class="icon"  v-for="item of page" :key="item.id">
+          <div class="icon-img">
+            <img class="icon-img-content" :src="item.imgUrl" alt="">
+          </div>
+          <p class="icon-desc">{{item.desc}}</p>
+        </div>
+      </swiper-slide>
+    </swiper>
+  </div>
+</template>
+```
+
+```js
+export default {
+  name: 'homeIcons',
+  props: {
+    list: Array
+  },
+  data: function () {
+    return {
+      // 设置轮播自动轮博问题
+      swiperOption: {
+        autoplay: false
+      }
+    }
+  }
+}
+```
+
+### Recommend 部分
+
+```js
+export default {
+  name: 'HomeRecommend',
+  // 通过 props 获取父级传递的数据
+  props: {
+    list: Array
+  }
+}
+```
 
 
 
 
+
+### Weekend 部分
+
+
+```js
+export default {
+  name: 'HomeRecommend',
+  // 通过 props 获取父级传递的数据
+  props: {
+    list: Array
+  }
+}
+```
 
 
 

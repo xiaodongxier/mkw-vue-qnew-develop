@@ -1,6 +1,6 @@
 <template>
   <div class="icons">
-    <swiper>
+    <swiper :options="swiperOption">
       <!-- 循环页数 -->
       <swiper-slide v-for="(page, index) of pages" :key="index">
         <!-- 循环每页的数据 -->
@@ -25,7 +25,7 @@ export default {
     return {
       swiperOption: {
         // 设置轮播循环展示
-        loop: false
+        autoplay: false
       }
       // iconList: [
       //   {
