@@ -1,7 +1,7 @@
 <!-- 首页组件/首页总组件 -->
 <template>
   <div>
-    <home-header></home-header>
+    <home-header :city="city"></home-header>
     <home-swiper></home-swiper>
     <home-icons></home-icons>
     <home-recommend></home-recommend>
@@ -24,6 +24,11 @@ export default {
     HomeIcons: HomeIcons,
     HomeRecommend: HomeRecommend,
     HomeWeekend: HomeWeekend
+  },
+  data: function () {
+    return {
+      city: '北京'
+    }
   },
   methods: {
     getHomeInfo: function () {

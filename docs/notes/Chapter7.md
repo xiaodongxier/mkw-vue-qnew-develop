@@ -1285,7 +1285,6 @@ mounted: function () {
 
 > 不是 `vue` 提供的，是 `webpak-dev-server` 提供的
 
-
 ```js
 methods: {
   getHomeInfo: function () {
@@ -1350,7 +1349,7 @@ proxyTable: {
 ```json
 // 服务器正确相应的请求
 "ret": true
-// 服务器返回的所以数据
+// 服务器返回的所有数据
 "data": {
 
 }
@@ -1371,10 +1370,26 @@ proxyTable: {
 ## 7-10 Vue项目首页 - 首页父子组组件间传值
 
 
+父组件向子组件传值： 通过属性的形式传递
+子组件通过props的方式接受传递的值 
 
+```js
+export default {
+  name: 'HomeHeader',
+  props: ['city']
+}
+```
 
+或者定义传递值的类型
 
-
+```js
+export default {
+  name: 'HomeHeader',
+  props: {
+    city: String
+  }
+}
+```
 
 
 

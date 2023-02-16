@@ -12,7 +12,7 @@
     <!-- 128*86 -->
     <div class="header-right">
       <!-- 三亚 -->
-      测试
+      {{this.city}}
       <span class="iconfont arrow-icon">&#xe6aa;</span>
       </div>
   </div>
@@ -20,7 +20,10 @@
 
 <script>
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  props: {
+    city: String
+  }
 }
 </script>
 
