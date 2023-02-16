@@ -163,7 +163,39 @@ $headerHeight = .86rem
 ## 8-2 Vue项目城市选择页 - 搜索框布局
 
 
+布局开发如下
 
+```html
+<template>
+  <div class="search">
+    <input type="text" class="search-input" placeholder="输入城市名或拼音">
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'CitySearch'
+}
+</script>
+
+<style lang="stylus" scoped>
+  @import '~styles/varibles.styl';
+  .search
+    height .72rem
+    padding 0 .1rem
+    background $bgColor
+    .search-input
+      box-sizing border-box
+      width 100%
+      height .62rem
+      line-height .62rem
+      padding 0 .1rem
+      text-align center
+      border-radius: .06rem
+      color #666
+</style>
+
+```
 
 
 
