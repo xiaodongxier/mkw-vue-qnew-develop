@@ -1370,8 +1370,11 @@ proxyTable: {
 ## 7-10 Vue项目首页 - 首页父子组组件间传值
 
 
+
 父组件向子组件传值： 通过属性的形式传递
 子组件通过props的方式接受传递的值 
+
+### header 部分
 
 ```js
 export default {
@@ -1391,15 +1394,102 @@ export default {
 }
 ```
 
+### swiper 部分
 
 
+```js
+export default {
+  name: 'HomeSwiper',
+  props: {
+    // 数据接收
+    list: Array
+  },
+  data: function () {
+    return {
+      swiperOption: {
+        // 设置pagination，选择器选择dom节点class
+        pagination: '.swiper-pagination',
+        // 设置轮播循环展示
+        loop: false
+      }
+      // swiperList: [
+      //   {
+      //     id: '0001',
+      //     imgUrl: 'https://imgs.qunarzz.com/sight/p0/1501/f4/f467729126949c3a.water.jpg_640x276_267de9bb.jpg'
+      //   },
+      //   {
+      //     id: '0002',
+      //     imgUrl: 'https://imgs.qunarzz.com/sight/p0/1602/92/920e47352552c1c990.water.jpg_640x276_078119ce.jpg'
+      //   }
+      // ]
+    }
+  }
+}
+```
+
+打开直接显示最后一帧问题？
+
+当页面还没获取到ajax数据的时候swiper已经执行了，接收到的是空数组，
+刚开始swiper创建的时候是空数组创建的，后来ajax接收到数据后，重新渲染了就出现了现实最后一个图片的问题
+
+所以创建swiper应该等完整数据获取完成后在来创建，通过v-if来判断解决这个问题，v-if这个值用list.length 来判断，当数据获取为空的时候v-if为false，对应的swiper也不会被创建，当获取完数据后对应的值为ture，对应的swiper会被创建，就解决了上面存在的问题
 
 
+```html
+<template>
+  <div class="wrapper">
+    <!-- 
+      v-if="list.length" 判断数据是否获取完成
+     -->
+    <swiper :options="swiperOption" v-if="list.length">
+      <swiper-slide v-for="item of list" :key="item.id">
+        <img class="swiper-img" :src="item.imgUrl" alt="">
+      </swiper-slide>
+      <div class="swiper-pagination"  slot="pagination"></div>
+    </swiper>
+  </div>
+</template>
+```
+
+模版里面尽量避免出现逻辑性的代码(例如上面)
 
 
+```html
+<template>
+  <div class="wrapper">
+    <!-- showSwipeer -->
+    <swiper :options="swiperOption" v-if="showSwipeer">
+      <swiper-slide v-for="item of list" :key="item.id">
+        <img class="swiper-img" :src="item.imgUrl" alt="">
+      </swiper-slide>
+      <div class="swiper-pagination"  slot="pagination"></div>
+    </swiper>
+  </div>
+</template>
+```
 
-
-
+```js
+export default {
+  name: 'HomeSwiper',
+  props: {
+    list: Array
+  },
+  data: function () {
+    return {
+      swiperOption: {
+        pagination: '.swiper-pagination',
+        loop: false
+      }
+    }
+  },
+  // 计算属性
+  computed: {
+    showSwipeer: function () {
+      return this.list.length
+    }
+  }
+}
+```
 
 
 

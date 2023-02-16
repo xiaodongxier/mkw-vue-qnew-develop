@@ -2,7 +2,7 @@
 <template>
   <div>
     <home-header :city="city"></home-header>
-    <home-swiper></home-swiper>
+    <home-swiper :list="swiperList"></home-swiper>
     <home-icons></home-icons>
     <home-recommend></home-recommend>
     <home-weekend></home-weekend>
@@ -27,7 +27,8 @@ export default {
   },
   data: function () {
     return {
-      city: '北京'
+      city: '',
+      swiperList: []
     }
   },
   methods: {
@@ -37,8 +38,15 @@ export default {
       // 数据获取成功执行 getHomeInfoSucc 函数
         .then(this.getHomeInfoSucc)
     },
-    getHomeInfoSucc: function (data) {
-      console.log(data)
+    getHomeInfoSucc: function (res) {
+      console.log(res)
+      res = res.data
+      if (res.ret && res.data) {
+        console.log('获取后端数据成功且不为空')
+        const data = res.data
+        this.city = data.city
+        this.swiperList = data.swiperList
+      }
     }
   },
   mounted: function () {
