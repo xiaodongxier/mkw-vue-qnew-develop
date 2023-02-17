@@ -815,6 +815,9 @@ export default {
 
 ## 8-6 Vue项目城市选择页 - 兄弟组件数据传递
 
+
+### 字母点击跳转
+
 BetterScroll 插件文档：https://better-scroll.github.io/docs/zh-CN/guide/base-scroll-api.html#%E6%96%B9%E6%B3%95
 
 兄弟组件传值(非父子组件传值)
@@ -832,6 +835,78 @@ BetterScroll 插件文档：https://better-scroll.github.io/docs/zh-CN/guide/bas
   - ref
   - better-scroll
     -  this.scoll.scrollToElement(element)
+
+```html
+<template>
+  <ul class="list">
+    <li class="item"
+        v-for="(item, key) of cities"
+        :key="key"
+        @click="handeLeetterClick">
+        {{ key }}
+    </li>
+  </ul>
+</template>
+
+<script>
+export default {
+  name: 'CityAlphabet',
+  props: {
+    cities: Object
+  },
+  methods: {
+    // e 事件对象
+    handeLeetterClick: function (e) {
+      // 向外触发事件, 后面跟着传递的内容
+      this.$emit('change', e.target.innerText)
+    }
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+@import '~styles/varibles.styl';
+.list
+  position absolute
+  right 0
+  top: 1.5rem
+  bottom: 0
+  width .4rem
+  display: flex
+  flex-direction: column
+  justify-content: center
+  .item
+    text-align: center
+    line-height: .4rem
+    color: $bgColor
+</style>
+```
+
+### 字母拖拽联动
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 - 后续增加

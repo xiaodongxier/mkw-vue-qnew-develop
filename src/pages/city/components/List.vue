@@ -44,8 +44,7 @@ export default {
       if (this.letter) {
         // 需要思考的地方
         const element = this.$refs[this.letter][0]
-        console.log('element', element)
-        // console.log('this.letter', this.letter)
+        // console.log('element', element)
         this.scoll.scrollToElement(element)
       }
     }
