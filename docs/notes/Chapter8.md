@@ -548,6 +548,284 @@ export default {
 ## 8-5 Vue项目城市选择页 - 页面的动态数据渲染
 
 
+### 数据获取
+
+createt 和 mounted 都行，建议是 `mounted`
+
+
+#### city.vue
+
+```html
+<template>
+  <div>
+    <city-header></city-header>
+    <city-search></city-search>
+    <city-list :hot="hotCities" :cities="cities"></city-list>
+    <city-alphabet :list="cities"></city-alphabet>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+import CityHeader from './components/Header'
+import CitySearch from './components/Search'
+import CityList from './components/List'
+import CityAlphabet from './components/Alphabet'
+export default {
+  name: 'City',
+  data () {
+    return {
+      hotCities: [],
+      cities: {}
+    }
+  },
+  components: {
+    CityHeader: CityHeader,
+    CitySearch: CitySearch,
+    CityList: CityList,
+    CityAlphabet: CityAlphabet
+  },
+  methods: {
+    getCityInfo: function () {
+      axios.get('./api/city.json')
+        // .then(function (res) {
+        //   this.handleGetInfoSucc
+        //   console.log('city', res)
+        // })
+        .then(this.handleGetInfoSucc)
+    },
+    handleGetInfoSucc: function (res) {
+      res = res.data
+      if (res.data && res.ret) {
+        const data = res.data
+        this.hotCities = data.hotCities
+        this.cities = data.cities
+      }
+    }
+  },
+  mounted () {
+    this.getCityInfo()
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+
+</style>
+```
+
+#### list.vue
+
+```html
+<template>
+  <div class="list" ref="wrapper">
+    <div>
+      <div class="area">
+        <div class="title border-topbottom">当前城市</div>
+        <div class="button-list">
+          <div class="button-wrap">
+            <div class="button">北京</div>
+          </div>
+        </div>
+      </div>
+      <div class="area">
+        <div class="title border-topbottom">热门城市</div>
+        <div class="button-list">
+          <div class="button-wrap" v-for='item of hot' :key="item.id">
+            <div class="button">{{item.name}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="area" v-for="(item, key) of cities" :key="key">
+        <div class="title border-topbottom">{{ key }}</div>
+        <div class="item-list" v-for="inneritem of item" :key="inneritem.id">
+          <div class="item border-bottom">{{ inneritem.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import BScoll from 'better-scroll'
+export default {
+  name: 'CityList',
+  props: {
+    hot: Array,
+    cities: Object
+  },
+  mounted: function () {
+    this.scoll = new BScoll(this.$refs.wrapper)
+    console.log(this)
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+@import '~styles/varibles.styl';
+.border-topbottom
+  &:before
+    border-color #ccc
+  &:after
+    border-color #ccc
+.border-bottom
+  &:before
+    border-color #ccc
+.list
+  overflow hidden
+  position absolute
+  top 1.58rem
+  bottom 0
+  left 0
+  right 0
+  .title
+    line-height: .54rem
+    background: #eee
+    padding-left: .2rem
+    color #666
+    font-size: .26rem
+  .button-list
+    overflow hidden
+    padding .1rem .6rem .1rem .1rem
+    .button-wrap
+      float left
+      width: 33%
+      .button
+        margin: .1rem
+        padding: .1rem 0
+        border: .02rem solid #ccc
+        text-align: center
+        border-radius: .06rem
+  .item-list
+    .item
+      line-height .76rem
+      padding-left: .2rem
+</style>
+```
+
+- 循环必须有key
+- 双层循环情况下只要外部的key不一样即可
+  - 和父级key值一样没关系
+- 对象循环(item, key) key 即是 键值
+- 使用 `better-scroll`
+  - 放在 mounted 生命周期函数里面，等页面DOM挂载完毕执行
+
+
+#### Alphabet.vue
+
+
+
+```html
+<template>
+  <div class="list" ref="wrapper">
+    <div>
+      <div class="area">
+        <div class="title border-topbottom">当前城市</div>
+        <div class="button-list">
+          <div class="button-wrap">
+            <div class="button">北京</div>
+          </div>
+        </div>
+      </div>
+      <div class="area">
+        <div class="title border-topbottom">热门城市</div>
+        <div class="button-list">
+          <div class="button-wrap" v-for='item of hot' :key="item.id">
+            <div class="button">{{item.name}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="area" v-for="(item, key) of cities" :key="key">
+        <div class="title border-topbottom">{{ key }}</div>
+        <div class="item-list">
+          <div class="item border-bottom"  v-for="inneritem of item" :key="inneritem.id">{{ inneritem.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import BScoll from 'better-scroll'
+export default {
+  name: 'CityList',
+  props: {
+    hot: Array,
+    cities: Object
+  },
+  mounted: function () {
+    this.scoll = new BScoll(this.$refs.wrapper)
+    console.log(this)
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+@import '~styles/varibles.styl';
+.border-topbottom
+  &:before
+    border-color #ccc
+  &:after
+    border-color #ccc
+.border-bottom
+  &:before
+    border-color #ccc
+.list
+  overflow hidden
+  position absolute
+  top 1.58rem
+  bottom 0
+  left 0
+  right 0
+  .title
+    line-height: .54rem
+    background: #eee
+    padding-left: .2rem
+    color #666
+    font-size: .26rem
+  .button-list
+    overflow hidden
+    padding .1rem .6rem .1rem .1rem
+    .button-wrap
+      float left
+      width: 33%
+      .button
+        margin: .1rem
+        padding: .1rem 0
+        border: .02rem solid #ccc
+        text-align: center
+        border-radius: .06rem
+  .item-list
+    .item
+      line-height .76rem
+      padding-left: .2rem
+</style>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## 8-6 Vue项目城市选择页 - 兄弟组件数据传递

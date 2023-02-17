@@ -45,7 +45,7 @@ export default {
       console.log(res)
       res = res.data
       if (res.ret && res.data) {
-        console.log('获取后端数据成功且不为空')
+        console.log('Home组件获取后端数据成功且不为空')
         const data = res.data
         this.city = data.city
         this.swiperList = data.swiperList
