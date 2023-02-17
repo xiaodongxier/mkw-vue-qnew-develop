@@ -813,22 +813,69 @@ export default {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 8-6 Vue项目城市选择页 - 兄弟组件数据传递
+
+BetterScroll 插件文档：https://better-scroll.github.io/docs/zh-CN/guide/base-scroll-api.html#%E6%96%B9%E6%B3%95
+
+兄弟组件传值(非父子组件传值)
+
+- 补充知识
+  - 非父子组件传值
+    - 子传父
+    - 兄弟
+      - 传值给父，父传递兄弟
+      - 其他
+    - 更深层级
+  - e 事件对象
+  - $emit 向外触发事件
+  - watch 侦听器
+  - ref
+  - better-scroll
+    -  this.scoll.scrollToElement(element)
+
+
+- 后续增加
+  - 选择变色/点击增加class？
+  - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
