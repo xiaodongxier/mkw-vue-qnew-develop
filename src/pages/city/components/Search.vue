@@ -8,7 +8,7 @@
         <li v-for="item of list" :key="item.id" class="search-item border-bottom">
           {{ item.name }}
         </li>
-        <li class="search-item border-bottom" v-show="!this.list.length">
+        <li class="search-item border-bottom" v-show="hasNoData">
           没有找到匹配的数据
         </li>
       </ul>
@@ -30,13 +30,18 @@ export default {
       timer: null
     }
   },
+  computed: {
+    hasNoData () {
+      return !this.list.length
+    }
+  },
   watch: {
     keyword () {
       if (this.timer) {
         clearTimeout(this.timer)
       }
       if (!this.keyword) {
-        this.keyword = []
+        this.list = []
         return
       }
       this.timer = setTimeout(() => {
