@@ -37,6 +37,7 @@ export default {
   },
   watch: {
     keyword () {
+      // 截流函数
       if (this.timer) {
         clearTimeout(this.timer)
       }
@@ -55,7 +56,7 @@ export default {
         }
         this.list = result
       }, 100)
-      console.log(this.list)
+      console.log(JSON.parse(JSON.stringify(this.list)))
     }
   },
   mounted: function () {
