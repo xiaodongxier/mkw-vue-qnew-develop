@@ -1,7 +1,7 @@
 <!-- 首页组件/首页总组件 -->
 <template>
   <div>
-    <home-header :city="city"></home-header>
+    <home-header></home-header>
     <home-swiper :list="swiperList"></home-swiper>
     <home-icons :list="iconList"></home-icons>
     <home-recommend :list="recommendList"></home-recommend>
@@ -27,7 +27,6 @@ export default {
   },
   data: function () {
     return {
-      city: '',
       swiperList: [],
       iconList: [],
       recommendList: [],
@@ -47,7 +46,6 @@ export default {
       if (res.ret && res.data) {
         console.log('Home组件获取后端数据成功且不为空')
         const data = res.data
-        this.city = data.city
         this.swiperList = data.swiperList
         this.iconList = data.iconList
         this.recommendList = data.recommendList

@@ -1387,9 +1387,11 @@ sudo cnpm install vuex@3.0.1 --save
 
 
 
+### vuex 数据传输
 
-
-
+```
+ {{this.$store.state.city}}
+```
 
 
 
