@@ -46,6 +46,7 @@ export default {
     handeLeetterClick: function (e) {
       // 向外触发事件, 后面跟着传递的内容
       this.$emit('change', e.target.innerText)
+      console.log(e.target.innerText)
     },
     handleTouchStart: function () {
       this.touchStatus = true
