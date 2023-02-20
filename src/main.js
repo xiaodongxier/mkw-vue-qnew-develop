@@ -9,6 +9,7 @@ import router from './router'
 import fastClick from 'fastclick'
 // - 引入 vue-awesome-swiper
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import store from './store'
 // - 默认样式重制/保证各个浏览器访问效果一样
 import 'styles/reset.css'
 // - 1px边框问题
@@ -32,6 +33,7 @@ new Vue({
   // - 路由-后面讲
   router,
   // - 局部组件使用，ES6的写法，等同于  { App:App }，在ES6中当键和值一样的时候可以简写一个就可以
+  store,
   components: { App },
   // - App组件显示在页面之上 ，App组件在哪里？上面第5行代码进行了引入
   template: '<App/>'
