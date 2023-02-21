@@ -24,7 +24,11 @@
       <div class="area" v-for="(item, key) of cities" :key="key" :ref="key">
         <div class="title border-topbottom">{{ key }}</div>
         <div class="item-list">
-          <div class="item border-bottom"  v-for="inneritem of item" :key="inneritem.id">{{ inneritem.name }}</div>
+          <div class="item border-bottom"
+               v-for="inneritem of item"
+               :key="inneritem.id"
+               @click="handleCityClick(inneritem.name)"
+          >{{ inneritem.name }}</div>
         </div>
       </div>
     </div>

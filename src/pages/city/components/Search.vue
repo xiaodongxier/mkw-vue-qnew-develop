@@ -5,7 +5,12 @@
     </div>
     <div class="search-content" ref="search" v-show="keyword">
       <ul>
-        <li v-for="item of list" :key="item.id" class="search-item border-bottom">
+        <li
+            v-for="item of list"
+            :key="item.id"
+            @click="handleCityClick(item.name)"
+            class="search-item border-bottom"
+        >
           {{ item.name }}
         </li>
         <li class="search-item border-bottom" v-show="hasNoData">
@@ -33,6 +38,11 @@ export default {
   computed: {
     hasNoData () {
       return !this.list.length
+    }
+  },
+  methods: {
+    handleCityClick: function (city) {
+      this.$store.commit('changeMutaCity', city)
     }
   },
   watch: {
