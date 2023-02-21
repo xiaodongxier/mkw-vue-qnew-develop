@@ -3,9 +3,17 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+let defaultCity = '选择城市'
+
+try {
+  if (localStorage.city) {
+    defaultCity = localStorage.city
+  }
+} catch (e) {}
+
 export default new Vuex.Store({
   state: {
-    city: '周刊'
+    city: defaultCity
   },
   // actions: {
   //   changeCity: function (ctx, city) {
@@ -17,6 +25,9 @@ export default new Vuex.Store({
     changeMutaCity: function (state, city) {
       console.log(state, city)
       state.city = city
+      try {
+        localStorage.city = city
+      } catch (e) {}
     }
   }
 })
