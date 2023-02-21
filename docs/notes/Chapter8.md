@@ -1386,19 +1386,65 @@ sudo cnpm install vuex@3.0.1 --save
 ```
 
 
+### 使用 Vuex
+
+
+```js
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  state: {
+    city: 'shanghaihai'
+  }
+})
+```
 
 ### vuex 数据传输
+
+
 
 ```
  {{this.$store.state.city}}
 ```
 
+每一个字组件都能使用
 
 
 
 
 
 
+
+#### changeCity(ctx, city)
+
+接受两个参数
+
+```html
+<div class="area">
+  <div class="title border-topbottom">热门城市</div>
+  <div class="button-list">
+    <div class="button-wrap"
+          v-for='item of hot'
+          :key="item.id"
+          @click="handleCityClick(item.name)"
+    >
+      <div class="button">{{item.name}}</div>
+    </div>
+  </div>
+</div>
+```
+
+```js
+methods: {
+  handleCityClick: function (city) {
+    this.$store.dispatch('changeCity', city)
+    // console.log(city)
+  }
+},
+```
 
 
 
