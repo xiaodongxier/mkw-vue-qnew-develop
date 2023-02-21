@@ -48,6 +48,7 @@ export default {
     handleCityClick: function (city) {
       // this.$store.dispatch('changeCity', city)
       this.$store.commit('changeMutaCity', city)
+      this.$router.push('/')
       // console.log(city)
     }
   },

@@ -43,6 +43,8 @@ export default {
   methods: {
     handleCityClick: function (city) {
       this.$store.commit('changeMutaCity', city)
+      // 页面跳转
+      this.$router.push('/')
     }
   },
   watch: {
