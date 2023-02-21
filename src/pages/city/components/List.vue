@@ -42,7 +42,8 @@ export default {
   },
   methods: {
     handleCityClick: function (city) {
-      this.$store.dispatch('changeCity', city)
+      // this.$store.dispatch('changeCity', city)
+      this.$store.commit('changeMutaCity', city)
       // console.log(city)
     }
   },
