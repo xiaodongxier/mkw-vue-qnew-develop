@@ -1,20 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import state from './state'
 
 Vue.use(Vuex)
 
-let defaultCity = '选择城市'
-
-try {
-  if (localStorage.city) {
-    defaultCity = localStorage.city
-  }
-} catch (e) {}
-
 export default new Vuex.Store({
-  state: {
-    city: defaultCity
-  },
+  state: state,
   // actions: {
   //   changeCity: function (ctx, city) {
   //     console.log(ctx, city)
