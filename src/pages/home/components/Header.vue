@@ -21,8 +21,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  computed: {
+    // mapState 指把vuex里面的数据映射到组件的conputed计算属性里
+    // 把 city 这个数据映射到 city 的计算属性当中
+    ...mapState(['city'])
+  }
 }
 </script>
 
@@ -52,7 +58,8 @@ export default {
     border-radius: .1rem
     color #ccc
   .header-right
-    width: 1.24rem;
+    min-width: 1.04rem;
+    padding: 0 .1rem
     float: right;
     text-align: center
     color: #fff

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import state from './state'
+import mutations from './mutations'
 
 Vue.use(Vuex)
 
@@ -12,13 +13,5 @@ export default new Vuex.Store({
   //     ctx.commit('changeMutaCity', city)
   //   }
   // },
-  mutations: {
-    changeMutaCity: function (state, city) {
-      console.log(state, city)
-      state.city = city
-      try {
-        localStorage.city = city
-      } catch (e) {}
-    }
-  }
+  mutations
 })

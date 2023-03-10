@@ -1372,6 +1372,13 @@ vuex单项数据改变流程
 
 ### 安装 Vuex
 
+
+大型项目中vue只能承担视图层的主要的内容
+
+涉及到大量数据的时候就需要借助数据框架进行辅助，在vue当中就使用vuex (数据层框架)
+
+![vuex](https://gitcdn.xiaodongxier.com/image/20230310133928.png)
+
 ```
 suod npm i vuex --save
 ```
@@ -1718,7 +1725,20 @@ api 比 cookie 更简单
 
 
 
+### 代码优化/city
 
+```html
+<div class="header-right">
+  <!-- 需要写的太长 -->
+  {{this.$store.state.city}}
+  <span class="iconfont arrow-icon">&#xe6aa;</span>
+</div>
+```
+
+vuex提供了一个api
+
+
+**展开运算符**
 
 
 
