@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" @click="handleGallaryClick">
     <div class="wrapper">
       <swiper :options="swiperOptions">
         <swiper-slide v-for="item of imgs" :key="item.kwy">
@@ -17,16 +17,23 @@ export default {
   props: {
     imgs: {
       type: Array,
-      default() {
+      default () {
         return []
       }
+    }
+  },
+  methods: {
+    handleGallaryClick: function () {
+      this.$emit('close')
     }
   },
   data: function () {
     return {
       swiperOptions: {
         pagination: '.swiper-pagination',
-        paginationType: 'fraction'
+        paginationType: 'fraction',
+        observer: true,
+        observeParents: true
       }
     }
   }

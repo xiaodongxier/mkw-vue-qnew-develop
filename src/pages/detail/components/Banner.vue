@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="banner">
+    <div class="banner" @click="handleBannerClick">
       <img src="https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg" alt="" class="banner-img">
       <div class="banner-info">
         <div class="banner-title">含往返飞机票+8晚住宿</div>
@@ -10,7 +10,11 @@
         </div>
       </div>
     </div>
-    <common-gallary :imgs="imgs"></common-gallary>
+    <common-gallary 
+      :imgs="imgs" 
+      v-show="showGallary"
+      @close="handleGallaryClose"
+    ></common-gallary>
   </div>
 </template>
 
@@ -20,7 +24,16 @@ export default {
   name: 'DetailBanner',
   data() {
     return {
-      imgs: ['https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg','https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg']
+      showGallary: false,
+      imgs: ['https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg','https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg' ]
+    }
+  },
+  methods: {
+    handleBannerClick: function () {
+      this.showGallary = true 
+    },
+    handleGallaryClose: function () {
+      this.showGallary = false 
     }
   },
   components: {

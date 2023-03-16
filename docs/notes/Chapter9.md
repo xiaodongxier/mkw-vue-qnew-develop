@@ -87,10 +87,11 @@ src/common/gallary/Gallary.vue
 **创建 gallary 文件夹的目的是当组件比复杂比较较大的时候，可以在里面在新建 components 文件夹进行拆分方便后期开发**
 
 
+DOM结构分发生变化的时候自我刷新一次，解决显示/隐藏 swiper 存在的滑动bug问题
 
+[observeParents](https://3.swiper.com.cn/api/Observer/2015/0308/219.html)
 
-
-
+将observe应用于Swiper的祖先元素。当Swiper的祖先元素变化时，例如window.resize，Swiper更新。
 
 
 
