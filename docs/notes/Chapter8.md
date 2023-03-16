@@ -1845,6 +1845,11 @@ activated: function () {
 
 ## 8-13 （新）细节优化
 
+300ms延迟问题，可以通过css来解决
+
+Alphabet.vue 组件节流延迟问题
+
+搜索列表点击没反应问题，new BScoll 后面跟 click：true
 
 
 
