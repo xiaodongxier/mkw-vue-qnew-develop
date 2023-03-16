@@ -1,9 +1,9 @@
 <template>
   <div>
-    <detail-banner></detail-banner>
+    <detail-banner :bannerImg="bannerImg" :sightName="sightName"  :gallaryImgs="gallaryImgs"></detail-banner>
     <detail-header></detail-header>
     <div class="content">
-      <detail-list :list="list"></detail-list>
+      <detail-list :categoryList="categoryList"></detail-list>
     </div>
   </div>
 </template>
@@ -12,51 +12,45 @@
 import DetailBanner from './components/Banner.vue'
 import DetailHeader from './components/Header.vue'
 import DetailList from './components/List.vue'
+import axios from 'axios'
 export default {
   name: 'Detail',
   data () {
     return {
-      list: [
-        {
-          title: '儿童',
-          children: [
-            {
-              title: '儿童1班',
-              children: [
-                {
-                  title: '儿童1-1班',
-                  children: [
-                    {
-                      title: '儿童1-1-1班'
-                    },
-                    {
-                      title: '儿童1-1-2班'
-                    }
-                  ]
-                },
-                {
-                  title: '儿童1-2班'
-                }
-              ]
-            },
-            {
-              title: '儿童2班'
-            }
-          ]
-        },
-        {
-          title: '成人'
-        },
-        {
-          title: '老人'
-        }
-      ]
+      bannerImg: '',
+      sightName: '',
+      categoryList: [],
+      gallaryImgs: []
     }
   },
   components: {
     DetailBanner,
     DetailHeader,
     DetailList
+  },
+  methods: {
+    getDatailInfo () {
+      // axios.get('/api/detail.json?id=' + this.$route.params.id)
+      axios.get('/api/detail.json', {
+        params: {
+          id: this.$route.params.id
+        }
+      }).then(this.handleGetDateSucc)
+    },
+    handleGetDateSucc (res) {
+      res = res.data
+      console.log(res)
+      if (res.ret && res.data) {
+        const data = res.data
+        this.bannerImg = data.bannerImg
+        this.sightName = data.sightName
+        this.categoryList = data.categoryList
+        this.gallaryImgs = data.gallaryImgs
+      }
+    }
+  },
+  mounted () {
+    this.getDatailInfo()
   }
 }
 </script>

@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="banner" @click="handleBannerClick">
-      <img src="https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg" alt="" class="banner-img">
+      <img :src="bannerImg" alt="" class="banner-img">
       <div class="banner-info">
-        <div class="banner-title">含往返飞机票+8晚住宿</div>
+        <div class="banner-title">{{sightName}}</div>
         <div class="banner-number">
           <span class="banner-icons iconfont">&#xe632;</span>
           99
@@ -11,7 +11,7 @@
       </div>
     </div>
     <common-gallary
-      :imgs="imgs"
+      :gallaryImgs="gallaryImgs"
       v-show="showGallary"
       @close="handleGallaryClose"
     ></common-gallary>
@@ -22,13 +22,24 @@
 import CommonGallary from 'common/Gallary/Gallary.vue'
 export default {
   name: 'DetailBanner',
+  props: {
+    gallaryImgs: {
+      type: Array
+    },
+    sightName: {
+      type: String
+    },
+    bannerImg: {
+      type: String
+    }
+  },
   data () {
     return {
-      showGallary: false,
-      imgs: [
-        'https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg',
-        'https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg'
-      ]
+      showGallary: false
+      // imgs: [
+      //   'https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg',
+      //   'https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg'
+      // ]
     }
   },
   methods: {

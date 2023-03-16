@@ -382,6 +382,20 @@ scrollBehavior (to, from, savedPosition) {
 }
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 9-8 Vue项目详情页 - 在项目中加入基础动画
 
 
