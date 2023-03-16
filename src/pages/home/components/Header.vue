@@ -13,7 +13,7 @@
     <router-link to="/city">
       <div class="header-right">
         <!-- 三亚 -->
-        {{this.$store.state.city}}
+        {{this.city}}
         <span class="iconfont arrow-icon">&#xe6aa;</span>
       </div>
     </router-link>

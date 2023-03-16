@@ -1727,24 +1727,37 @@ api 比 cookie 更简单
 
 ### 代码优化/city
 
+vuex 提供了一个 api
+
+
+**展开运算符**
+
+```js
+import { mapState } from 'vuex'
+export default {
+  name: 'HomeHeader',
+  computed: {
+    // mapState 指把vuex里面的数据映射到组件的conputed计算属性里
+    // 把 city 这个数据映射到 city 的计算属性当中
+    ...mapState(['city'])
+  }
+}
+```
+
 ```html
+<!-- 优化前 -->
 <div class="header-right">
   <!-- 需要写的太长 -->
   {{this.$store.state.city}}
   <span class="iconfont arrow-icon">&#xe6aa;</span>
 </div>
+<!-- 优化后 -->
+<div class="header-right">
+  <!-- 三亚 -->
+  {{this.city}}
+  <span class="iconfont arrow-icon">&#xe6aa;</span>
+</div>
 ```
-
-vuex提供了一个api
-
-
-**展开运算符**
-
-
-
-
-
-
 
 
 
