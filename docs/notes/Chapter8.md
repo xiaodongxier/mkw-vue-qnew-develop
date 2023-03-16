@@ -1833,6 +1833,14 @@ activated: function () {
 }
 ```
 
+- [vue内置组件keep-alive生命周期解读](https://juejin.cn/post/6844904163277701128)
+
+组件一旦被 `<keep-alive>` 缓存，那么再次渲染的时候就不会执行 `created、mounted` 等钩子函数，但是我们很多实际业务场景都是希望在我们被缓存的组件再次被渲染的时候做一些事情。
+所以Vue 针对被keep-alive包裹的组件提供了 activated和deactivated钩子函数。
+
+页面第一次进入，钩子的触发顺序`created-> mounted-> activated`，退出时触发deactivated。当再次进入（前进或者后退）时，只触发activated
+
+
 
 
 ## 8-13 （新）细节优化

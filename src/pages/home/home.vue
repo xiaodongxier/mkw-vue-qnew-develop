@@ -74,6 +74,9 @@ export default {
       console.log('切换了城市')
       this.getHomeInfo()
     }
+  },
+  deactivated: function () {
+    console.log('deactivated')
   }
 }
 </script>
