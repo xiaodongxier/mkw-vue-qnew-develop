@@ -25,5 +25,10 @@ export default new Router({
       name: 'Detail',
       component: Detail
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+    return { y: 0 }
+    // return { x: 0, y: 0}
+  }
 })

@@ -362,8 +362,25 @@ export default {
 
 ## 9-7 Vue项目详情页 - 动态获取详情页面数据
 
+name 的用途
+
+- 使用递归组件的时候
+- keep-alive 取消缓冲的时候
+- 调试工具里面查看的时候
 
 
+滚动页面后切换页面始终停留在滑动高度位置的问题。参考[滚动行为](https://router.vuejs.org/zh/guide/advanced/scroll-behavior.html)
+
+
+路由文件中添加这个文件
+
+```js
+scrollBehavior (to, from, savedPosition) {
+  // return 期望滚动到哪个的位置
+  return { y: 0 }
+  // return { x: 0, y: 0}
+}
+```
 
 ## 9-8 Vue项目详情页 - 在项目中加入基础动画
 
