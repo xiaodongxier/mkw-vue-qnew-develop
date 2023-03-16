@@ -94,14 +94,78 @@ DOM结构分发生变化的时候自我刷新一次，解决显示/隐藏 swiper
 将observe应用于Swiper的祖先元素。当Swiper的祖先元素变化时，例如window.resize，Swiper更新。
 
 
+**Gallary.vue**
 
+```html
+<template>
+  <div class="container" @click="handleGallaryClick">
+    <div class="wrapper">
+      <swiper :options="swiperOptions">
+        <swiper-slide v-for="item of imgs" :key="item.kwy">
+          <img class="gallary-img" :src="item" alt="">
+        </swiper-slide>
+        <div class="swiper-pagination"  slot="pagination"></div>
+      </swiper>
+    </div>
+  </div>
+</template>
 
+<script>
+export default {
+  name: 'CommonGallary',
+  props: {
+    imgs: {
+      type: Array,
+      default () {
+        return []
+      }
+    }
+  },
+  methods: {
+    handleGallaryClick: function () {
+      this.$emit('close')
+    }
+  },
+  data: function () {
+    return {
+      swiperOptions: {
+        pagination: '.swiper-pagination',
+        paginationType: 'fraction',
+        observer: true,
+        observeParents: true
+      }
+    }
+  }
+}
+</script>
 
-
-
-
-
-
+<style lang="stylus" scoped>
+.container >>> .swiper-container
+  overflow: inherit
+.container
+  display: flex
+  position fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  flex-direction: column
+  justify-content: center
+  background: #000
+  z-index 99
+  .wrapper
+    overflow hidden
+    height 0
+    padding-bottom: 100%
+    color #fff
+    background: #fff
+    .gallary-img
+      width 100%
+    .swiper-pagination
+      color #fff
+      bottom: -1rem
+</style>
+```
 
 
 
@@ -111,6 +175,36 @@ DOM结构分发生变化的时候自我刷新一次，解决显示/隐藏 swiper
 
 
 ## 9-3 Vue项目详情页 - 实现Header渐隐渐显效果
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
