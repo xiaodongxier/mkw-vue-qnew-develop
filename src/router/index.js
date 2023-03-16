@@ -4,6 +4,7 @@ import Router from 'vue-router'
 // - @ 指的是 src 目录， home.vue 简写成 home
 import Home from '@/pages/home/Home'
 import City from '@/pages/city/city'
+import Detail from '@/pages/detail/Detail'
 
 Vue.use(Router)
 
@@ -18,6 +19,11 @@ export default new Router({
       path: '/City',
       name: 'City',
       component: City
+    },
+    {
+      path: '/Detail/:id',
+      name: 'Detail',
+      component: Detail
     }
   ]
 })
