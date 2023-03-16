@@ -1817,10 +1817,21 @@ export default {
 
 
 
-lastCity 临时缓存变量
+借助 `lastCity` 临时缓存变量保存目前所在城市，然后通过与 `city` 比较是否进行了城市切换，判断是否发起请求
 
 
-
+```js
+activated: function () {
+  console.log('activated')
+  if (this.city === this.lastCity) {
+    console.log('没有切换城市')
+  } else {
+    this.lastCity = this.city
+    console.log('切换了城市')
+    this.getHomeInfo()
+  }
+}
+```
 
 
 
