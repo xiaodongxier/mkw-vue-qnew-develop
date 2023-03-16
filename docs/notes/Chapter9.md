@@ -277,6 +277,39 @@ export default {
 ## 9-5 Vue项目详情页 - 对全局事件的解绑
 
 
+window.scroll 事件影响全局
+
+```
+window.addEventListener('scroll', this.handleScroll)
+```
+
+```
+// 使用了 keep-alive 会多出来 activated 生命周期函数
+// 每次页面展示的时候会执行
+activated () {
+  window.addEventListener('scroll', this.handleScroll)
+},
+// 页面被隐藏或者被替换的时候执行
+deactivated () {
+  window.removeEventListener('scroll', this.handleScroll)
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## 9-6 Vue项目详情页 - 使用递归组件实现详情页列表
