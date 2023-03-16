@@ -71,7 +71,7 @@ export default {
       console.log('没有切换城市')
     } else {
       this.lastCity = this.city
-      console.log('切换了城市')
+      console.log('切换了城市', this.city)
       this.getHomeInfo()
     }
   },
