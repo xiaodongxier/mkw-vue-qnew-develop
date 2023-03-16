@@ -1,20 +1,31 @@
 <template>
-  <div class="banner">
-    <img src="https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg" alt="" class="banner-img">
-    <div class="banner-info">
-      <div class="banner-title">哈哈哈哈哈哈哈</div>
-      <div class="banner-number">
-        <span class="banner-icons iconfont">&#xe632;</span>
-        99
+  <div>
+    <div class="banner">
+      <img src="https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg" alt="" class="banner-img">
+      <div class="banner-info">
+        <div class="banner-title">含往返飞机票+8晚住宿</div>
+        <div class="banner-number">
+          <span class="banner-icons iconfont">&#xe632;</span>
+          99
+        </div>
       </div>
-      
     </div>
+    <common-gallary :imgs="imgs"></common-gallary>
   </div>
 </template>
 
 <script>
+import CommonGallary from 'common/Gallary/Gallary.vue'
 export default {
-  name: 'DetailBanner'
+  name: 'DetailBanner',
+  data() {
+    return {
+      imgs: ['https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg','https://img1.qunarzz.com/vs_ceph_b2c_001/85447bb1-2a5e-427f-9019-e7bca5be292f.jpg_r_1280x840x95_66a11c68.jpg']
+    }
+  },
+  components: {
+    CommonGallary
+  }
 }
 </script>
 

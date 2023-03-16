@@ -72,6 +72,41 @@ export default {
 ## 9-2 Vue项目详情页 - 公用图片画廊组件拆分
 
 
+创建文件夹放置公共组件
+
+```
+src/common/
+```
+
+比如画廊组件
+
+```
+src/common/gallary/Gallary.vue
+```
+
+**创建 gallary 文件夹的目的是当组件比复杂比较较大的时候，可以在里面在新建 components 文件夹进行拆分方便后期开发**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## 9-3 Vue项目详情页 - 实现Header渐隐渐显效果

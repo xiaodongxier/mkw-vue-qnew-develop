@@ -1,6 +1,5 @@
 <template>
   <div>
-    detail
     <detail-banner></detail-banner>
   </div>
 </template>
@@ -16,5 +15,4 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
 </style>
