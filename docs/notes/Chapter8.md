@@ -1811,6 +1811,16 @@ export default {
 
 ## 8-12 Vue项目城市选择页 - 使用keep-alive优化网页性能
 
+使用 `keep-alive` 会把内容缓存下来，不会在此发起请求，但是切换城市后列表不会去改变响应城市的数据，需要借助声明周期函数 `activated` 来解决
+
+使用 `keep-alive` 的时候组件会多出了一个声明周期函数 `activated` （`keep-alive` 新增的声明周期函数）
+
+
+
+lastCity 临时缓存变量
+
+
+
 
 
 
