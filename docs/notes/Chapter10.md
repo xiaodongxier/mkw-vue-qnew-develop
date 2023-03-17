@@ -69,9 +69,63 @@ ipconfig
 
 #### 问题
 
-事件修饰符
 
-列表页滚动会下拉的问题
+1. 列表页滚动会下拉的问题
+
+```html
+<template>
+  <ul class="list">
+    <li class="item"
+        v-for="item of letters"
+        :key="item"
+        :ref="item"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
+        @click="handeLeetterClick">
+        {{ item }}
+    </li>
+  </ul>
+</template>
+```
+
+事件修饰符能阻止默认行为，阻止后就能解决下拉滑动的问题
+
+```html
+<template>
+  <ul class="list">
+    <li class="item"
+        v-for="item of letters"
+        :key="item"
+        :ref="item"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
+        @click="handeLeetterClick">
+        {{ item }}
+    </li>
+  </ul>
+</template>
+```
+
+2. 部分安卓白屏问题
+
+因为安卓版本太低不知道 Promise ，解决办法需要安装一个包
+
+```shell
+# 不支持 Promise ，会通过添加ES6的新特性来解决
+sudo npm i babel-polyfill --save
+```
+
+在不支持Promise的浏览器会 polyfill一个全局的Promise对象供调用;
+
+`main` 文件中引入 `babel-polyfill`
+
+```
+import 'babel-polyfill'
+```
+
+
 
 
 
