@@ -272,7 +272,49 @@ components: {
 
 ## 10-6 Vue项目的联调测试上线 - 课程总结与后续学习指南
 
+### 知识点
 
-
+- 插件
+- 自定义指令
 
     
+### vue-router
+
+- 命名路由
+- 重定向和别名
+- 路由守卫
+- 导航守卫
+
+### vuex
+
+- State
+- Getter
+- Mutation
+- Action
+- Module
+- 大型的项目数据结构怎么设计
+- vuex相关的插件
+
+
+### 服务器端渲染
+
+nodejs，vue，路由，前后端的渲染
+
+
+
+### vue资源
+
+- swiper
+
+
+
+### vue源码
+
+  - 根据GitHub中vue项目库每次的提交，阅读vue源码，理解逻辑思想
+
+### webpack
+
+### Babel
+
+### ES6
+
