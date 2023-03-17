@@ -38,6 +38,41 @@ dev: {
 ## 10-3 Vue项目的联调测试上线 - 真机测试
 
 
+获取当前的ip地址
+
+**mac**
+
+```
+ifconfig
+```
+
+**Win**
+
+```
+ipconfig
+```
+
+然后获取到ip地址替换到服务器上的 localhost 就可以通过手机进行访问该网站了，前提是必须和电脑在同一网络环境下
+
+默认是不支持ip地址访问的，需要修改 `package.json > scripts`
+
+```js
+ "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js"
+```
+
+修改为
+
+```js
+ "dev": "webpack-dev-server --host 0.0.0.0 --inline --progress --config build/webpack.dev.conf.js"
+```
+
+
+#### 问题
+
+事件修饰符
+
+列表页滚动会下拉的问题
+
 
 
 ## 10-4 Vue项目的联调测试上线 - 打包上线
