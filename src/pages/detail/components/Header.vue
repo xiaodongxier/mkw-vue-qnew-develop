@@ -31,7 +31,7 @@ export default {
   methods: {
     handleScroll () {
       console.log('Gallary组件中滑动事件影响全局')
-      const scollTop = document.documentElement.scrollTop
+      const scollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageXOffset
       if (scollTop > 60) {
         let opacity = scollTop / 140
         opacity = opacity > 1 ? 1 : opacity
@@ -45,11 +45,18 @@ export default {
   },
   // 使用了 keep-alive 会多出来 activated 生命周期函数
   // 每次页面展示的时候会执行
-  activated () {
+  // activated () {
+  //   window.addEventListener('scroll', this.handleScroll)
+  // },
+  // // 页面被隐藏或者被替换的时候执行
+  // deactivated () {
+  //   window.removeEventListener('scroll', this.handleScroll)
+  // }
+  mounted () {
     window.addEventListener('scroll', this.handleScroll)
   },
   // 页面被隐藏或者被替换的时候执行
-  deactivated () {
+  destroyed () {
     window.removeEventListener('scroll', this.handleScroll)
   }
 }

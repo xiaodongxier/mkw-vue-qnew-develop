@@ -409,4 +409,40 @@ export default {
 
 
 
-    
+slot 外部组件插入进来的一个插槽
+
+v-enter
+v-leave-to
+v-enter-active
+v-leave-active
+
+
+```html
+<template>
+  <div>
+    <transition>
+      <slot></slot>
+    </transition>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'DetailFade'
+}
+</script>
+
+<style lang="stylus" scoped>
+.v-enter, .v-leave-to
+  opacity: 0;
+.v-enter-active, .v-leave-active
+  transition: 1s
+  // opacity 1
+</style>
+```
+
+**问题处理**
+1. Detail 组件由于不受 keep-alive 缓存的管理，所以当时使用的 actived 和 deactived 的生命周期函数是存在问题的，因为不受 keep-alive 管理所以就没有以上的两个生命周期函数(actived,deactived)，相应的替换为 mounted 和 destroyed 生命周期函数内执行
+2. Detail 组件下的 Header 组件
+
+
