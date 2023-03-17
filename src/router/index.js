@@ -2,9 +2,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // - @ 指的是 src 目录， home.vue 简写成 home
-import Home from '@/pages/home/Home'
-import City from '@/pages/city/city'
-import Detail from '@/pages/detail/Detail'
+// import Home from '@/pages/home/Home'
+// import City from '@/pages/city/city'
+// import Detail from '@/pages/detail/Detail'
 
 Vue.use(Router)
 
@@ -13,17 +13,17 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: () => import('@/pages/home/Home')
     },
     {
       path: '/City',
       name: 'City',
-      component: City
+      component: () => import('@/pages/city/city')
     },
     {
       path: '/Detail/:id',
       name: 'Detail',
-      component: Detail
+      component: () => import('@/pages/detail/detail')
     }
   ],
   scrollBehavior (to, from, savedPosition) {

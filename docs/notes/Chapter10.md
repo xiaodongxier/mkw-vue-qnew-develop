@@ -166,6 +166,107 @@ assetsPublicPath: '/pages',
 ## 10-5 Vue项目的联调测试上线 - 异步组件实现按需加载
 
 
+合理使用一步组件可以提高项目的性能
+
+.css.map 调试被压缩过的css代码 ,意义不大，就是开发调试的时候使用
+
+
+
+
+- manifest.js 是webpack 打包的的文件，
+  - 开发配置文件，没法做太多的修改
+
+- vendor.js 是各个页面/组件公用的代码
+  - 公用的组件优不优化区别不大
+
+- app.js 项目中各个页面的业务逻辑代码
+  - 默认方式打包的时候，访问首页的时候，把所有页面的逻辑都进行了加载 
+    - 使用异步组件实现按需加载，`router/index.js`
+
+**修改前** 同步加载
+
+```js
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/City',
+      name: 'City',
+      component: City
+    },
+    {
+      path: '/Detail/:id',
+      name: 'Detail',
+      component: Detail
+    }
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+    return { y: 0 }
+    // return { x: 0, y: 0}
+  }
+})
+```
+
+**修改后** 异步加载
+
+```
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: () => import('@/pages/home/Home')
+    },
+    {
+      path: '/City',
+      name: 'City',
+      component: () => import('@/pages/city/city')
+    },
+    {
+      path: '/Detail/:id',
+      name: 'Detail',
+      component: () => import('@/pages/detail/detail')
+    }
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+    return { y: 0 }
+    // return { x: 0, y: 0}
+  }
+})
+```
+
+
+根据项目情况，如果项目打不 app.js 文件很小的情况下没必要做这个组件的拆分，虽然文件变小了，但是访问其他页面的时候会再次发送ajax请求，所以具体情况还需要综合考虑使用不使用异步拆分
+
+
+不仅是路由这块，其他使用组件的地方都可以使用异步加载，比如
+
+```js
+components: {
+  CityHeader: CityHeader,
+  CitySearch: CitySearch,
+  CityList: CityList,
+  CityAlphabet: CityAlphabet
+}
+```
+
+异步加载使用
+
+```js
+components: {
+  CityHeader: () => import(./components/Header),
+  CitySearch: CitySearch,
+  CityList: CityList,
+  CityAlphabet: CityAlphabet
+}
+```
+
 
 
 ## 10-6 Vue项目的联调测试上线 - 课程总结与后续学习指南
